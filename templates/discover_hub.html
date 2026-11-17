@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block body_class %}page-discover{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Beyond the Solar System</span>
+      <h1>Discover</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:680px;">Constellations, stars, real exoplanets, the search for life, deep time, and a couple of playful challenges — everything outside the core planet pages lives here.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <a href="{{ url_for('discover.constellations') }}" class="card reveal">
+        <span class="eyebrow">Night Sky</span><h3>Constellations</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Ten major constellations — shapes, notable stars, and mythology.</p>
+      </a>
+      <a href="{{ url_for('discover.stars') }}" class="card reveal">
+        <span class="eyebrow">Star Map</span><h3>Notable Stars</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Sirius, Betelgeuse, Rigel, Polaris, Vega, and Proxima Centauri.</p>
+      </a>
+      <a href="{{ url_for('discover.exoplanets') }}" class="card reveal">
+        <span class="eyebrow">Other Worlds</span><h3>Exoplanets</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">How we find planets around other stars, and six real examples.</p>
+      </a>
+      <a href="{{ url_for('discover.astrobiology_hub') }}" class="card reveal">
+        <span class="eyebrow">Could Life Exist?</span><h3>Astrobiology Explorer</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">What we know, suspect, and don't know about Mars, Europa, Enceladus, and Titan.</p>
+      </a>
+      <a href="{{ url_for('discover.cosmic_timeline') }}" class="card reveal">
+        <span class="eyebrow">Deep Time</span><h3>Cosmic Timeline</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">13.8 billion years, from the Big Bang to today.</p>
+      </a>
+      <a href="{{ url_for('discover.mystery') }}" class="card reveal">
+        <span class="eyebrow">A Short Challenge</span><h3>Identify the Object</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Guess the planet from its clues, at four difficulty levels.</p>
+      </a>
+      <a href="{{ url_for('labs.create_planet') }}" class="card reveal">
+        <span class="eyebrow">Design a World</span><h3>Create a Planet</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Build a fictional planet and get a habitability assessment.</p>
+      </a>
+      <a href="{{ url_for('labs.mission_builder_page') }}" class="card reveal">
+        <span class="eyebrow">Design a Mission</span><h3>Mission Builder</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Simulate a mission to any planet, moon, or dwarf planet.</p>
+      </a>
+      <a href="{{ url_for('discover.passport') }}" class="card reveal">
+        <span class="eyebrow">Your Journey</span><h3>Explorer Passport</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Everything you've explored across COSMOS, tracked locally.</p>
+      </a>
+      <a href="{{ url_for('discover.spacecraft_list') }}" class="card reveal">
+        <span class="eyebrow">Humanity's Emissaries</span><h3>Spacecraft</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Voyager, Cassini, Parker Solar Probe, JWST, and more — with full mission journeys.</p>
+      </a>
+      <a href="{{ url_for('discover.small_bodies') }}" class="card reveal">
+        <span class="eyebrow">Beyond the Planets</span><h3>Asteroids, Comets &amp; Beyond</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">The Asteroid Belt, comets, the Kuiper Belt, and the Oort Cloud.</p>
+      </a>
+      <a href="{{ url_for('discover.cosmology') }}" class="card reveal">
+        <span class="eyebrow">The Biggest Questions</span><h3>Cosmology Concepts</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Dark matter, dark energy, the expanding universe, and gravitational lensing.</p>
+      </a>
+      <a href="{{ url_for('discover.glossary') }}" class="card reveal">
+        <span class="eyebrow">COSMOS Dictionary</span><h3>Glossary</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Searchable definitions for every astronomy term used on the site.</p>
+      </a>
+      <a href="{{ url_for('discover.quiz') }}" class="card reveal">
+        <span class="eyebrow">Test Yourself</span><h3>COSMOS Challenge</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">A short quiz across planets, moons, galaxies, and missions.</p>
+      </a>
+      <a href="{{ url_for('discover.journal') }}" class="card reveal">
+        <span class="eyebrow">Your Notes</span><h3>My Journal</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Everything you've saved, with room for your own notes.</p>
+      </a>
+      <a href="{{ url_for('discover.sources') }}" class="card reveal">
+        <span class="eyebrow">Credibility</span><h3>Data &amp; Sources</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.9rem;">Where every number on this site comes from, and how confident it is.</p>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

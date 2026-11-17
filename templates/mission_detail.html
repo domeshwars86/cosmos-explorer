@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block body_class %}page-mission-detail{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <a href="{{ url_for('main.explore') }}" class="text-muted" style="font-size:0.85rem;">&larr; Back to Global Space Exploration</a>
+    <div class="section-header reveal" style="margin-top:1rem;">
+      <span class="eyebrow">{% if country %}{{ country.flag }} {{ country.name }} &middot; {% endif %}{{ m.agency }}</span>
+      <h1>{{ m.name }}</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:720px;">{{ m.objective }}</p>
+      <span class="status-pill status-{{ (m.status_category or m.status)|replace(' ', '-') }}" style="margin-top:1rem; display:inline-block;">{{ m.status_category or m.status }}</span>
+    </div>
+
+    {% if partner_agencies %}
+    <div class="partner-badges reveal" style="margin-bottom:1.5rem;">
+      <span class="text-muted" style="font-size:0.8rem; margin-right:0.4rem;">Partners:</span>
+      {% for p in partner_agencies %}<span class="partner-badge">{{ p.flag }} {{ p.name }}</span>{% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="stat-grid reveal">
+      {% if country %}<div class="stat-card"><div class="stat-label">Country / Region</div><div class="stat-value" style="font-size:1.1rem;">{{ country.flag }} {{ country.name }}</div></div>{% endif %}
+      <div class="stat-card"><div class="stat-label">Agency</div><div class="stat-value" style="font-size:1.1rem;">{{ m.agency }}</div></div>
+      <div class="stat-card"><div class="stat-label">Mission Type</div><div class="stat-value" style="font-size:1.1rem;">{{ m.mission_type or m.type }}</div></div>
+      <div class="stat-card"><div class="stat-label">Destination</div><div class="stat-value" style="font-size:1.1rem;">{{ m.destination or m.target }}</div></div>
+      <div class="stat-card"><div class="stat-label">Year</div><div class="stat-value">{{ m.year }}</div></div>
+      <div class="stat-card"><div class="stat-label">Status</div><div class="stat-value" style="font-size:1rem;">{{ m.status }}</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container grid grid-2" style="gap:1.2rem;">
+    <div class="panel reveal" style="padding:1.6rem 1.8rem;">
+      <h3 style="margin-bottom:0.8rem;">Objectives</h3>
+      <ul style="padding-left:1.1rem; list-style:disc;">
+        {% for o in (m.objectives or [m.objective]) %}<li class="text-secondary" style="margin-bottom:0.4rem; font-size:0.92rem;">{{ o }}</li>{% endfor %}
+      </ul>
+    </div>
+    <div class="panel reveal" style="padding:1.6rem 1.8rem;">
+      <h3 style="margin-bottom:0.8rem;">Key Achievements</h3>
+      <ul style="padding-left:1.1rem; list-style:disc;">
+        {% for a in (m.achievements if m.achievements else []) %}<li class="text-secondary" style="margin-bottom:0.4rem; font-size:0.92rem;">{{ a }}</li>{% endfor %}
+        {% if not m.achievements %}<li class="text-secondary" style="font-size:0.92rem;">{{ m.discoveries }}</li>{% endif %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="fact-module reveal">
+      <span class="fact-kicker">SCIENTIFIC CONTRIBUTION</span>
+      <p>{{ m.discoveries }}</p>
+    </div>
+  </div>
+</section>
+
+{% if m.timeline_stages %}
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Mission Timeline</span><h2>How It Unfolded</h2></div>
+    <div class="timeline">
+      {% for stage in m.timeline_stages %}
+      <div class="timeline-item in-view reveal">
+        <div class="timeline-year">{{ stage.stage }}</div>
+        <div class="timeline-card panel" style="cursor:default;">
+          <p class="text-secondary" style="font-size:0.9rem;">{{ stage.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if m.related_cosmos %}
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Continue Exploring</span><h2>Related COSMOS Content</h2></div>
+    <div class="recommend-row reveal">
+      {% for r in m.related_cosmos %}
+      <a class="recommend-card" href="{{ r.url }}"><span><span class="rec-type">Explore</span><span class="rec-name">{{ r.label }}</span></span></a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section" style="padding-top:0; padding-bottom:6rem;">
+  <div class="container">
+    <div class="panel reveal" style="padding:1.6rem 1.8rem;">
+      <h3 style="margin-bottom:0.6rem; font-size:1rem;">Source{{ 's' if m.sources and m.sources|length > 1 else '' }}</h3>
+      {% if m.sources %}
+      <div class="row wrap gap-sm">
+        {% for s in m.sources %}<a href="{{ s }}" target="_blank" rel="noopener noreferrer" class="text-accent" style="font-size:0.85rem;">{{ s }} →</a>{% endfor %}
+      </div>
+      {% else %}
+      <p class="text-muted" style="font-size:0.85rem;">General reference information — see the {{ m.agency }} official website for current mission details.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

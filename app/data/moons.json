@@ -1,0 +1,146 @@
+{
+  "moon": {
+    "id": "moon", "name": "The Moon", "parent": "earth", "color": "#C9C9C9",
+    "diameter_km": 3475, "distance_km": 384400, "orbital_period_days": 27.3, "rotation_period_days": 27.3,
+    "gravity_ms2": 1.62, "atmosphere": "Extremely thin exosphere",
+    "composition": "Rocky, with a small iron-rich core", "surface": "Heavily cratered, with dark volcanic maria and bright highlands",
+    "description": "Earth's only natural satellite and the fifth largest moon in the Solar System, tidally locked so the same face always points toward Earth.",
+    "notable_features": ["Tidal locking keeps one face permanently toward Earth", "Maria (dark plains) formed from ancient volcanic activity", "Highlands are older, heavily cratered terrain", "Drives Earth's ocean tides", "Site of the Apollo crewed landings"]
+  },
+  "phobos": {
+    "id": "phobos", "name": "Phobos", "parent": "mars", "color": "#8a7a6a",
+    "diameter_km": 22.4, "distance_km": 9377, "orbital_period_days": 0.32, "rotation_period_days": 0.32,
+    "gravity_ms2": 0.0057, "atmosphere": "None",
+    "composition": "Carbon-rich rock, possibly a captured asteroid", "surface": "Heavily cratered, dominated by the large Stickney crater",
+    "description": "The larger and closer of Mars's two small moons, orbiting so fast it rises and sets twice each Martian day.",
+    "notable_features": ["Orbits Mars faster than Mars rotates", "Slowly spiraling inward, likely to break apart in tens of millions of years", "Dominated by the giant Stickney impact crater"]
+  },
+  "deimos": {
+    "id": "deimos", "name": "Deimos", "parent": "mars", "color": "#8f8175",
+    "diameter_km": 12.4, "distance_km": 23460, "orbital_period_days": 1.26, "rotation_period_days": 1.26,
+    "gravity_ms2": 0.003, "atmosphere": "None",
+    "composition": "Carbon-rich rock, possibly a captured asteroid", "surface": "Smoother than Phobos, with a regolith-covered surface",
+    "description": "The smaller, outer moon of Mars, with a smoother appearance than its companion Phobos.",
+    "notable_features": ["Smallest of the two Martian moons", "Smoother surface, partly covered in loose regolith", "Likely a captured asteroid, like Phobos"]
+  },
+  "io": {
+    "id": "io", "name": "Io", "parent": "jupiter", "color": "#E8D077",
+    "diameter_km": 3643, "distance_km": 421700, "orbital_period_days": 1.77, "rotation_period_days": 1.77,
+    "gravity_ms2": 1.8, "atmosphere": "Extremely thin, sulfur dioxide",
+    "composition": "Rocky, with active silicate volcanism", "surface": "The most volcanically active body known in the Solar System",
+    "description": "A moon wracked by intense tidal heating from Jupiter's gravity, making it the most volcanically active body known.",
+    "notable_features": ["Hundreds of active volcanoes", "Tidal heating from Jupiter and neighboring moons drives its activity", "Surface colored by sulfur compounds"]
+  },
+  "europa": {
+    "id": "europa", "name": "Europa", "parent": "jupiter", "color": "#D9C9A8",
+    "diameter_km": 3122, "distance_km": 671000, "orbital_period_days": 3.55, "rotation_period_days": 3.55,
+    "gravity_ms2": 1.31, "atmosphere": "Extremely thin, oxygen",
+    "composition": "Ice shell over a probable liquid water ocean, rocky interior", "surface": "Smooth ice crust crossed by long fractures",
+    "description": "An ice-covered moon thought to hide a deep, salty subsurface ocean beneath its cracked icy crust — a major target in the search for habitability.",
+    "notable_features": ["Smooth icy surface with few craters", "Strong evidence of a subsurface liquid water ocean", "Long linear fractures crisscross the surface"]
+  },
+  "ganymede": {
+    "id": "ganymede", "name": "Ganymede", "parent": "jupiter", "color": "#a89a86",
+    "diameter_km": 5268, "distance_km": 1070400, "orbital_period_days": 7.15, "rotation_period_days": 7.15,
+    "gravity_ms2": 1.43, "atmosphere": "Extremely thin, oxygen",
+    "composition": "Rock and ice, with a metallic core", "surface": "Mix of old, dark cratered terrain and younger grooved terrain",
+    "description": "The largest moon in the Solar System, larger than the planet Mercury, and the only moon known to generate its own magnetic field.",
+    "notable_features": ["Largest moon in the Solar System — bigger than Mercury", "Only known moon with its own internally generated magnetic field", "Likely harbors a subsurface ocean"]
+  },
+  "callisto": {
+    "id": "callisto", "name": "Callisto", "parent": "jupiter", "color": "#5b5347",
+    "diameter_km": 4821, "distance_km": 1882700, "orbital_period_days": 16.69, "rotation_period_days": 16.69,
+    "gravity_ms2": 1.24, "atmosphere": "Extremely thin, carbon dioxide",
+    "composition": "Roughly equal parts rock and ice", "surface": "One of the most heavily cratered surfaces in the Solar System",
+    "description": "An ancient, heavily cratered moon that has changed little since the early Solar System.",
+    "notable_features": ["Among the most heavily cratered bodies known", "Geologically quiet compared to its neighbors", "Possible subsurface ocean beneath the ice crust"]
+  },
+  "titan": {
+    "id": "titan", "name": "Titan", "parent": "saturn", "color": "#E3B15C",
+    "diameter_km": 5149, "distance_km": 1221900, "orbital_period_days": 15.95, "rotation_period_days": 15.95,
+    "gravity_ms2": 1.35, "atmosphere": "Thick, nitrogen-methane atmosphere denser than Earth's",
+    "composition": "Rock and ice core beneath a thick icy shell", "surface": "Lakes and seas of liquid methane and ethane, dune fields",
+    "description": "Saturn's largest moon and the only moon in the Solar System with a substantial, thick atmosphere and stable liquid on its surface.",
+    "notable_features": ["Thick, hazy nitrogen-rich atmosphere", "Lakes and seas of liquid methane and ethane", "Complex weather cycle similar in principle to Earth's water cycle, but with methane"]
+  },
+  "enceladus": {
+    "id": "enceladus", "name": "Enceladus", "parent": "saturn", "color": "#EDEDED",
+    "diameter_km": 504, "distance_km": 238000, "orbital_period_days": 1.37, "rotation_period_days": 1.37,
+    "gravity_ms2": 0.113, "atmosphere": "Very thin, water vapor near the south pole",
+    "composition": "Ice shell over a subsurface liquid water ocean", "surface": "Bright, icy, with active geysers at the south pole",
+    "description": "A small, brilliantly reflective moon whose south-polar geysers spray water-ice particles from a subsurface ocean into space.",
+    "notable_features": ["Active geysers erupt from 'tiger stripe' fractures at the south pole", "Feeds material into Saturn's E ring", "Subsurface ocean makes it a key astrobiology target"]
+  },
+  "rhea": {
+    "id": "rhea", "name": "Rhea", "parent": "saturn", "color": "#c9c6c0",
+    "diameter_km": 1527, "distance_km": 527100, "orbital_period_days": 4.52, "rotation_period_days": 4.52,
+    "gravity_ms2": 0.264, "atmosphere": "Extremely thin, oxygen and carbon dioxide",
+    "composition": "Mostly water ice with some rock", "surface": "Heavily cratered icy surface",
+    "description": "Saturn's second-largest moon, an icy, heavily cratered world.",
+    "notable_features": ["Second largest moon of Saturn", "Icy composition with a heavily cratered surface", "May have a very tenuous ring of its own"]
+  },
+  "iapetus": {
+    "id": "iapetus", "name": "Iapetus", "parent": "saturn", "color": "#8a7d6e",
+    "diameter_km": 1469, "distance_km": 3561300, "orbital_period_days": 79.3, "rotation_period_days": 79.3,
+    "gravity_ms2": 0.223, "atmosphere": "None",
+    "composition": "Mostly water ice", "surface": "Strikingly two-toned, one hemisphere dark and one bright",
+    "description": "Known for its dramatic two-tone coloring, with one hemisphere dark as coal and the other bright as snow.",
+    "notable_features": ["Extreme brightness contrast between leading and trailing hemispheres", "A prominent equatorial ridge gives it a walnut-like shape", "Orbits far from Saturn on an inclined path"]
+  },
+  "dione": {
+    "id": "dione", "name": "Dione", "parent": "saturn", "color": "#cfcdc7",
+    "diameter_km": 1123, "distance_km": 377400, "orbital_period_days": 2.74, "rotation_period_days": 2.74,
+    "gravity_ms2": 0.232, "atmosphere": "Extremely thin, oxygen",
+    "composition": "Water ice and rock", "surface": "Cratered with bright, wispy fracture patterns",
+    "description": "An icy moon with bright, wispy streaks that are actually ice cliffs revealed by later imaging.",
+    "notable_features": ["Bright wispy terrain later revealed to be ice cliffs", "Shares its orbit with two smaller trojan moons", "Moderately cratered icy surface"]
+  },
+  "titania": {
+    "id": "titania", "name": "Titania", "parent": "uranus", "color": "#a9a5a0",
+    "diameter_km": 1578, "distance_km": 436300, "orbital_period_days": 8.71, "rotation_period_days": 8.71,
+    "gravity_ms2": 0.379, "atmosphere": "None detected", "composition": "Roughly equal parts ice and rock",
+    "surface": "Canyons and fault systems cutting across cratered terrain",
+    "description": "The largest moon of Uranus, marked by huge canyons that suggest past geological activity.",
+    "notable_features": ["Largest moon of Uranus", "Massive canyon systems, some deeper than Earth's Grand Canyon", "Evidence of past internal geologic activity"]
+  },
+  "oberon": {
+    "id": "oberon", "name": "Oberon", "parent": "uranus", "color": "#928d87",
+    "diameter_km": 1523, "distance_km": 583500, "orbital_period_days": 13.46, "rotation_period_days": 13.46,
+    "gravity_ms2": 0.347, "atmosphere": "None detected", "composition": "Roughly equal parts ice and rock",
+    "surface": "Old, heavily cratered surface with some canyons",
+    "description": "The outermost of Uranus's major moons, an ancient, heavily cratered world.",
+    "notable_features": ["Second largest moon of Uranus", "Dark reddish material coats parts of the surface", "One of the most heavily cratered Uranian moons"]
+  },
+  "miranda": {
+    "id": "miranda", "name": "Miranda", "parent": "uranus", "color": "#b6b2ac",
+    "diameter_km": 471, "distance_km": 129900, "orbital_period_days": 1.41, "rotation_period_days": 1.41,
+    "gravity_ms2": 0.079, "atmosphere": "None detected", "composition": "Ice and rock",
+    "surface": "Extreme, jumbled terrain including giant canyons and terraced ridges",
+    "description": "A small moon with a bizarre, patchwork surface featuring some of the tallest cliffs known in the Solar System.",
+    "notable_features": ["Verona Rupes may be among the tallest cliffs in the Solar System", "Chaotic, jumbled terrain suggests a violent geological history", "Smallest of Uranus's five major moons"]
+  },
+  "ariel": {
+    "id": "ariel", "name": "Ariel", "parent": "uranus", "color": "#b3aea7",
+    "diameter_km": 1158, "distance_km": 190900, "orbital_period_days": 2.52, "rotation_period_days": 2.52,
+    "gravity_ms2": 0.269, "atmosphere": "None detected", "composition": "Ice and rock",
+    "surface": "Bright, relatively young surface with canyons and fault valleys",
+    "description": "The brightest moon of Uranus, with a relatively young surface shaped by past geologic activity.",
+    "notable_features": ["Brightest of Uranus's major moons", "Networks of valleys and fault scarps", "Relatively few large craters suggest a younger surface"]
+  },
+  "umbriel": {
+    "id": "umbriel", "name": "Umbriel", "parent": "uranus", "color": "#6e6a66",
+    "diameter_km": 1169, "distance_km": 266000, "orbital_period_days": 4.14, "rotation_period_days": 4.14,
+    "gravity_ms2": 0.2, "atmosphere": "None detected", "composition": "Ice and rock",
+    "surface": "Dark, heavily cratered, among the least reflective moons in the Solar System",
+    "description": "The darkest of Uranus's major moons, an ancient and heavily cratered world.",
+    "notable_features": ["One of the darkest moons in the Solar System", "Old, heavily cratered surface with little sign of resurfacing", "Featureless bright ring on its surface remains unexplained"]
+  },
+  "triton": {
+    "id": "triton", "name": "Triton", "parent": "neptune", "color": "#d7cfc2",
+    "diameter_km": 2707, "distance_km": 354800, "orbital_period_days": -5.88, "rotation_period_days": 5.88,
+    "gravity_ms2": 0.779, "atmosphere": "Thin nitrogen atmosphere",
+    "composition": "Rock and ice, likely a captured Kuiper Belt object", "surface": "Nitrogen-ice plains with active geysers",
+    "description": "Neptune's largest moon, unusual for orbiting backward (retrograde) — strong evidence it is a captured dwarf planet from the Kuiper Belt.",
+    "notable_features": ["Orbits Neptune in retrograde, unlike most large moons", "Active nitrogen-gas geysers have been observed", "Likely a captured Kuiper Belt object similar to Pluto"]
+  }
+}

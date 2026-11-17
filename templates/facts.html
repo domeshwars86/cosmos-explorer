@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block body_class %}page-facts{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="eyebrow">Cosmic Trivia</span>
+      <h1>Discover the Universe, One Fact at a Time</h1>
+    </div>
+
+    <div class="panel fact-generator reveal">
+      <span class="eyebrow">Did You Know?</span>
+      <div id="fact-text">Click below to discover a cosmic fact.</div>
+      <button type="button" class="btn btn-primary" id="fact-generator-btn">Discover a Cosmic Fact</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="calculators" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Make It Personal</span>
+      <h2>Weight &amp; Age Across the Solar System</h2>
+    </div>
+    <div class="grid grid-2">
+      <div class="panel calc-panel reveal">
+        <h3>How Much Would You Weigh?</h3>
+        <p class="text-secondary" style="margin-top:0.5rem; font-size:0.9rem;">Enter your weight on Earth to see the equivalent scale reading elsewhere.</p>
+        <div class="calc-input-row">
+          <input type="number" id="weight-input" placeholder="Your weight on Earth (kg)" min="1" max="100000" step="0.1" inputmode="decimal" />
+          <button type="button" class="btn btn-primary" id="weight-submit">Calculate</button>
+        </div>
+        <p class="calc-error" id="weight-error"></p>
+        <div class="calc-results" id="weight-results"></div>
+        <p class="calc-disclaimer" id="weight-disclaimer"></p>
+      </div>
+
+      <div class="panel calc-panel reveal">
+        <h3>How Old Would You Be?</h3>
+        <p class="text-secondary" style="margin-top:0.5rem; font-size:0.9rem;">Enter your age in Earth years to see your age in other planets' years.</p>
+        <div class="calc-input-row">
+          <input type="number" id="age-input" placeholder="Your age on Earth (years)" min="0" max="150" step="0.1" inputmode="decimal" />
+          <button type="button" class="btn btn-primary" id="age-submit">Calculate</button>
+        </div>
+        <p class="calc-error" id="age-error"></p>
+        <div class="calc-results" id="age-results"></div>
+        <p class="calc-disclaimer" id="age-disclaimer"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0; padding-bottom:6rem;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">All Facts</span><h2>Browse the Full List</h2></div>
+    <div class="facts-grid">
+      {% for f in facts %}
+      <div class="fact-module reveal"><span class="fact-kicker">FACT {{ '%02d'|format(loop.index) }}</span><p>{{ f }}</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/calculators.js') }}"></script>
+{% endblock %}

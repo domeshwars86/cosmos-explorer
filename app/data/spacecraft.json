@@ -1,0 +1,102 @@
+[
+  {
+    "id": "voyager1", "name": "Voyager 1", "agency": "NASA", "launch_year": 1977, "target": "Outer Planets & Interstellar Space",
+    "objective": "Grand tour of Jupiter and Saturn, followed by an extended mission into interstellar space.",
+    "status": "Active — in interstellar space", "status_note": "HISTORICAL / CONCEPTUAL PATH — not a live tracked position.",
+    "discoveries": "Active volcanoes on Io, detailed views of Saturn's rings, and the first human-made object to enter interstellar space.",
+    "journey": [
+      { "date": "1977", "location": "Earth", "event": "Launch", "discovery": "Begins its grand tour trajectory using gravity assists." },
+      { "date": "1979", "location": "Jupiter", "event": "Flyby", "discovery": "Discovered active volcanoes on the moon Io — the first found beyond Earth." },
+      { "date": "1980", "location": "Saturn", "event": "Flyby", "discovery": "Detailed imaging of Saturn's rings and moon Titan." },
+      { "date": "1990", "location": "Edge of the planets", "event": "Pale Blue Dot photograph", "discovery": "Captured Earth as a single pixel from roughly 6 billion km away." },
+      { "date": "2012", "location": "Heliopause", "event": "Entered interstellar space", "discovery": "Became the first spacecraft to cross into the interstellar medium." },
+      { "date": "Present", "location": "Interstellar space", "event": "Ongoing", "discovery": "Still transmitting data over 45+ years after launch." }
+    ]
+  },
+  {
+    "id": "voyager2", "name": "Voyager 2", "agency": "NASA", "launch_year": 1977, "target": "Uranus & Neptune",
+    "objective": "The only spacecraft to visit Uranus and Neptune, using a rare planetary alignment for a grand tour.",
+    "status": "Active — in interstellar space", "status_note": "HISTORICAL / CONCEPTUAL PATH — not a live tracked position.",
+    "discoveries": "The only close-up data we have of Uranus and Neptune, including their rings, moons, and magnetic fields.",
+    "journey": [
+      { "date": "1977", "location": "Earth", "event": "Launch", "discovery": "Launched slightly before Voyager 1, on a slower trajectory to reach all four giant planets." },
+      { "date": "1979", "location": "Jupiter", "event": "Flyby", "discovery": "Additional imaging of Jupiter's atmosphere and moons." },
+      { "date": "1981", "location": "Saturn", "event": "Flyby", "discovery": "Further ring and moon observations." },
+      { "date": "1986", "location": "Uranus", "event": "Flyby", "discovery": "First and only close-up look at Uranus, its rings, and its moons." },
+      { "date": "1989", "location": "Neptune", "event": "Flyby", "discovery": "Discovered active geysers on Neptune's moon Triton." },
+      { "date": "2018", "location": "Heliopause", "event": "Entered interstellar space", "discovery": "Became the second human-made object to reach interstellar space." }
+    ]
+  },
+  {
+    "id": "newhorizons", "name": "New Horizons", "agency": "NASA", "launch_year": 2006, "target": "Pluto & Kuiper Belt",
+    "objective": "First mission to explore Pluto and the Kuiper Belt up close.",
+    "status": "Active — in the Kuiper Belt", "status_note": "HISTORICAL / CONCEPTUAL PATH — not a live tracked position.",
+    "discoveries": "The first detailed images of Pluto and Charon, revealing the heart-shaped Tombaugh Regio.",
+    "journey": [
+      { "date": "2006", "location": "Earth", "event": "Launch", "discovery": "Fastest spacecraft launch speed at the time." },
+      { "date": "2007", "location": "Jupiter", "event": "Gravity assist flyby", "discovery": "Used Jupiter's gravity to boost speed toward Pluto." },
+      { "date": "2015", "location": "Pluto", "event": "Flyby", "discovery": "First close-up images of Pluto and its moon Charon." },
+      { "date": "2019", "location": "Arrokoth (Kuiper Belt object)", "event": "Flyby", "discovery": "Most distant object ever explored up close at the time." },
+      { "date": "Present", "location": "Kuiper Belt", "event": "Extended mission", "discovery": "Continues studying the outer Solar System environment." }
+    ]
+  },
+  {
+    "id": "juno", "name": "Juno", "agency": "NASA", "launch_year": 2011, "target": "Jupiter",
+    "objective": "Studies Jupiter's composition, gravity field, magnetic field, and polar magnetosphere from orbit.",
+    "status": "Active — orbiting Jupiter", "status_note": "HISTORICAL / CONCEPTUAL PATH — not a live tracked position.",
+    "discoveries": "Revealed complex cyclones at Jupiter's poles and new data on its deep atmosphere and interior.",
+    "journey": [
+      { "date": "2011", "location": "Earth", "event": "Launch", "discovery": "Solar-powered — the first mission to the outer planets to rely on solar panels instead of nuclear power." },
+      { "date": "2016", "location": "Jupiter", "event": "Orbital insertion", "discovery": "Entered a highly elliptical polar orbit for close passes over the cloud tops." },
+      { "date": "Present", "location": "Jupiter orbit", "event": "Extended mission", "discovery": "Now also studying several of Jupiter's large moons during close flybys." }
+    ]
+  },
+  {
+    "id": "cassini", "name": "Cassini-Huygens", "agency": "NASA / ESA / ASI", "launch_year": 1997, "target": "Saturn",
+    "objective": "Studied Saturn, its rings, and its moons; the Huygens probe landed on Titan.",
+    "status": "Completed — deliberately deorbited in 2017", "status_note": "HISTORICAL / CONCEPTUAL PATH — mission concluded.",
+    "discoveries": "Found geysers on Enceladus, mapped Titan's methane lakes, and revealed fine structure in Saturn's rings.",
+    "journey": [
+      { "date": "1997", "location": "Earth", "event": "Launch", "discovery": "Began a seven-year cruise to Saturn." },
+      { "date": "2004", "location": "Saturn", "event": "Orbital insertion", "discovery": "Began 13 years of close-up study of the Saturn system." },
+      { "date": "2005", "location": "Titan", "event": "Huygens probe landing", "discovery": "First landing on a moon in the outer Solar System." },
+      { "date": "2005", "location": "Enceladus", "event": "Close flyby", "discovery": "Discovered active water-ice geysers erupting from the south pole." },
+      { "date": "2017", "location": "Saturn's atmosphere", "event": "Grand Finale — deliberate atmospheric entry", "discovery": "Mission ended by design to protect potentially habitable moons from contamination." }
+    ]
+  },
+  {
+    "id": "parker", "name": "Parker Solar Probe", "agency": "NASA", "launch_year": 2018, "target": "The Sun",
+    "objective": "Flies closer to the Sun than any spacecraft before it, studying the solar corona and solar wind directly.",
+    "status": "Active — repeated close solar passes", "status_note": "HISTORICAL / CONCEPTUAL PATH — not a live tracked position.",
+    "discoveries": "Directly sampled the Sun's corona for the first time and studied the origins of the solar wind up close.",
+    "journey": [
+      { "date": "2018", "location": "Earth", "event": "Launch", "discovery": "Named after solar physicist Eugene Parker, who predicted the solar wind." },
+      { "date": "2018–Present", "location": "Venus gravity assists", "event": "Repeated flybys", "discovery": "Uses Venus's gravity repeatedly to tighten its orbit closer to the Sun." },
+      { "date": "2021", "location": "Solar corona", "event": "First pass through the corona", "discovery": "Became the first spacecraft to 'touch' the Sun, flying through its outer atmosphere." }
+    ]
+  },
+  {
+    "id": "hubble", "name": "Hubble Space Telescope", "agency": "NASA / ESA", "launch_year": 1990, "target": "Deep Space (Earth orbit)",
+    "objective": "A space-based observatory studying the universe across visible, ultraviolet, and near-infrared light.",
+    "status": "Active — in low Earth orbit", "status_note": "HISTORICAL / CONCEPTUAL PATH — not a live tracked position.",
+    "discoveries": "Helped determine the rate of the universe's expansion, imaged distant galaxies, and captured iconic nebula imagery.",
+    "journey": [
+      { "date": "1990", "location": "Low Earth Orbit", "event": "Launch & deployment", "discovery": "Deployed with a flawed mirror, initially producing blurry images." },
+      { "date": "1993", "location": "Low Earth Orbit", "event": "Servicing Mission 1", "discovery": "Astronauts installed corrective optics, fixing the mirror flaw." },
+      { "date": "1995", "location": "Low Earth Orbit", "event": "Hubble Deep Field", "discovery": "A single deep exposure revealed thousands of previously unseen distant galaxies." },
+      { "date": "Present", "location": "Low Earth Orbit", "event": "Ongoing operations", "discovery": "Continues operating alongside JWST, over three decades after launch." }
+    ]
+  },
+  {
+    "id": "jwst", "name": "James Webb Space Telescope", "agency": "NASA / ESA / CSA", "launch_year": 2021, "target": "Deep Space (L2 orbit)",
+    "objective": "An infrared observatory studying the earliest galaxies, star formation, and exoplanet atmospheres.",
+    "status": "Active — at the Sun-Earth L2 point", "status_note": "HISTORICAL / CONCEPTUAL PATH — not a live tracked position.",
+    "discoveries": "Imaged some of the most distant known galaxies and analyzed exoplanet atmospheric compositions.",
+    "journey": [
+      { "date": "2021", "location": "Earth", "event": "Launch", "discovery": "Launched folded up inside a rocket fairing, then unfolded over two weeks in space." },
+      { "date": "2022", "location": "Sun-Earth L2 point", "event": "Arrival & commissioning", "discovery": "Reached its stable observing position roughly 1.5 million km from Earth." },
+      { "date": "2022", "location": "L2 orbit", "event": "First images released", "discovery": "Revealed the deepest infrared image of the universe taken at the time." },
+      { "date": "Present", "location": "L2 orbit", "event": "Ongoing science operations", "discovery": "Actively analyzing exoplanet atmospheres and the early universe." }
+    ]
+  }
+]

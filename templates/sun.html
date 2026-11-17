@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block body_class %}page-sun{% endblock %}
+{% block body_attrs %}style="--accent:{{ sun.color }}; --accent-soft:{{ sun.accent }}; --accent-dim:{{ sun.color }}29;"{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height:82svh;">
+  <div class="hero-canvas-wrap"><canvas id="body-canvas" data-kind="sun" role="img" aria-label="Rotatable 3D model of the Sun"></canvas></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="container">
+      <span class="eyebrow reveal">{{ sun.category }} &middot; {{ sun.type }}</span>
+      <h1 class="hero-title font-display reveal reveal-delay-1">THE SUN</h1>
+      <p class="text-lead reveal reveal-delay-2" style="max-width:620px;">{{ sun.short_description }}</p>
+      <p class="text-muted reveal reveal-delay-2" style="font-size:0.8rem; margin-top:0.4rem;">Drag to rotate &middot; scroll to zoom</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:3rem;">
+  <div class="container">
+    <div class="panel scan-results hidden" id="scan-results-host" style="padding:1.6rem 1.8rem; margin-bottom:2rem;"></div>
+    <div class="stat-grid reveal">
+      <div class="stat-card"><div class="stat-label">Diameter</div><div class="stat-value">{{ '{:,}'.format(sun.stats.diameter_km) }}<span class="stat-unit">km</span></div></div>
+      <div class="stat-card"><div class="stat-label">Age</div><div class="stat-value">4.6<span class="stat-unit">billion yrs</span></div></div>
+      <div class="stat-card"><div class="stat-label">Surface Temp</div><div class="stat-value">{{ '{:,}'.format(sun.stats.surface_temp_c) }}<span class="stat-unit">°C</span></div></div>
+      <div class="stat-card"><div class="stat-label">Core Temp</div><div class="stat-value">{{ '{:,}'.format(sun.stats.core_temp_c) }}<span class="stat-unit">°C</span></div></div>
+      <div class="stat-card"><div class="stat-label">Rotation</div><div class="stat-value" style="font-size:1.2rem;">{{ sun.stats.rotation_period_days }}<span class="stat-unit">days</span></div></div>
+      <div class="stat-card"><div class="stat-label">Gravity</div><div class="stat-value">{{ sun.stats.gravity_ms2 }}<span class="stat-unit">m/s²</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Structure</span>
+      <div class="row gap-sm" style="align-items:center;"><h2>Layers of the Sun</h2><span class="confidence-badge confidence-modeled">MODELED</span></div>
+    </div>
+    <div class="grid grid-3">
+      {% for layer in sun.layers %}
+      <div class="panel reveal" style="padding:1.4rem 1.5rem;">
+        <span class="badge">{{ loop.index }}</span>
+        <h4 style="font-family:var(--font-display); margin-top:0.7rem;">{{ layer.name }}</h4>
+        <p class="text-secondary" style="margin-top:0.5rem; font-size:0.9rem;">{{ layer.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Solar Activity</span><h2>Phenomena</h2></div>
+    <div class="grid grid-2">
+      {% for p in sun.phenomena %}
+      <div class="stat-card reveal">
+        <div class="stat-value" style="font-size:1.1rem;">{{ p.name }}</div>
+        <p class="text-secondary" style="margin-top:0.5rem; font-size:0.9rem;">{{ p.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Did You Know</span><h2>Facts About the Sun</h2></div>
+    <div class="facts-grid">
+      {% for f in sun.facts %}
+      <div class="fact-module reveal"><span class="fact-kicker">FACT</span><p>{{ f }}</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Continue Exploring</span><h2>You May Also Want to Explore</h2></div>
+    <div class="recommend-row reveal" id="recommendations"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">The Planets it Warms</span><h2>Explore the Solar System</h2></div>
+    <div class="planet-lineup" role="list">
+      {% for p in planets %}
+      <a role="listitem" href="{{ url_for('planet.planet_detail', planet_id=p.id) }}" class="planet-lineup-item" style="--orb-color:{{ p.color }}; --orb-size:{{ 30 + (p.stats.diameter_km / 139820 * 40)|round(0,'floor') }}px;">
+        <span class="planet-orb"></span><span class="planet-name">{{ p.name }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>window.__COSMOS_BODY__ = {{ sun | tojson }};</script>
+<script type="module" src="{{ url_for('static', filename='js/pages/body-page.js') }}"></script>
+{% endblock %}

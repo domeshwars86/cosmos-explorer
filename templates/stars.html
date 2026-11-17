@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body_class %}page-stars{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Star Map</span>
+      <h1>Notable Stars</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">A small, hand-picked sample of stars — not a complete professional catalog — spanning our own Sun to some of the largest and brightest stars visible from Earth.</p>
+    </div>
+    <div class="grid grid-4">
+      {% for s in stars %}
+      <a href="{{ s.url if s.url else url_for('discover.star_detail', star_id=s.id) }}" class="card reveal">
+        <div class="card-glow" style="background:{{ s.color }};"></div>
+        <span class="planet-orb" style="--orb-color:{{ s.color }}; --orb-size:52px; margin-bottom:1rem;"></span>
+        <span class="eyebrow" style="margin-bottom:0.3rem;">{{ s.spectral_type }}</span>
+        <h3 style="font-size:1.1rem;">{{ s.name }}</h3>
+        <p class="text-muted" style="font-size:0.8rem; margin-top:0.4rem;">{{ s.constellation or 'Our Solar System' }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

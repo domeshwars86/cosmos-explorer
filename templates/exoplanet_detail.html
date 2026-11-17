@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body_class %}page-exoplanet-detail{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Exoplanet &middot; Discovered {{ exoplanet.discovery_year }}</span>
+      <h1>{{ exoplanet.name }}</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:720px;">{{ exoplanet.notes }}</p>
+    </div>
+
+    <div class="stat-grid reveal">
+      <div class="stat-card"><div class="stat-label">Host Star</div><div class="stat-value" style="font-size:1.1rem;">{{ exoplanet.host_star }}</div></div>
+      <div class="stat-card"><div class="stat-label">Distance</div><div class="stat-value">{{ exoplanet.distance_ly }}<span class="stat-unit">ly</span></div></div>
+      <div class="stat-card"><div class="stat-label">Discovery Method</div><div class="stat-value" style="font-size:1.1rem;">{{ exoplanet.discovery_method }}</div></div>
+      <div class="stat-card"><div class="stat-label">Orbital Period</div><div class="stat-value">{{ exoplanet.orbital_period_days }}<span class="stat-unit">days</span></div></div>
+      <div class="stat-card"><div class="stat-label">Radius <span class="confidence-badge confidence-estimated" style="margin-left:0.3rem;">ESTIMATED</span></div><div class="stat-value">{{ exoplanet.radius_relative_earth }}<span class="stat-unit">&times; Earth</span></div></div>
+      <div class="stat-card"><div class="stat-label">Mass <span class="confidence-badge confidence-estimated" style="margin-left:0.3rem;">ESTIMATED</span></div><div class="stat-value" style="font-size:1rem;">{{ exoplanet.mass_relative_earth_estimate }}</div></div>
+    </div>
+
+    {% if exoplanet.in_habitable_zone %}
+    <div class="fact-module reveal" style="margin-top:2rem;">
+      <span class="fact-kicker">HABITABLE ZONE</span>
+      <p>This planet orbits within its star's habitable zone — the range of distances where a planet could plausibly maintain liquid water on its surface, given the right atmosphere. This does not mean it hosts, or could host, life.</p>
+    </div>
+    {% endif %}
+
+    <div class="section-cta"><a href="{{ url_for('discover.exoplanets') }}" class="btn btn-outline">Back to Exoplanets</a></div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{
+  "milky_way": {
+    "name": "The Milky Way",
+    "type": "Barred spiral galaxy",
+    "diameter_light_years": 100000,
+    "star_count": "100–400 billion (estimated)",
+    "sun_location": "Orion Arm (Orion Spur)",
+    "sun_distance_from_center_ly": "26,000–27,000",
+    "description": "Our home galaxy — a vast, rotating disk of stars, gas, and dust bound together by gravity and dark matter, with a dense central bulge and sweeping spiral arms.",
+    "features": [
+      { "name": "Galactic Center", "description": "The dense core of the Milky Way, home to a supermassive black hole and a crowded field of stars." },
+      { "name": "Spiral Arms", "description": "Sweeping regions of enhanced star formation, including the Perseus, Sagittarius, and Orion arms." },
+      { "name": "Stellar Populations", "description": "Older, redder stars concentrated toward the bulge and halo; younger, bluer stars in the spiral arms." },
+      { "name": "Dark Matter Halo", "description": "An invisible, massive halo inferred from its gravitational effects, thought to make up most of the galaxy's mass." },
+      { "name": "Sagittarius A*", "description": "The supermassive black hole at the galactic center, with a mass of roughly 4 million Suns." }
+    ]
+  },
+  "black_hole": {
+    "name": "Sagittarius A*",
+    "description": "The supermassive black hole at the center of the Milky Way, confirmed through decades of tracking the orbits of stars around an invisible, immensely massive object.",
+    "concepts": [
+      { "name": "Event Horizon", "description": "The boundary around a black hole beyond which nothing, not even light, can escape its gravity." },
+      { "name": "Singularity", "description": "The theoretical point of infinite density at a black hole's center, where our current physics breaks down." },
+      { "name": "Accretion Disk", "description": "A swirling disk of superheated gas and dust spiraling into a black hole, often glowing brightly before it crosses the event horizon." },
+      { "name": "Photon Sphere", "description": "A region where gravity is strong enough that light can travel in a circular orbit around the black hole." },
+      { "name": "Gravitational Lensing", "description": "The bending of light from background objects as it passes near a black hole's immense gravity." },
+      { "name": "Time Dilation", "description": "Time passes more slowly in strong gravitational fields — an effect predicted by general relativity and confirmed by observation." }
+    ],
+    "note": "Our Solar System orbits the galactic center from roughly 26,000 light-years away — an immense, safe distance from Sagittarius A*."
+  },
+  "scale_journey": [
+    { "id": "human", "label": "Human", "size_m": 1.7, "description": "An average human, the starting point of our scale journey." },
+    { "id": "earth", "label": "Earth", "size_m": 12742000, "description": "About 7.4 million times taller than a human." },
+    { "id": "moon", "label": "Earth–Moon distance", "size_m": 384400000, "description": "The average gap between Earth and its Moon." },
+    { "id": "solar_system", "label": "Solar System (to Neptune)", "size_m": 9000000000000, "description": "The span from the Sun out to Neptune's orbit." },
+    { "id": "oort_cloud", "label": "Oort Cloud (theoretical)", "size_m": 15000000000000000, "description": "A theorized shell of icy bodies extending roughly a light-year from the Sun, marking the edge of the Sun's gravitational influence." },
+    { "id": "nearest_star", "label": "Distance to Proxima Centauri", "size_m": 40100000000000000, "description": "About 4.24 light-years — the nearest known star system to our Sun." },
+    { "id": "milky_way", "label": "The Milky Way", "size_m": 946000000000000000000, "description": "Roughly 100,000 light-years across, containing hundreds of billions of stars." },
+    { "id": "local_group", "label": "The Local Group", "size_m": 9500000000000000000000, "description": "A gravitationally bound group of roughly 80 galaxies, including the Milky Way and Andromeda, spanning about 10 million light-years." },
+    { "id": "observable_universe", "label": "Observable Universe", "size_m": 8.8e26, "description": "Roughly 93 billion light-years in diameter, the farthest extent of the universe we can observe." }
+  ]
+}

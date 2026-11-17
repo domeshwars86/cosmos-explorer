@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% block body_class %}page-labs{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">COSMOS Labs</span>
+      <h1>Interactive Astronomy Experiments</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">Seven hands-on labs that let you experiment with the physics behind gravity, orbits, eclipses, moon phases, seasons, light-speed delay, and habitability — instead of just reading about them.</p>
+    </div>
+
+    <div class="tabs" role="tablist" id="labs-tabs">
+      <button class="tab-btn active" data-tab="gravity" role="tab" aria-selected="true">Gravity Lab</button>
+      <button class="tab-btn" data-tab="orbit" role="tab" aria-selected="false">Orbit Lab</button>
+      <button class="tab-btn" data-tab="eclipse" role="tab" aria-selected="false">Eclipse Lab</button>
+      <button class="tab-btn" data-tab="moonphase" role="tab" aria-selected="false">Moon Phase Lab</button>
+      <button class="tab-btn" data-tab="seasons" role="tab" aria-selected="false">Seasons Lab</button>
+      <button class="tab-btn" data-tab="signal" role="tab" aria-selected="false">Signal Lab</button>
+      <button class="tab-btn" data-tab="habitability" role="tab" aria-selected="false">Habitability Lab</button>
+      <button class="tab-btn" data-tab="stellar" role="tab" aria-selected="false">Stellar Evolution</button>
+      <button class="tab-btn" data-tab="relativity" role="tab" aria-selected="false">Relativity Lab</button>
+    </div>
+
+    <!-- GRAVITY LAB -->
+    <div class="tab-panel active panel" data-tab-panel="gravity" style="padding:2rem;">
+      <h3>Gravity Lab</h3>
+      <p class="text-secondary" style="margin-top:0.5rem;">Mass never changes — but weight and jump height depend entirely on local gravity. Enter your weight and a jump velocity to see how differently you'd move across the Solar System.</p>
+      <div class="calc-input-row">
+        <input type="number" id="gravity-weight" placeholder="Your weight on Earth (kg)" min="1" max="100000" step="0.1" value="70" />
+        <input type="number" id="gravity-velocity" placeholder="Jump velocity (m/s)" min="0.1" max="20" step="0.1" value="2.5" />
+        <button type="button" class="btn btn-primary" id="gravity-run">Run Experiment</button>
+      </div>
+      <p class="text-muted" style="font-size:0.78rem; margin-top:0.5rem;">A jump velocity of ~2.5 m/s is a typical modest human jump on Earth.</p>
+      <div class="calc-results" id="gravity-results"></div>
+      <p class="calc-disclaimer">Jump height is estimated with h = v² / (2g) — a simplified physics model that ignores air resistance and body mechanics.</p>
+    </div>
+
+    <!-- ORBIT LAB -->
+    <div class="tab-panel panel" data-tab-panel="orbit" style="padding:2rem;">
+      <h3>Orbit Lab <span class="confidence-badge confidence-conceptual">EDUCATIONAL SIMULATION</span></h3>
+      <p class="text-secondary" style="margin-top:0.5rem;">Adjust a satellite's distance and velocity around a central mass and watch whether the resulting path is stable, elliptical, decaying, or escapes entirely.</p>
+      <div class="grid grid-2" style="margin-top:1.2rem; gap:2rem; align-items:start;">
+        <canvas id="orbit-canvas" width="480" height="480" style="width:100%; aspect-ratio:1; border-radius:var(--radius-md); background:#05060f;"></canvas>
+        <div>
+          <div class="range-row" style="margin-bottom:1rem;">
+            <label class="row between"><span>Orbital Distance</span><b id="orbit-distance-val" class="font-mono"></b></label>
+            <input type="range" id="orbit-distance" min="40" max="200" value="110" />
+          </div>
+          <div class="range-row" style="margin-bottom:1rem;">
+            <label class="row between"><span>Orbital Velocity</span><b id="orbit-velocity-val" class="font-mono"></b></label>
+            <input type="range" id="orbit-velocity" min="0" max="300" value="140" />
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" id="orbit-reset">Reset</button>
+          <div class="panel" style="padding:1rem 1.2rem; margin-top:1.2rem;">
+            <div class="stat-label">Trajectory Classification</div>
+            <div class="stat-value" id="orbit-classification" style="font-size:1.1rem;">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ECLIPSE LAB -->
+    <div class="tab-panel panel" data-tab-panel="eclipse" style="padding:2rem;">
+      <h3>Eclipse Lab</h3>
+      <p class="text-secondary" style="margin-top:0.5rem;">Move the Moon around its orbit to see when solar and lunar eclipses become geometrically possible — and why they don't happen every single month.</p>
+      <div class="grid grid-2" style="margin-top:1.2rem; gap:2rem; align-items:start;">
+        <canvas id="eclipse-canvas" width="480" height="320" style="width:100%; aspect-ratio:1.5; border-radius:var(--radius-md); background:#05060f;"></canvas>
+        <div>
+          <div class="range-row" style="margin-bottom:1rem;">
+            <label class="row between"><span>Moon's Orbital Position</span><b id="eclipse-angle-val" class="font-mono"></b></label>
+            <input type="range" id="eclipse-angle" min="0" max="359" value="0" />
+          </div>
+          <label class="toggle-chip" style="margin-bottom:1rem;">
+            <input type="checkbox" id="eclipse-tilt" checked /><span class="dot"></span><span class="label">Realistic 5° orbital tilt (eclipses are rare)</span>
+          </label>
+          <div class="panel" style="padding:1rem 1.2rem;">
+            <div class="stat-label">Result</div>
+            <div class="stat-value" id="eclipse-result" style="font-size:1.1rem;">—</div>
+            <p class="text-secondary" id="eclipse-explain" style="margin-top:0.6rem; font-size:0.88rem;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOON PHASE LAB -->
+    <div class="tab-panel panel" data-tab-panel="moonphase" style="padding:2rem;">
+      <h3>Moon Phase Lab</h3>
+      <p class="text-secondary" style="margin-top:0.5rem;">Drag the slider to move the Moon around Earth and watch how the visible phase changes based on the Sun-Earth-Moon angle.</p>
+      <div class="grid grid-2" style="margin-top:1.2rem; gap:2rem; align-items:start;">
+        <canvas id="moonphase-canvas" width="480" height="320" style="width:100%; aspect-ratio:1.5; border-radius:var(--radius-md); background:#05060f;"></canvas>
+        <div>
+          <div class="range-row" style="margin-bottom:1rem;">
+            <label class="row between"><span>Moon Position</span><b id="moonphase-angle-val" class="font-mono"></b></label>
+            <input type="range" id="moonphase-angle" min="0" max="359" value="0" />
+          </div>
+          <div class="panel" style="padding:1rem 1.2rem;">
+            <div class="stat-label">Current Phase</div>
+            <div class="stat-value" id="moonphase-name" style="font-size:1.3rem;">New Moon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEASONS LAB -->
+    <div class="tab-panel panel" data-tab-panel="seasons" style="padding:2rem;">
+      <h3>Earth Seasons Lab</h3>
+      <p class="text-secondary" style="margin-top:0.5rem;">Earth's 23.4° axial tilt — not its distance from the Sun — is what causes the seasons. Move Earth around its orbit to see why.</p>
+      <div class="grid grid-2" style="margin-top:1.2rem; gap:2rem; align-items:start;">
+        <canvas id="seasons-canvas" width="480" height="480" style="width:100%; aspect-ratio:1; border-radius:var(--radius-md); background:#05060f;"></canvas>
+        <div>
+          <div class="range-row" style="margin-bottom:1rem;">
+            <label class="row between"><span>Position in Orbit</span><b id="seasons-angle-val" class="font-mono"></b></label>
+            <input type="range" id="seasons-angle" min="0" max="359" value="0" />
+          </div>
+          <div class="panel" style="padding:1rem 1.2rem;">
+            <div class="row between" style="margin-bottom:0.6rem;"><span class="text-muted" style="font-size:0.8rem;">Northern Hemisphere</span><b id="seasons-north">Winter</b></div>
+            <div class="row between"><span class="text-muted" style="font-size:0.8rem;">Southern Hemisphere</span><b id="seasons-south">Summer</b></div>
+          </div>
+          <p class="text-muted" style="font-size:0.78rem; margin-top:0.8rem;">Notice the two hemispheres always have opposite seasons — because it's the tilt toward or away from the Sun that matters, not the (nearly constant) distance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIGNAL LAB -->
+    <div class="tab-panel panel" data-tab-panel="signal" style="padding:2rem;">
+      <h3>Signal &amp; Light-Speed Lab</h3>
+      <p class="text-secondary" style="margin-top:0.5rem;">Light — and every radio signal — travels at roughly 299,792 km/s. Pick a destination to see the real one-way delay, then send a test message to feel what that delay means for communication.</p>
+      <div class="calc-input-row">
+        <select id="signal-destination" style="flex:1; min-width:160px; padding:0.85rem 1.1rem; border-radius:var(--radius-md); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border-strong); color:var(--text-primary);"></select>
+      </div>
+      <div class="calc-results" id="signal-delay-result" style="grid-template-columns: repeat(auto-fill,minmax(200px,1fr));"></div>
+      <div class="calc-input-row" style="margin-top:1.5rem;">
+        <input type="text" id="signal-message" placeholder="Type a short message…" maxlength="60" value="Hello, Universe" />
+        <button type="button" class="btn btn-primary" id="signal-transmit">Transmit</button>
+      </div>
+      <div class="panel" id="signal-log" style="padding:1.2rem 1.4rem; margin-top:1rem; font-family:var(--font-mono); font-size:0.85rem; min-height:3em; display:none;"></div>
+      <p class="calc-disclaimer">No message is actually transmitted anywhere — this simulates the concept of communication delay. The delay numbers shown are real physics; the on-screen animation is time-compressed for demonstration (waiting 4.24 real years for Proxima Centauri wouldn't make for a great lab).</p>
+    </div>
+
+    <!-- HABITABILITY LAB -->
+    <div class="tab-panel panel" data-tab-panel="habitability" style="padding:2rem;">
+      <h3>Habitability Lab</h3>
+      <p class="text-secondary" style="margin-top:0.5rem;">Adjust the environmental conditions of a hypothetical world and see a habitability assessment. This never claims life exists — only whether conditions could plausibly support it.</p>
+      <div class="grid grid-2" style="margin-top:1.2rem; gap:2rem;">
+        <div>
+          <div class="range-row" style="margin-bottom:1rem;">
+            <label class="row between"><span>Temperature</span><b id="hab-temp-val" class="font-mono"></b></label>
+            <input type="range" id="hab-temp" min="-100" max="150" value="15" />
+          </div>
+          <div class="range-row" style="margin-bottom:1rem;">
+            <label class="row between"><span>Atmospheric Pressure</span><b id="hab-pressure-val" class="font-mono"></b></label>
+            <input type="range" id="hab-pressure" min="0" max="500" value="100" />
+          </div>
+          <div class="range-row" style="margin-bottom:1rem;">
+            <label class="row between"><span>Liquid Water Availability</span><b id="hab-water-val" class="font-mono"></b></label>
+            <input type="range" id="hab-water" min="0" max="100" value="70" />
+          </div>
+          <div class="range-row" style="margin-bottom:1rem;">
+            <label class="row between"><span>Radiation Level</span><b id="hab-radiation-val" class="font-mono"></b></label>
+            <input type="range" id="hab-radiation" min="0" max="100" value="20" />
+          </div>
+          <label class="toggle-chip"><input type="checkbox" id="hab-energy" checked /><span class="dot"></span><span class="label">Stable energy source present (starlight or geothermal)</span></label>
+        </div>
+        <div class="panel" style="padding:1.4rem 1.6rem;">
+          <div class="stat-label">Environmental Assessment</div>
+          <div class="stat-value" id="hab-overall" style="font-size:1.3rem; margin-top:0.4rem;">—</div>
+          <div id="hab-breakdown" style="margin-top:1rem; display:grid; gap:0.5rem;"></div>
+          <p class="text-muted" style="font-size:0.76rem; margin-top:1rem; border-top:1px solid var(--glass-border); padding-top:0.8rem;">"Potentially habitable" describes conditions only — it never means life is present. Habitability does not imply inhabited.</p>
+        </div>
+      </div>
+    </div>
+    <!-- STELLAR EVOLUTION LAB -->
+    <div class="tab-panel panel" data-tab-panel="stellar" style="padding:2rem;">
+      <h3>Stellar Evolution</h3>
+      <p class="text-secondary" style="margin-top:0.5rem;">A star's fate is decided almost entirely by its mass. Pick a mass class to see its life cycle.</p>
+      <div class="mode-switch" id="stellar-mass" style="margin-top:1.2rem;">
+        <button type="button" data-mass="low">Low Mass</button>
+        <button type="button" data-mass="sunlike" class="active">Sun-like</button>
+        <button type="button" data-mass="high">High Mass</button>
+      </div>
+      <div id="stellar-path" class="row wrap gap-sm" style="margin-top:1.5rem; align-items:center;"></div>
+      <div class="panel" style="padding:1rem 1.2rem; margin-top:1.5rem;">
+        <div class="stat-label">Approximate Main-Sequence Lifetime</div>
+        <div class="stat-value" id="stellar-lifetime" style="font-size:1.1rem;">—</div>
+      </div>
+    </div>
+
+    <!-- RELATIVITY LAB -->
+    <div class="tab-panel panel" data-tab-panel="relativity" style="padding:2rem;">
+      <h3>Relativity Lab <span class="confidence-badge confidence-conceptual">SIMPLIFIED VISUALIZATION</span></h3>
+
+      <div style="margin-top:1rem;">
+        <h4 style="font-size:1rem;">Time in Extreme Gravity</h4>
+        <p class="text-secondary" style="margin-top:0.4rem; font-size:0.9rem;">A clock deep in a strong gravitational field ticks slower than a distant clock — a real effect (gravitational time dilation), shown here only conceptually, not as a precision calculation.</p>
+        <div class="range-row" style="margin-top:1rem;">
+          <label class="row between"><span>Gravitational Field Strength</span><b id="td-strength-val" class="font-mono"></b></label>
+          <input type="range" id="td-strength" min="0" max="95" value="20" />
+        </div>
+        <div class="grid grid-2" style="margin-top:1rem; gap:1rem;">
+          <div class="stat-card in-view"><div class="stat-label">Clock A — Far From Mass</div><div class="stat-value" style="font-size:1.1rem;">1.000 sec / sec</div></div>
+          <div class="stat-card in-view"><div class="stat-label">Clock B — Near Massive Object</div><div class="stat-value" id="td-clock-b" style="font-size:1.1rem;">—</div></div>
+        </div>
+      </div>
+
+      <div class="divider" style="margin:2rem 0;"></div>
+
+      <div>
+        <h4 style="font-size:1rem;">Interstellar Travel</h4>
+        <p class="text-secondary" style="margin-top:0.4rem; font-size:0.9rem;">Pick a destination and cruising speed to see real relativistic time dilation for the crew, using the Lorentz factor.</p>
+        <div class="calc-input-row">
+          <select id="it-destination" style="flex:1; padding:0.75rem 1rem; border-radius:var(--radius-md); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border-strong); color:var(--text-primary);"></select>
+          <select id="it-speed" style="flex:1; padding:0.75rem 1rem; border-radius:var(--radius-md); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border-strong); color:var(--text-primary);">
+            <option value="0.01">1% light speed</option>
+            <option value="0.05">5% light speed</option>
+            <option value="0.10" selected>10% light speed</option>
+            <option value="0.50">50% light speed</option>
+            <option value="0.99">99% light speed</option>
+          </select>
+        </div>
+        <div class="calc-results" id="it-results" style="margin-top:1.2rem;"></div>
+        <p class="calc-disclaimer">Assumes constant cruising speed with no acceleration/deceleration phases — a simplification. The Lorentz factor (time dilation) calculation itself is real physics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/pages/tabs.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/pages/labs.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body_class %}page-space-news{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem); padding-bottom:6rem;">
+  <div class="container" style="max-width:760px;">
+    <a href="{{ url_for('space.index') }}" class="text-muted" style="font-size:0.85rem;">&larr; Back to Space Intelligence</a>
+    <div id="article-root" style="margin-top:1.5rem;">
+      <div class="news-skeleton">
+        <div class="sk-image"></div>
+        <div class="sk-line"></div>
+        <div class="sk-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>window.__ARTICLE_ID__ = {{ article_id | tojson }};</script>
+<script type="module" src="{{ url_for('static', filename='js/pages/space-news-detail.js') }}"></script>
+{% endblock %}

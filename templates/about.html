@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block body_class %}page-about{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">About the Project</span>
+      <h1>COSMOS — Interactive Galaxy &amp; Solar System Explorer</h1>
+      <p class="text-lead" style="margin-top:1rem; max-width:720px;">
+        COSMOS is an educational visualization project built to make the scale, structure, and science of our
+        Solar System and the Milky Way tangible and explorable — through real 3D interaction rather than static
+        pages of text.
+      </p>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:2rem; gap:1.5rem;">
+      <div class="panel reveal" style="padding:1.8rem;">
+        <h3>Purpose</h3>
+        <p class="text-secondary" style="margin-top:0.8rem;">
+          The Solar System cannot be shown at true scale and true distance simultaneously on a screen — so COSMOS
+          is explicit about which visualization mode you're viewing and what it does and doesn't represent
+          (see the Solar System page's Visual / Size / Distance / Scientific modes). Every statistic is sourced
+          from reputable astronomy references and clearly labeled as approximate where appropriate.
+        </p>
+      </div>
+      <div class="panel reveal" style="padding:1.8rem;">
+        <h3>Technology</h3>
+        <p class="text-secondary" style="margin-top:0.8rem;">Built with a Python &amp; Flask backend serving a JSON API, and a vanilla JavaScript + Three.js frontend — no heavy frontend framework, no build step required.</p>
+        <div class="row wrap gap-sm" style="margin-top:1rem;">
+          {% for t in ['Python', 'Flask', 'JavaScript', 'Three.js', 'HTML5', 'CSS3'] %}
+          <span class="badge">{{ t }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="panel reveal" style="padding:1.8rem; margin-top:1.5rem;">
+      <h3>How the 3D Visuals Work</h3>
+      <p class="text-secondary" style="margin-top:0.8rem;">
+        Every planet, moon, and the Sun are rendered with procedurally generated textures drawn on an HTML canvas
+        at load time — rather than downloaded image files — so the visuals are fully self-contained, load quickly,
+        and never break due to a missing asset. Colors and surface patterns are inspired by each body's real
+        appearance but are illustrative, not photographic.
+      </p>
+    </div>
+
+    <div class="panel reveal" style="padding:1.8rem; margin-top:1.5rem;">
+      <h3>Data Sources &amp; Disclaimer</h3>
+      <p class="text-secondary" style="margin-top:0.8rem;">
+        Planetary and lunar statistics are drawn from and cross-checked against publicly published reference data
+        from NASA, NASA JPL, and ESA fact sheets, then written as original summaries. Values are approximate and
+        may vary slightly between sources depending on measurement method; where genuinely uncertain, this is
+        noted directly on the relevant page. Visualizations are for educational purposes and are not necessarily
+        drawn to physical scale unless explicitly labeled "Scientific Mode." COSMOS is an independent project and
+        is not affiliated with or endorsed by NASA, ESA, or any space agency.
+      </p>
+    </div>
+
+    <div class="panel reveal" style="padding:1.8rem; margin-top:1.5rem;">
+      <h3>Creator</h3>
+      <p class="text-secondary" style="margin-top:0.8rem;">Designed and built as a portfolio-quality educational demo showcasing full-stack development, 3D web graphics, and data-driven UI design.</p>
+    </div>
+
+    <div class="section-cta"><a href="{{ url_for('main.index') }}" class="btn btn-primary">Back to Home</a></div>
+  </div>
+</section>
+{% endblock %}

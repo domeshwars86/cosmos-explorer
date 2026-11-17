@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block body_class %}page-dwarf-detail{% endblock %}
+{% block body_attrs %}style="--accent:{{ dwarf.color }}; --accent-soft:{{ dwarf.color }}; --accent-dim:{{ dwarf.color }}29;"{% endblock %}
+{% block content %}
+<section class="hero" style="min-height:78svh;">
+  <div class="hero-canvas-wrap"><canvas id="body-canvas" data-kind="dwarf" role="img" aria-label="Rotatable 3D model of {{ dwarf.name }}"></canvas></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="container">
+      <span class="eyebrow reveal">Dwarf Planet</span>
+      <h1 class="hero-title font-display reveal reveal-delay-1">{{ dwarf.name.upper() }}</h1>
+      <p class="text-lead reveal reveal-delay-2" style="max-width:620px;">{{ dwarf.short_description }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:3rem;">
+  <div class="container">
+    <div class="panel scan-results hidden" id="scan-results-host" style="padding:1.6rem 1.8rem; margin-bottom:2rem;"></div>
+    <div class="stat-grid reveal">
+      <div class="stat-card"><div class="stat-label">Diameter</div><div class="stat-value">{{ '{:,}'.format(dwarf.diameter_km) }}<span class="stat-unit">km</span></div></div>
+      <div class="stat-card" title="{{ dwarf.distance_km | with_commas }} km"><div class="stat-label">Distance from Sun</div><div class="stat-value">{{ dwarf.distance_km | compact_km }}<span class="stat-unit">km</span></div></div>
+      <div class="stat-card"><div class="stat-label">Orbital Period</div><div class="stat-value">{{ (dwarf.orbital_period_days / 365.25)|round(1) }}<span class="stat-unit">years</span></div></div>
+      <div class="stat-card"><div class="stat-label">Gravity</div><div class="stat-value">{{ dwarf.gravity_ms2 }}<span class="stat-unit">m/s²</span></div></div>
+      <div class="stat-card"><div class="stat-label">Moons</div><div class="stat-value">{{ dwarf.moons }}</div></div>
+      <div class="stat-card"><div class="stat-label">Avg. Temperature</div><div class="stat-value">{{ dwarf.temp_c_avg }}<span class="stat-unit">°C</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Continue Exploring</span><h2>You May Also Want to Explore</h2></div>
+    <div class="recommend-row reveal" id="recommendations"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0; padding-bottom:5rem;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Did You Know</span><h2>Facts About {{ dwarf.name }}</h2></div>
+    <div class="facts-grid">
+      {% for f in dwarf.facts %}
+      <div class="fact-module reveal"><span class="fact-kicker">FACT</span><p>{{ f }}</p></div>
+      {% endfor %}
+    </div>
+    <div class="section-cta"><a href="{{ url_for('main.dwarf_planets') }}" class="btn btn-outline">Back to Dwarf Planets</a></div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>window.__COSMOS_BODY__ = {{ dwarf | tojson }};</script>
+<script type="module" src="{{ url_for('static', filename='js/pages/body-page.js') }}"></script>
+{% endblock %}

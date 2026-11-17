@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block body_class %}page-solar-system{% endblock %}
+{% block content %}
+
+<section class="section" style="padding-top:calc(var(--nav-height) + 2.5rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Interactive Simulation</span>
+      <h1>The Solar System</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">Sun &rarr; Mercury &rarr; Venus &rarr; Earth &rarr; Mars &rarr; Jupiter &rarr; Saturn &rarr; Uranus &rarr; Neptune. Drag to orbit, scroll to zoom, and click any world for details.</p>
+    </div>
+
+    <div class="row between wrap gap-md reveal" style="margin-bottom:1.2rem;">
+      <div class="mode-switch" id="mode-switch" role="tablist" aria-label="Visualization mode">
+        <button type="button" data-mode="visual" class="active" role="tab" aria-selected="true">Visual</button>
+        <button type="button" data-mode="size" role="tab" aria-selected="false">Size Comparison</button>
+        <button type="button" data-mode="distance" role="tab" aria-selected="false">Distance</button>
+        <button type="button" data-mode="scientific" role="tab" aria-selected="false">Scientific</button>
+      </div>
+      <div class="row gap-sm">
+        <label class="toggle-chip"><input type="checkbox" id="toggle-orbits" checked /><span class="dot"></span><span class="label">Orbits</span></label>
+        <label class="toggle-chip"><input type="checkbox" id="toggle-labels" checked /><span class="dot"></span><span class="label">Labels</span></label>
+      </div>
+    </div>
+    <p class="mode-note reveal" id="mode-note">Visual Mode — orbits are evenly spaced for legibility and planet sizes are compressed. Not physically to scale.</p>
+
+    <div class="simulator reveal" style="margin-top:1.2rem;" id="sim-root">
+      <canvas id="sim-canvas"></canvas>
+
+      <div class="sim-panel-info" id="sim-info">
+        <h4 id="sim-info-name">—</h4>
+        <div class="mini-stats" id="sim-info-stats"></div>
+        <a href="#" id="sim-info-link" class="btn btn-sm btn-primary" style="margin-top:0.9rem; width:100%;">Open Profile</a>
+      </div>
+
+      <div class="sim-toolbar">
+        <button type="button" class="icon-btn" id="sim-play" aria-label="Play or pause">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+        </button>
+        <div class="sim-speed">
+          <span class="text-muted" style="font-size:0.78rem;">Speed</span>
+          <select id="sim-speed">
+            <option value="0.25">0.25x</option>
+            <option value="0.5">0.5x</option>
+            <option value="1" selected>1x</option>
+            <option value="2">2x</option>
+            <option value="5">5x</option>
+            <option value="10">10x</option>
+            <option value="100">100x</option>
+            <option value="1000">1000x</option>
+          </select>
+        </div>
+        <button type="button" class="icon-btn btn-sm" id="sim-reset" aria-label="Reset view" title="Reset camera">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 1 3 6.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 21v-6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="spacer"></div>
+        <span class="badge" id="sim-mode-badge">Visual Mode &middot; not to scale</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="planets" style="padding-top:2rem;">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Order of the Planets</span>
+      <h2>Sun to Neptune</h2>
+    </div>
+    <div class="grid grid-4">
+      <a href="{{ url_for('main.sun') }}" class="stat-card reveal">
+        <div class="stat-label">Star</div>
+        <div class="stat-value" style="font-size:1.2rem;">The Sun</div>
+        <p class="text-muted" style="font-size:0.8rem; margin-top:0.3rem;">Center of the Solar System</p>
+      </a>
+      {% for p in planets %}
+      <a href="{{ url_for('planet.planet_detail', planet_id=p.id) }}" class="stat-card reveal">
+        <div class="stat-label">{{ p.position_label }}</div>
+        <div class="stat-value" style="font-size:1.2rem;">{{ p.name }}</div>
+        <p class="text-muted" style="font-size:0.8rem; margin-top:0.3rem;">{{ p.category }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row between wrap reveal" style="margin-bottom:1.5rem;">
+      <div class="section-header" style="margin-bottom:0;">
+        <span class="eyebrow">Beyond Neptune</span>
+        <h2>Dwarf Planets</h2>
+      </div>
+      <a href="{{ url_for('main.dwarf_planets') }}" class="btn btn-outline">View All Dwarf Planets</a>
+    </div>
+    <p class="text-secondary reveal" style="max-width:680px;">Pluto and its kin are classified as <strong>dwarf planets</strong> — bodies that orbit the Sun and are roughly round, but have not cleared their orbital neighborhood of other debris. This is why they are shown separately from the eight major planets.</p>
+    <div class="grid grid-4" style="margin-top:1.5rem;">
+      {% for d in dwarf_planets %}
+      <a href="{{ url_for('main.dwarf_planet', dwarf_id=d.id) }}" class="stat-card reveal">
+        <div class="stat-label">Dwarf Planet</div>
+        <div class="stat-value" style="font-size:1.2rem;">{{ d.name }}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/solar-system.js') }}"></script>
+{% endblock %}

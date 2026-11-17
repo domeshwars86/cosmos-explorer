@@ -1,0 +1,58 @@
+{
+  "mars": {
+    "id": "mars", "name": "Mars", "url": "/planet/mars", "color": "#C1440E",
+    "water": "Confirmed as water ice at the poles and in shallow subsurface deposits; strong geological evidence of ancient rivers, lakes, and possibly an ocean billions of years ago.",
+    "organic_molecules": "Organic (carbon-based) molecules have been detected in Martian rocks by the Curiosity rover — a building block for life, not evidence of it.",
+    "energy_sources": "Potential chemical energy sources exist in subsurface minerals; sunlight is abundant at the surface but the atmosphere offers little protection from radiation.",
+    "radiation": "High. Mars lacks a global magnetic field and has a very thin atmosphere, so surface radiation levels are far higher than Earth's.",
+    "temperature": "Average around -63°C; well below the freezing point of water at the surface today.",
+    "atmosphere": "Thin, over 95% carbon dioxide, with surface pressure less than 1% of Earth's.",
+    "known_evidence": "Ancient riverbeds, mineral deposits that only form in liquid water, seasonal methane fluctuations of debated origin.",
+    "unknowns": "Whether ancient Mars ever supported life, and whether any microbial life could persist in protected subsurface niches today.",
+    "know": "Mars had liquid water and a thicker atmosphere billions of years ago.",
+    "suspect": "Subsurface environments today might shield liquid water and organic chemistry from surface radiation.",
+    "unknown": "Whether life ever existed on Mars, in the past or present — no evidence of life has been found."
+  },
+  "europa": {
+    "id": "europa", "name": "Europa", "url": "/moon/europa", "color": "#D9C9A8",
+    "water": "Strong evidence of a deep, salty liquid water ocean beneath its icy shell — potentially more water than all of Earth's oceans combined.",
+    "organic_molecules": "Not yet directly confirmed on the surface, though the chemistry needed to produce them is considered plausible.",
+    "energy_sources": "Tidal heating from Jupiter's gravity keeps the subsurface ocean liquid; possible chemical energy from interaction between the ocean and rocky seafloor.",
+    "radiation": "Very high at the icy surface due to Jupiter's intense radiation belts — but this radiation does not reach the subsurface ocean.",
+    "temperature": "Surface averages around -160°C; the subsurface ocean is insulated and far warmer.",
+    "atmosphere": "Extremely thin, oxygen-dominated exosphere.",
+    "known_evidence": "Surface fractures and 'chaos terrain' consistent with an active ocean below; a possible induced magnetic field suggesting a conductive (salty) ocean.",
+    "unknowns": "Direct composition of the ocean, whether hydrothermal activity exists on the seafloor, and whether any biosignatures are present.",
+    "know": "Europa almost certainly has a global subsurface liquid water ocean.",
+    "suspect": "Tidal heating could drive hydrothermal activity similar to environments on Earth where life thrives without sunlight.",
+    "unknown": "Whether the ocean has ever hosted any biological activity — this remains a leading open question in astrobiology."
+  },
+  "enceladus": {
+    "id": "enceladus", "name": "Enceladus", "url": "/moon/enceladus", "color": "#EDEDED",
+    "water": "Confirmed subsurface liquid water ocean, directly sampled via geysers erupting from the south pole.",
+    "organic_molecules": "Simple organic molecules and complex carbon-based compounds have been directly detected in the geyser plumes by the Cassini spacecraft.",
+    "energy_sources": "Tidal heating from Saturn; direct evidence of hydrothermal activity on the ocean floor has been found in the form of silica nanograins, which typically require hot water reacting with rock.",
+    "radiation": "Low at the surface compared to Europa, and irrelevant to the shielded subsurface ocean.",
+    "temperature": "Surface averages around -198°C; the ocean itself is kept liquid by tidal heating.",
+    "atmosphere": "No global atmosphere, but active water-vapor plumes at the south pole.",
+    "known_evidence": "Direct sampling of plume material found water, simple organics, and molecular hydrogen — a potential energy source for microbial metabolism, if life existed.",
+    "unknowns": "Whether the chemical conditions found so far are actually being used by any biological process, or simply reflect non-biological geochemistry.",
+    "know": "Enceladus has an active subsurface ocean with hydrothermal chemistry.",
+    "suspect": "The detected hydrogen could, in principle, support microbial metabolism similar to some Earth deep-sea vent organisms.",
+    "unknown": "Whether any microbial life is actually present — no biosignature has been confirmed."
+  },
+  "titan": {
+    "id": "titan", "name": "Titan", "url": "/moon/titan", "color": "#E3B15C",
+    "water": "No liquid water on the surface (too cold), but a subsurface liquid water ocean is suspected beneath the icy crust.",
+    "organic_molecules": "Abundant. Titan's thick atmosphere is rich in complex organic chemistry, and its surface features lakes and seas of liquid methane and ethane.",
+    "energy_sources": "Weak sunlight reaches the surface through the hazy atmosphere; internal tidal heating may support a subsurface ocean.",
+    "radiation": "Low at the surface — Titan's thick atmosphere and distance from the Sun shield it well.",
+    "temperature": "Surface averages around -179°C, far too cold for liquid water but suitable for liquid methane and ethane.",
+    "atmosphere": "Thick, nitrogen-rich atmosphere denser than Earth's, with a complete methane-based weather cycle.",
+    "known_evidence": "Cassini-Huygens directly imaged lakes, rivers, and rain of liquid hydrocarbons — the only other place in the Solar System with stable surface liquids.",
+    "unknowns": "Whether 'exotic' life based on liquid methane rather than water could theoretically exist — a genuinely speculative idea explored by astrobiologists.",
+    "know": "Titan has a complete liquid cycle on its surface, just using methane instead of water.",
+    "suspect": "Its rich organic chemistry makes it a valuable natural laboratory for studying the chemical steps that might precede life.",
+    "unknown": "Whether any form of chemistry there could be considered 'alive' by any definition — highly speculative and unconfirmed."
+  }
+}

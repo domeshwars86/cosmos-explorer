@@ -1,0 +1,364 @@
+[
+  {
+    "id": "mercury",
+    "name": "Mercury",
+    "order": 1,
+    "category": "Terrestrial Planet",
+    "position_label": "1st planet from the Sun",
+    "color": "#9C9C9C",
+    "accent": "#B8B8B8",
+    "texture": { "base": "#8c8a86", "detail": "#5c5a56", "highlight": "#c9c6bf" },
+    "short_description": "A small, heavily cratered world of rock and iron, baked by day and frozen by night with almost no atmosphere to soften the extremes.",
+    "stats": {
+      "diameter_km": 4879,
+      "mass_relative_earth": 0.055,
+      "distance_km": 57900000,
+      "orbital_period_days": 88,
+      "rotation_period_hours": 1407.6,
+      "gravity_ms2": 3.7,
+      "moons": 0,
+      "rings": false,
+      "temp_c_avg": 167,
+      "temp_c_range": "-180 to 430",
+      "atmosphere": { "summary": "Extremely thin exosphere", "gases": [{ "name": "Oxygen", "pct": 42 }, { "name": "Sodium", "pct": 29 }, { "name": "Hydrogen", "pct": 22 }, { "name": "Helium", "pct": 6 }, { "name": "Other trace gases", "pct": 1 }], "pressure": "Negligible (~10^-15 bar)" }
+    },
+    "axial_tilt_deg": 0.03,
+    "interior": [
+      { "name": "Crust", "description": "A thin, heavily cratered silicate shell." },
+      { "name": "Mantle", "description": "A relatively thin rocky mantle surrounding the core." },
+      { "name": "Core", "description": "An unusually large iron core, thought to make up roughly 85% of the planet's radius." }
+    ],
+    "highlights": [
+      "Heavily cratered surface shaped by billions of years of impacts",
+      "Unusually large iron core relative to its size",
+      "Extremely thin exosphere offers almost no insulation",
+      "Extreme temperature swings between day and night",
+      "A solar day (sunrise to sunrise) lasts about 176 Earth days due to its slow spin and fast orbit",
+      "The Caloris Basin is one of the largest impact craters in the Solar System",
+      "Water ice has been detected in permanently shadowed polar craters"
+    ],
+    "moons": [],
+    "exploration": ["mariner10", "messenger", "bepicolombo"],
+    "facts": [
+      "Mercury has the most eccentric orbit of any planet in the Solar System.",
+      "Despite being closest to the Sun, Mercury is not the hottest planet — Venus is.",
+      "A year on Mercury (88 Earth days) is shorter than its solar day."
+    ]
+  },
+  {
+    "id": "venus",
+    "name": "Venus",
+    "order": 2,
+    "category": "Terrestrial Planet",
+    "position_label": "2nd planet from the Sun",
+    "color": "#E8C387",
+    "accent": "#F2D9A8",
+    "texture": { "base": "#e8c887", "detail": "#c9a25f", "highlight": "#fbe7bd" },
+    "short_description": "A cloud-shrouded world with a crushing, scorching atmosphere driven by a runaway greenhouse effect — the hottest planet in the Solar System.",
+    "stats": {
+      "diameter_km": 12104,
+      "mass_relative_earth": 0.815,
+      "distance_km": 108200000,
+      "orbital_period_days": 224.7,
+      "rotation_period_hours": 5832.5,
+      "gravity_ms2": 8.87,
+      "moons": 0,
+      "rings": false,
+      "temp_c_avg": 465,
+      "temp_c_range": "~465 (little variation)",
+      "atmosphere": { "summary": "Thick carbon dioxide atmosphere with sulfuric acid clouds", "gases": [{ "name": "Carbon Dioxide", "pct": 96.5 }, { "name": "Nitrogen", "pct": 3.5 }], "pressure": "~92x Earth's surface pressure" }
+    },
+    "axial_tilt_deg": 177.4,
+    "interior": [
+      { "name": "Crust", "description": "A basaltic volcanic surface with tens of thousands of volcanoes." },
+      { "name": "Mantle", "description": "A thick silicate mantle, likely convecting slowly beneath the crust." },
+      { "name": "Core", "description": "A metallic iron-nickel core, likely partly molten." }
+    ],
+    "highlights": [
+      "Runaway greenhouse effect traps heat beneath a thick CO2 atmosphere",
+      "Clouds of sulfuric acid droplets reflect sunlight, making Venus the brightest planet in our sky",
+      "Rotates in retrograde (opposite most planets) and extremely slowly",
+      "A day on Venus (243 Earth days) is longer than its year (224.7 Earth days)",
+      "Surface shows evidence of extensive past volcanic activity",
+      "Hotter than Mercury despite being farther from the Sun, due to its insulating atmosphere"
+    ],
+    "moons": [],
+    "exploration": ["venera", "magellan", "akatsuki"],
+    "facts": [
+      "A day on Venus is longer than a year on Venus.",
+      "Venus rotates in the opposite direction to most planets, a trait called retrograde rotation.",
+      "Venus's surface pressure is similar to being about 900 meters underwater on Earth."
+    ]
+  },
+  {
+    "id": "earth",
+    "name": "Earth",
+    "order": 3,
+    "category": "Terrestrial Planet",
+    "position_label": "3rd planet from the Sun",
+    "color": "#3D8BFF",
+    "accent": "#6FE3C9",
+    "texture": { "base": "#2b5fb0", "detail": "#3f8f4f", "highlight": "#ffffff" },
+    "short_description": "Our home — the only known world with liquid water oceans, a breathable atmosphere, and life, shaped by plate tectonics and a protective magnetic field.",
+    "stats": {
+      "diameter_km": 12742,
+      "mass_relative_earth": 1.0,
+      "distance_km": 149600000,
+      "orbital_period_days": 365.25,
+      "rotation_period_hours": 23.93,
+      "gravity_ms2": 9.81,
+      "moons": 1,
+      "rings": false,
+      "temp_c_avg": 15,
+      "temp_c_range": "-88 to 58",
+      "atmosphere": { "summary": "Nitrogen-oxygen atmosphere that supports life", "gases": [{ "name": "Nitrogen", "pct": 78 }, { "name": "Oxygen", "pct": 21 }, { "name": "Argon & other trace gases", "pct": 1 }], "pressure": "1 bar (reference)" }
+    },
+    "axial_tilt_deg": 23.44,
+    "interior": [
+      { "name": "Crust", "description": "A thin rocky outer layer, thinnest under the oceans and thickest under mountain ranges." },
+      { "name": "Mantle", "description": "A thick layer of hot, slowly flowing rock that drives plate tectonics." },
+      { "name": "Outer Core", "description": "Liquid iron and nickel whose motion generates Earth's protective magnetic field." },
+      { "name": "Inner Core", "description": "A solid sphere of iron and nickel under immense pressure at the planet's center." }
+    ],
+    "highlights": [
+      "About 71% of the surface is covered by liquid water oceans",
+      "A global magnetic field deflects harmful solar wind and cosmic radiation",
+      "Plate tectonics continuously reshape the surface over geologic time",
+      "A rich biosphere makes Earth the only known world with life",
+      "Axial tilt of 23.4° produces the seasons",
+      "Charged particles interacting with the magnetic field create the aurora"
+    ],
+    "moons": ["moon"],
+    "exploration": ["apollo", "iss"],
+    "facts": [
+      "Earth is the only known planet with liquid water stable on its surface.",
+      "Earth's magnetic field is generated by the churning liquid outer core.",
+      "Earth's atmosphere protects the surface from most meteoroids, which burn up as they fall."
+    ]
+  },
+  {
+    "id": "mars",
+    "name": "Mars",
+    "order": 4,
+    "category": "Terrestrial Planet",
+    "position_label": "4th planet from the Sun",
+    "color": "#C1440E",
+    "accent": "#E17A4E",
+    "texture": { "base": "#b3502c", "detail": "#7a3216", "highlight": "#d99b74" },
+    "short_description": "The 'Red Planet' — a cold desert world with the largest volcano and canyon in the Solar System, and strong evidence of a wetter ancient past.",
+    "stats": {
+      "diameter_km": 6779,
+      "mass_relative_earth": 0.107,
+      "distance_km": 227900000,
+      "orbital_period_days": 687,
+      "rotation_period_hours": 24.62,
+      "gravity_ms2": 3.71,
+      "moons": 2,
+      "rings": false,
+      "temp_c_avg": -63,
+      "temp_c_range": "-125 to 20",
+      "atmosphere": { "summary": "Thin carbon dioxide atmosphere", "gases": [{ "name": "Carbon Dioxide", "pct": 95.3 }, { "name": "Nitrogen", "pct": 2.7 }, { "name": "Argon", "pct": 1.6 }, { "name": "Other trace gases", "pct": 0.4 }], "pressure": "~0.6% of Earth's" }
+    },
+    "axial_tilt_deg": 25.19,
+    "interior": [
+      { "name": "Crust", "description": "A rocky, iron-oxide rich crust that gives Mars its reddish color." },
+      { "name": "Mantle", "description": "A silicate mantle, thicker relative to the planet's size than Earth's." },
+      { "name": "Core", "description": "A dense iron-rich core, likely partly liquid." }
+    ],
+    "highlights": [
+      "Olympus Mons is the tallest known volcano in the Solar System",
+      "Valles Marineris is a canyon system stretching thousands of kilometers",
+      "Polar ice caps made of water ice and frozen carbon dioxide grow and shrink with the seasons",
+      "Dry riverbeds and mineral evidence point to liquid water in the ancient past",
+      "Planet-wide dust storms can occasionally engulf the entire globe",
+      "The thin atmosphere provides little protection from radiation and heat loss"
+    ],
+    "moons": ["phobos", "deimos"],
+    "exploration": ["viking", "curiosity", "perseverance", "insight"],
+    "facts": [
+      "Mars is home to Olympus Mons, roughly three times the height of Mount Everest.",
+      "Evidence suggests rivers, lakes, and possibly oceans existed on Mars billions of years ago.",
+      "A Martian year lasts almost twice as long as an Earth year."
+    ]
+  },
+  {
+    "id": "jupiter",
+    "name": "Jupiter",
+    "order": 5,
+    "category": "Gas Giant",
+    "position_label": "5th planet from the Sun",
+    "color": "#D8B98C",
+    "accent": "#EAD2A8",
+    "texture": { "base": "#d8bd93", "detail": "#a97a4a", "highlight": "#f0e0bd" },
+    "short_description": "The largest planet in the Solar System, a churning giant of hydrogen and helium famous for its Great Red Spot and a sprawling family of moons.",
+    "stats": {
+      "diameter_km": 139820,
+      "mass_relative_earth": 317.8,
+      "distance_km": 778500000,
+      "orbital_period_days": 4332.6,
+      "rotation_period_hours": 9.93,
+      "gravity_ms2": 24.79,
+      "moons": 95,
+      "rings": true,
+      "temp_c_avg": -110,
+      "temp_c_range": "cloud-top ~-110",
+      "atmosphere": { "summary": "Deep hydrogen-helium atmosphere", "gases": [{ "name": "Hydrogen", "pct": 90 }, { "name": "Helium", "pct": 10 }, { "name": "Trace methane, ammonia & water", "pct": 0 }], "pressure": "Increases steeply with depth; no solid surface" }
+    },
+    "axial_tilt_deg": 3.13,
+    "interior": [
+      { "name": "Upper Atmosphere", "description": "Colorful bands of ammonia clouds driven by rapid rotation." },
+      { "name": "Molecular Hydrogen Layer", "description": "A deep layer where hydrogen behaves as a gas, then a liquid, as pressure increases." },
+      { "name": "Metallic Hydrogen Layer", "description": "Under extreme pressure, hydrogen becomes electrically conductive, generating Jupiter's powerful magnetic field." },
+      { "name": "Core (conceptual)", "description": "A dense central region of heavier elements, possibly partly dissolved into the surrounding layers." }
+    ],
+    "highlights": [
+      "The Great Red Spot is a giant storm larger than Earth that has raged for centuries",
+      "Jupiter has the strongest planetary magnetic field in the Solar System",
+      "Rapid rotation (under 10 hours) creates Jupiter's banded cloud pattern",
+      "Jupiter is more massive than all other planets combined",
+      "Known moons number over 90, including four large Galilean moons"
+    ],
+    "moons": ["io", "europa", "ganymede", "callisto"],
+    "exploration": ["voyager", "galileo", "juno"],
+    "facts": [
+      "Jupiter is so massive that its barycenter with the Sun lies just outside the Sun's surface.",
+      "The Great Red Spot has been observed for at least 150 years, possibly much longer.",
+      "Jupiter has the shortest day of any planet in the Solar System."
+    ]
+  },
+  {
+    "id": "saturn",
+    "name": "Saturn",
+    "order": 6,
+    "category": "Gas Giant",
+    "position_label": "6th planet from the Sun",
+    "color": "#E3C989",
+    "accent": "#F3E0AE",
+    "texture": { "base": "#e6cd93", "detail": "#c2a469", "highlight": "#f7ecc9" },
+    "ring_color": "#D8C79E",
+    "short_description": "Famous for its brilliant ring system, Saturn is a vast, low-density gas giant with dozens of moons, including the hazy, lake-studded Titan.",
+    "stats": {
+      "diameter_km": 116460,
+      "mass_relative_earth": 95.2,
+      "distance_km": 1430000000,
+      "orbital_period_days": 10759,
+      "rotation_period_hours": 10.7,
+      "gravity_ms2": 10.44,
+      "moons": 146,
+      "rings": true,
+      "temp_c_avg": -140,
+      "temp_c_range": "cloud-top ~-140",
+      "atmosphere": { "summary": "Hydrogen-helium atmosphere", "gases": [{ "name": "Hydrogen", "pct": 96 }, { "name": "Helium", "pct": 3 }, { "name": "Trace methane & ammonia", "pct": 1 }], "pressure": "Increases steeply with depth; no solid surface" }
+    },
+    "axial_tilt_deg": 26.73,
+    "interior": [
+      { "name": "Upper Atmosphere", "description": "Pale bands of ammonia-ice clouds, calmer in appearance than Jupiter's." },
+      { "name": "Molecular Hydrogen Layer", "description": "A deep gaseous-to-liquid hydrogen layer." },
+      { "name": "Metallic Hydrogen Layer", "description": "Compressed conductive hydrogen that helps generate Saturn's magnetic field." },
+      { "name": "Core (conceptual)", "description": "A dense central region of rock, ice, and metal." }
+    ],
+    "highlights": [
+      "The ring system is made of countless particles of ice and rock, from dust-sized to house-sized",
+      "The Cassini Division is a prominent gap separating major ring sections",
+      "Saturn is the least dense planet — it would float in a large enough tub of water",
+      "A striking hexagonal jet-stream pattern swirls at Saturn's north pole",
+      "Titan, its largest moon, has a thick atmosphere and lakes of liquid methane"
+    ],
+    "moons": ["titan", "enceladus", "rhea", "iapetus", "dione"],
+    "exploration": ["voyager", "cassini"],
+    "facts": [
+      "Saturn's rings span hundreds of thousands of kilometers but are remarkably thin.",
+      "Saturn's density is lower than water.",
+      "Titan is the only moon in the Solar System known to have a substantial atmosphere."
+    ]
+  },
+  {
+    "id": "uranus",
+    "name": "Uranus",
+    "order": 7,
+    "category": "Ice Giant",
+    "position_label": "7th planet from the Sun",
+    "color": "#9FE3E8",
+    "accent": "#C6F2F5",
+    "texture": { "base": "#a9e3e6", "detail": "#7cc4c9", "highlight": "#d9f5f6" },
+    "ring_color": "#8fd0d4",
+    "short_description": "A pale cyan ice giant tipped almost completely on its side, giving it the most extreme seasons of any planet in the Solar System.",
+    "stats": {
+      "diameter_km": 50724,
+      "mass_relative_earth": 14.5,
+      "distance_km": 2870000000,
+      "orbital_period_days": 30687,
+      "rotation_period_hours": 17.24,
+      "gravity_ms2": 8.69,
+      "moons": 27,
+      "rings": true,
+      "temp_c_avg": -195,
+      "temp_c_range": "cloud-top ~-195",
+      "atmosphere": { "summary": "Hydrogen, helium, and methane atmosphere", "gases": [{ "name": "Hydrogen", "pct": 82.5 }, { "name": "Helium", "pct": 15.2 }, { "name": "Methane", "pct": 2.3 }], "pressure": "Increases with depth; no solid surface" }
+    },
+    "axial_tilt_deg": 97.77,
+    "interior": [
+      { "name": "Upper Atmosphere", "description": "A hazy, relatively featureless blue-green atmosphere colored by methane absorbing red light." },
+      { "name": "Icy Mantle", "description": "A dense fluid of water, ammonia, and methane 'ices' surrounding the core." },
+      { "name": "Core (conceptual)", "description": "A small rocky core relative to the planet's overall size." }
+    ],
+    "highlights": [
+      "Axial tilt of about 98° means Uranus essentially rotates on its side",
+      "Extreme seasons last roughly 20 years each due to the tilt and long orbit",
+      "Methane in the upper atmosphere absorbs red light, producing a cyan-blue color",
+      "Faint, narrow rings were discovered in 1977",
+      "Coldest planetary atmosphere in the Solar System has been recorded here"
+    ],
+    "moons": ["titania", "oberon", "miranda", "ariel", "umbriel"],
+    "exploration": ["voyager2"],
+    "facts": [
+      "Uranus rotates almost on its side, likely due to an ancient massive collision.",
+      "Uranus was the first planet discovered with a telescope, by William Herschel in 1781.",
+      "A season on Uranus lasts about 21 Earth years."
+    ]
+  },
+  {
+    "id": "neptune",
+    "name": "Neptune",
+    "order": 8,
+    "category": "Ice Giant",
+    "position_label": "8th planet from the Sun",
+    "color": "#4166F5",
+    "accent": "#7C97FF",
+    "texture": { "base": "#3e5fd9", "detail": "#2a3f9e", "highlight": "#8fa4ff" },
+    "short_description": "The most distant major planet — a deep blue, dynamic ice giant known for the fastest winds recorded in the Solar System.",
+    "stats": {
+      "diameter_km": 49244,
+      "mass_relative_earth": 17.1,
+      "distance_km": 4500000000,
+      "orbital_period_days": 60190,
+      "rotation_period_hours": 16.11,
+      "gravity_ms2": 11.15,
+      "moons": 16,
+      "rings": true,
+      "temp_c_avg": -200,
+      "temp_c_range": "cloud-top ~-200",
+      "atmosphere": { "summary": "Hydrogen, helium, and methane atmosphere", "gases": [{ "name": "Hydrogen", "pct": 80 }, { "name": "Helium", "pct": 19 }, { "name": "Methane", "pct": 1 }], "pressure": "Increases with depth; no solid surface" }
+    },
+    "axial_tilt_deg": 28.32,
+    "interior": [
+      { "name": "Upper Atmosphere", "description": "A vivid blue, dynamic atmosphere with the fastest winds measured on any planet." },
+      { "name": "Icy Mantle", "description": "A hot, dense fluid of water, ammonia, and methane surrounding the core." },
+      { "name": "Core (conceptual)", "description": "A small rocky core relative to the planet's overall size." }
+    ],
+    "highlights": [
+      "Winds can exceed 2,000 km/h, the fastest recorded in the Solar System",
+      "Dark storm systems, such as the historic Great Dark Spot, appear and fade over time",
+      "Neptune radiates more heat than it receives from the distant Sun",
+      "Discovered in 1846 through mathematical prediction before it was directly observed",
+      "Triton, its largest moon, orbits backward and is likely a captured Kuiper Belt object"
+    ],
+    "moons": ["triton"],
+    "exploration": ["voyager2"],
+    "facts": [
+      "Neptune was the first planet located through mathematical prediction rather than direct observation.",
+      "Neptune has the strongest sustained winds of any planet in the Solar System.",
+      "Neptune takes about 165 Earth years to complete one orbit of the Sun."
+    ]
+  }
+]

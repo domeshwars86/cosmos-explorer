@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body_class %}page-dwarf{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Beyond Neptune &amp; the Asteroid Belt</span>
+      <h1>Dwarf Planets</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">Dwarf planets orbit the Sun and are massive enough to be rounded by their own gravity, but — unlike the eight major planets — they have not gravitationally cleared their orbital neighborhood of other debris. Pluto was reclassified from a planet to a dwarf planet by the International Astronomical Union in 2006.</p>
+    </div>
+
+    <div class="grid grid-3">
+      {% for d in dwarf_planets %}
+      <a href="{{ url_for('main.dwarf_planet', dwarf_id=d.id) }}" class="card reveal">
+        <div class="card-glow" style="background:{{ d.color }};"></div>
+        <span class="planet-orb" style="--orb-color:{{ d.color }}; --orb-size:56px; margin-bottom:1.1rem;"></span>
+        <span class="eyebrow" style="margin-bottom:0.4rem;">Dwarf Planet</span>
+        <h3>{{ d.name }}</h3>
+        <p class="text-secondary" style="margin-top:0.6rem; font-size:0.92rem;">{{ d.short_description }}</p>
+        <div class="row gap-md" style="margin-top:1.2rem; font-size:0.8rem;" class="text-muted">
+          <span class="text-muted">{{ d.diameter_km }} km</span>
+          <span class="text-muted">{{ d.moons }} moon{{ 's' if d.moons != 1 else '' }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

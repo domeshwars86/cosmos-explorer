@@ -1,0 +1,44 @@
+[
+  {
+    "id": "proxima-b", "name": "Proxima Centauri b", "host_star": "Proxima Centauri",
+    "distance_ly": 4.24, "discovery_year": 2016, "discovery_method": "Radial Velocity",
+    "orbital_period_days": 11.2, "radius_relative_earth": 1.07, "mass_relative_earth_estimate": "≈1.07 (minimum)",
+    "in_habitable_zone": true,
+    "notes": "The closest known exoplanet to our Solar System, orbiting within its star's habitable zone — though intense stellar flares from its red-dwarf host raise open questions about surface habitability."
+  },
+  {
+    "id": "trappist-1e", "name": "TRAPPIST-1e", "host_star": "TRAPPIST-1",
+    "distance_ly": 40.7, "discovery_year": 2017, "discovery_method": "Transit",
+    "orbital_period_days": 6.1, "radius_relative_earth": 0.92, "mass_relative_earth_estimate": "≈0.69",
+    "in_habitable_zone": true,
+    "notes": "One of seven roughly Earth-sized planets orbiting an ultra-cool red dwarf; among the most Earth-sized and rocky of the seven, and a leading target for atmospheric study with JWST."
+  },
+  {
+    "id": "kepler-186f", "name": "Kepler-186f", "host_star": "Kepler-186",
+    "distance_ly": 582, "discovery_year": 2014, "discovery_method": "Transit",
+    "orbital_period_days": 129.9, "radius_relative_earth": 1.17, "mass_relative_earth_estimate": "Not precisely measured",
+    "in_habitable_zone": true,
+    "notes": "The first validated Earth-sized planet found orbiting within another star's habitable zone."
+  },
+  {
+    "id": "51-pegasi-b", "name": "51 Pegasi b", "host_star": "51 Pegasi",
+    "distance_ly": 50.9, "discovery_year": 1995, "discovery_method": "Radial Velocity",
+    "orbital_period_days": 4.23, "radius_relative_earth": 12.1, "mass_relative_earth_estimate": "≈150 (roughly half of Jupiter)",
+    "in_habitable_zone": false,
+    "notes": "The first exoplanet confirmed orbiting a Sun-like star, and the archetype of the 'hot Jupiter' class — a giant planet orbiting extremely close to its star. Its discovery earned the 2019 Nobel Prize in Physics."
+  },
+  {
+    "id": "hd-209458-b", "name": "HD 209458 b", "host_star": "HD 209458",
+    "distance_ly": 159, "discovery_year": 1999, "discovery_method": "Transit",
+    "orbital_period_days": 3.5, "radius_relative_earth": 15.5, "mass_relative_earth_estimate": "≈220",
+    "in_habitable_zone": false,
+    "notes": "Nicknamed 'Osiris' — the first exoplanet confirmed via the transit method, and the first found to have an atmosphere, which was detected escaping the planet due to intense stellar heating."
+  },
+  {
+    "id": "wasp-12b", "name": "WASP-12b", "host_star": "WASP-12",
+    "distance_ly": 871, "discovery_year": 2008, "discovery_method": "Transit",
+    "orbital_period_days": 1.09, "radius_relative_earth": 21, "mass_relative_earth_estimate": "≈440",
+    "in_habitable_zone": false,
+    "notes": "An extreme hot Jupiter orbiting so close to its star that it is being gradually pulled apart, feeding a disk of material onto its star."
+  }
+]

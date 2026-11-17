@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body_class %}page-space-launches{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Global Launch Calendar</span>
+      <h1>Upcoming Launches</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:700px;">Scheduled launches from providers worldwide, via Launch Library 2. Times marked "Target Date" are not yet precise to the minute.</p>
+      <span class="text-muted font-mono" id="launches-updated" style="font-size:0.76rem; display:block; margin-top:0.8rem;"></span>
+    </div>
+
+    <div class="panel reveal" id="next-launch-panel" style="padding:2rem; margin-bottom:2rem; display:none;">
+      <span class="eyebrow">Next Launch</span>
+      <h2 id="next-launch-name" style="margin-top:0.4rem;">—</h2>
+      <div class="launch-countdown" id="next-launch-countdown" style="margin-top:0.8rem;">—</div>
+      <p class="text-muted" style="font-size:0.78rem; margin-top:0.4rem;" id="next-launch-precision"></p>
+    </div>
+
+    <div id="launches-list" class="stack gap-md"></div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/space-launches.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block body_class %}page-missions{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Humanity's Journey Into Space</span>
+      <h1>Global Space Exploration</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:760px;">Missions, milestones, and achievements from every major spacefaring nation and agency — India, the United States, Europe, Japan, China, Canada, the UAE, Soviet/Russian history, and international collaborations. This is not a ranking — it's the story of what humanity, together, has learned by leaving Earth.</p>
+    </div>
+
+    <div class="mission-stat-strip reveal" style="margin-bottom:2rem;">
+      <div class="mini-stat"><div class="mini-stat-value">{{ missions|length }}</div><div class="mini-stat-label">Missions Tracked</div></div>
+      <div class="mini-stat"><div class="mini-stat-value">{{ countries|length }}</div><div class="mini-stat-label">Countries / Regions</div></div>
+      <div class="mini-stat"><div class="mini-stat-value">{{ filters.agencies|length }}</div><div class="mini-stat-label">Agencies</div></div>
+      <div class="mini-stat"><div class="mini-stat-value">{{ missions|selectattr('status_category', 'in', ['Active','Extended'])|list|length }}</div><div class="mini-stat-label">Active Missions</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Explore by Country</span><h2>Exploration Profiles</h2></div>
+    <div class="country-grid">
+      {% for c in countries %}
+      <a href="{{ url_for('main.country_detail', country_id=c.id) }}" class="country-card reveal">
+        <div class="country-flag" aria-hidden="true">{{ c.flag }}</div>
+        <div style="font-family:var(--font-display); font-size:0.98rem;">{{ c.name }}</div>
+        <div class="country-mission-count" id="country-count-{{ c.id }}">{{ missions|selectattr('country_id', 'equalto', c.id)|list|length }} missions tracked</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Browse All Missions</span><h2>Mission Library</h2></div>
+
+    <div class="mission-filter-bar reveal" id="mission-filters">
+      <span class="filter-label">Filter</span>
+      <select id="filter-country" aria-label="Filter by country">
+        <option value="">All Countries</option>
+        {% for c in filters.countries %}<option value="{{ c.id }}">{{ c.flag }} {{ c.name }}</option>{% endfor %}
+      </select>
+      <select id="filter-agency" aria-label="Filter by agency">
+        <option value="">All Agencies</option>
+        {% for a in filters.agencies %}<option value="{{ a.id }}">{{ a.name }}</option>{% endfor %}
+      </select>
+      <select id="filter-destination" aria-label="Filter by destination">
+        <option value="">All Destinations</option>
+        {% for d in filters.destinations %}<option value="{{ d }}">{{ d }}</option>{% endfor %}
+      </select>
+      <select id="filter-type" aria-label="Filter by mission type">
+        <option value="">All Mission Types</option>
+        {% for t in filters.mission_types %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+      </select>
+      <select id="filter-status" aria-label="Filter by status">
+        <option value="">All Statuses</option>
+        {% for s in filters.statuses %}<option value="{{ s }}">{{ s }}</option>{% endfor %}
+      </select>
+      <button type="button" class="btn btn-ghost btn-sm" id="filter-clear">Clear Filters</button>
+    </div>
+
+    <div class="mission-grid" id="mission-grid"></div>
+  </div>
+</section>
+
+<section class="section" id="timeline">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Chronological</span><h2>Global Timeline</h2>
+      <p class="text-secondary" style="margin-top:0.6rem;">Every mission above, in the order humanity accomplished it — click any milestone to read more.</p>
+    </div>
+
+    <div class="timeline">
+      {% for m in missions %}
+      <div class="timeline-item reveal" id="{{ m.id }}">
+        <div class="timeline-year">{{ m.year }}</div>
+        <div class="timeline-card panel" data-mission-card>
+          <span class="expand-indicator">+</span>
+          <h4>{{ m.name }}</h4>
+          <div class="timeline-meta">
+            <span>{{ m.agency }}</span>
+            <span>{{ m.target }}</span>
+            <span>{{ m.type }}</span>
+            <span class="status-badge {{ 'status-active' if 'Active' in m.status else ('status-enroute' if 'route' in m.status else 'status-completed') }}">{{ m.status }}</span>
+          </div>
+          <div class="timeline-detail">
+            <p><strong>Objective:</strong> {{ m.objective }}</p>
+            <p style="margin-top:0.6rem;"><strong>Major discoveries:</strong> {{ m.discoveries }}</p>
+            <a href="{{ url_for('main.mission_detail', mission_id=m.id) }}" class="btn btn-sm btn-outline" style="margin-top:0.9rem;">Full Mission Profile →</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>window.__COUNTRIES__ = {{ countries | tojson }};</script>
+<script type="module" src="{{ url_for('static', filename='js/pages/missions-hub.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pages/timeline.js') }}"></script>
+{% endblock %}

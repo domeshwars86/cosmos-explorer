@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body_class %}page-exoplanets{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Worlds Around Other Stars</span>
+      <h1>Exoplanets</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">Planets are found using indirect methods, since they're far too faint and close to their stars to photograph directly in most cases.</p>
+    </div>
+
+    <div class="grid grid-4" style="margin-bottom:3rem;">
+      <div class="stat-card in-view reveal"><div class="stat-value" style="font-size:1rem;">Transit</div><p class="text-secondary" style="margin-top:0.4rem; font-size:0.82rem;">Detects a tiny dip in starlight as a planet passes in front of its star.</p></div>
+      <div class="stat-card in-view reveal"><div class="stat-value" style="font-size:1rem;">Radial Velocity</div><p class="text-secondary" style="margin-top:0.4rem; font-size:0.82rem;">Detects the star's slight wobble caused by a planet's gravity.</p></div>
+      <div class="stat-card in-view reveal"><div class="stat-value" style="font-size:1rem;">Direct Imaging</div><p class="text-secondary" style="margin-top:0.4rem; font-size:0.82rem;">Directly photographs a planet, usually a young, large, widely-separated world.</p></div>
+      <div class="stat-card in-view reveal"><div class="stat-value" style="font-size:1rem;">Microlensing</div><p class="text-secondary" style="margin-top:0.4rem; font-size:0.82rem;">Detects a brightness spike as a planet's gravity bends light from a background star.</p></div>
+    </div>
+
+    <div class="grid grid-3">
+      {% for e in exoplanets %}
+      <a href="{{ url_for('discover.exoplanet_detail', exoplanet_id=e.id) }}" class="card reveal">
+        <span class="eyebrow" style="margin-bottom:0.4rem;">{{ e.discovery_method }} &middot; {{ e.discovery_year }}</span>
+        <h3 style="font-size:1.15rem;">{{ e.name }}</h3>
+        <p class="text-muted" style="font-size:0.82rem; margin-top:0.4rem;">Host star: {{ e.host_star }} &middot; {{ e.distance_ly }} ly away</p>
+        {% if e.in_habitable_zone %}<span class="badge" style="margin-top:0.8rem;">In Habitable Zone</span>{% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

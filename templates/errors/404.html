@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Lost in Space — {{ site_name }}{% endblock %}
+{% block content %}
+<section class="error-page">
+  <div>
+    <div class="error-code font-heading">404</div>
+    <h1 style="margin-top:1rem;">LOST IN SPACE</h1>
+    <p class="text-lead" style="margin-top:0.8rem; max-width:480px; margin-left:auto; margin-right:auto;">
+      The coordinates you're looking for could not be found.
+    </p>
+    <div class="hero-actions" style="justify-content:center; margin-top:2rem;">
+      <a href="{{ url_for('main.index') }}" class="btn btn-primary">Return Home</a>
+      <a href="{{ url_for('main.solar_system') }}" class="btn btn-outline">Explore Solar System</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

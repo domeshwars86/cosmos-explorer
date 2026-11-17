@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block body_class %}page-spacecraft{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Humanity's Emissaries</span>
+      <h1>Spacecraft</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:700px;">Eight missions that reshaped what we know about the Solar System and the universe beyond. Journey paths shown are historical summaries, not live tracked positions.</p>
+    </div>
+    <div class="grid grid-4">
+      {% for s in spacecraft %}
+      <a href="{{ url_for('discover.spacecraft_detail', spacecraft_id=s.id) }}" class="card reveal">
+        <span class="eyebrow" style="margin-bottom:0.4rem;">{{ s.launch_year }} &middot; {{ s.agency }}</span>
+        <h3 style="font-size:1.1rem;">{{ s.name }}</h3>
+        <p class="text-muted" style="font-size:0.8rem; margin-top:0.5rem;">{{ s.target }}</p>
+        <span class="status-badge {{ 'status-active' if 'Active' in s.status else 'status-completed' }}" style="margin-top:0.8rem;">{{ s.status }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

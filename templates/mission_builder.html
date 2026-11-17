@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block body_class %}page-mission-builder{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">COSMOS Labs &middot; Mission Design</span>
+      <h1>Mission Builder</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">Design a simulated mission to any planet, moon, or dwarf planet in our dataset — pick a destination, mission type, spacecraft, and objective.</p>
+    </div>
+
+    <div class="panel reveal" style="padding:2rem;">
+      <div class="grid grid-2" style="gap:1rem;">
+        <div>
+          <label class="text-muted" style="font-size:0.78rem;">Destination</label>
+          <select id="mb-destination" style="width:100%; margin-top:0.4rem; padding:0.75rem 1rem; border-radius:var(--radius-md); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border-strong); color:var(--text-primary);"></select>
+        </div>
+        <div>
+          <label class="text-muted" style="font-size:0.78rem;">Mission Type</label>
+          <select id="mb-type" style="width:100%; margin-top:0.4rem; padding:0.75rem 1rem; border-radius:var(--radius-md); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border-strong); color:var(--text-primary);"></select>
+        </div>
+        <div>
+          <label class="text-muted" style="font-size:0.78rem;">Spacecraft</label>
+          <select id="mb-spacecraft" style="width:100%; margin-top:0.4rem; padding:0.75rem 1rem; border-radius:var(--radius-md); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border-strong); color:var(--text-primary);"></select>
+        </div>
+        <div>
+          <label class="text-muted" style="font-size:0.78rem;">Primary Objective</label>
+          <select id="mb-objective" style="width:100%; margin-top:0.4rem; padding:0.75rem 1rem; border-radius:var(--radius-md); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border-strong); color:var(--text-primary);"></select>
+        </div>
+      </div>
+      <div class="section-cta"><button type="button" class="btn btn-primary" id="mb-build">Design Mission</button></div>
+    </div>
+
+    <div class="panel hidden" id="mb-output" style="padding:2rem; margin-top:2rem;">
+      <span class="confidence-badge confidence-conceptual">SIMULATED MISSION</span>
+      <h2 id="mb-name" style="margin-top:0.8rem;"></h2>
+      <div class="stat-grid" style="margin-top:1.2rem;">
+        <div class="stat-card in-view"><div class="stat-label">Destination</div><div class="stat-value" id="mb-out-dest" style="font-size:1.05rem;"></div></div>
+        <div class="stat-card in-view"><div class="stat-label">Mission Type</div><div class="stat-value" id="mb-out-type" style="font-size:1.05rem;"></div></div>
+        <div class="stat-card in-view"><div class="stat-label">Spacecraft</div><div class="stat-value" id="mb-out-craft" style="font-size:1.05rem;"></div></div>
+        <div class="stat-card in-view"><div class="stat-label">Cruise Estimate</div><div class="stat-value" id="mb-out-travel" style="font-size:1.05rem;"></div></div>
+      </div>
+      <div class="timeline" style="margin-top:2rem;" id="mb-stages"></div>
+      <p class="calc-disclaimer" id="mb-disclaimer"></p>
+      <div class="section-cta"><a href="#" class="btn btn-outline" id="mb-out-link">View Destination Profile</a></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/mission-builder.js') }}"></script>
+{% endblock %}

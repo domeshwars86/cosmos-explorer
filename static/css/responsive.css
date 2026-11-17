@@ -1,0 +1,80 @@
+/* =========================================================================
+   COSMOS — Responsive breakpoints
+   Desktop-first overrides for laptop / tablet / mobile.
+   ========================================================================= */
+
+@media (max-width: 1080px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: inline-flex; }
+
+  .nav-links.mobile-open {
+    display: flex; flex-direction: column; position: fixed; top: var(--nav-height); left: 0; right: 0;
+    background: rgba(7,9,18,0.96); backdrop-filter: blur(16px);
+    padding: 1rem 1.25rem 2rem; border-bottom: 1px solid var(--glass-border);
+    gap: 0.2rem; max-height: calc(100svh - var(--nav-height)); overflow-y: auto;
+  }
+  .nav-links.mobile-open a { padding: 0.9rem 0.5rem; font-size: 1rem; width: 100%; }
+
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.8rem; }
+  .footer-brand { grid-column: 1 / -1; }
+
+  .hero-content .container { max-width: 92%; }
+
+  /* At this width the hero text column also expands to 92%, so there's no
+     empty space left for a floating position tag without it overlapping
+     the paragraph. On the Galaxy page the same "Orion Arm" info is already
+     stated in the text itself; on the home page this tag only ever
+     appears on cursor hover over the 3D scene, which touch devices don't
+     trigger anyway — so hiding it here costs nothing on either page. */
+  .hero-planet-tag { display: none; }
+  .hero-actions { width: 100%; }
+  .hero-actions .btn { flex: 1; min-width: 160px; }
+
+  .sim-panel-info { max-width: 200px; font-size: 0.85rem; }
+
+  #settings-panel { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .hidden-mobile { display: none !important; }
+}
+
+/* Guards the narrowest common phone widths (iPhone SE-class, ~320–360px):
+   brand mark + wordmark + search/sound/settings/hamburger icons no longer
+   fit on one row at that size. The wordmark hides (the mark stays,
+   the link's aria-label still reads "COSMOS home") and icon buttons
+   shrink slightly, rather than letting the row clip off-screen. */
+@media (max-width: 380px) {
+  .brand-word { display: none; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-actions .icon-btn, .nav-toggle { width: 40px; height: 40px; }
+}
+
+@media (max-width: 600px) {
+  :root { --nav-height: 66px; }
+  .section { padding: 3rem 0; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .planet-nav { flex-direction: column; }
+  .planet-nav-link.next { flex-direction: row; justify-content: flex-start; text-align: left; }
+  .compare-table th, .compare-table td { padding: 0.75rem 0.9rem; }
+  #cursor-dot, #cursor-ring { display: none; }
+  .tabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 0.4rem; }
+  .tab-btn { flex-shrink: 0; }
+  .simulator { height: 66vh; }
+  .sim-toolbar { flex-direction: column; align-items: stretch; }
+  .sim-toolbar .spacer { display: none; }
+  .fact-generator { padding: 2rem 1.2rem; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  #cursor-dot, #cursor-ring { display: none; }
+}

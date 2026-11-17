@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block body_class %}page-sources{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem); padding-bottom:6rem;">
+  <div class="container" style="max-width:840px;">
+    <div class="section-header reveal">
+      <span class="eyebrow">Data &amp; Sources</span>
+      <h1>Where This Data Comes From</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">COSMOS is an independent educational project, not affiliated with NASA, ESA, or any space agency. Every category below lists its reference sources and how confident the underlying values are.</p>
+    </div>
+
+    <div class="grid grid-2" style="gap:1.2rem;">
+      {% for s in sources %}
+      <div class="panel reveal" style="padding:1.6rem 1.8rem;">
+        <div class="row between" style="align-items:flex-start; gap:0.8rem;">
+          <h3 style="font-size:1.05rem;">{{ s.category }}</h3>
+          <span class="confidence-badge confidence-modeled" style="flex-shrink:0;">{{ s.value_type }}</span>
+        </div>
+        <ul style="margin-top:0.8rem; padding-left:1.1rem; list-style:disc;">
+          {% for src in s.sources %}<li class="text-secondary" style="font-size:0.88rem; margin-bottom:0.2rem;">{{ src }}</li>{% endfor %}
+        </ul>
+        <p class="text-muted" style="font-size:0.82rem; margin-top:0.8rem;">{{ s.note }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="panel reveal" style="padding:1.8rem; margin-top:1.5rem;">
+      <h3>A Note on Confidence Labels</h3>
+      <div class="row wrap gap-sm" style="margin-top:0.8rem;">
+        <span class="confidence-badge confidence-observed">OBSERVED</span>
+        <span class="confidence-badge confidence-measured">MEASURED</span>
+        <span class="confidence-badge confidence-estimated">ESTIMATED</span>
+        <span class="confidence-badge confidence-modeled">MODELED</span>
+        <span class="confidence-badge confidence-conceptual">CONCEPTUAL</span>
+      </div>
+      <p class="text-secondary" style="margin-top:1rem; font-size:0.9rem;">These labels appear throughout the site next to values and visualizations that aren't simple direct measurements — planetary interiors, exoplanet properties, galaxy structure, black hole visuals, and the cosmic timeline's earliest epochs, among others.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

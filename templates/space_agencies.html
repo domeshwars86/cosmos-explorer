@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block body_class %}page-space-agencies{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Global Space Exploration</span>
+      <h1>Space Agencies</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:700px;">The world's major space agencies, presented neutrally by their scientific and exploration focus.</p>
+    </div>
+
+    <div class="grid grid-4">
+      {% for a in agencies %}
+      <div class="agency-card reveal">
+        <div class="row gap-sm" style="align-items:center; margin-bottom:0.8rem;">
+          <span class="agency-flag-dot">{{ a.name[:2] }}</span>
+          <div>
+            <h3 style="font-size:1.05rem;">{{ a.name }}</h3>
+            <span class="text-muted" style="font-size:0.76rem;">{{ a.country }}</span>
+          </div>
+        </div>
+        <p class="text-secondary" style="font-size:0.86rem;">{{ a.focus }}</p>
+        <div class="row between" style="margin-top:1rem; align-items:center;">
+          <a href="{{ a.website }}" target="_blank" rel="noopener noreferrer" class="text-muted" style="font-size:0.78rem;">Official site →</a>
+          {% if a.news_site_match %}<a href="{{ url_for('space.index') }}?source={{ a.news_site_match }}" class="btn btn-sm btn-outline">News</a>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

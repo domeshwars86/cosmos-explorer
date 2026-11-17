@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block body_class %}page-quiz{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem); padding-bottom:6rem;">
+  <div class="container" style="max-width:760px;">
+    <div class="section-header center reveal">
+      <span class="eyebrow">COSMOS Challenge</span>
+      <h1>Astronomy Quiz</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">Ten questions per round, pulled from our own planetary, lunar, galactic, and mission data.</p>
+    </div>
+
+    <div class="row center gap-sm reveal" style="margin-bottom:1rem; flex-wrap:wrap;">
+      <span class="text-muted" style="font-size:0.85rem;">Category:</span>
+      <div class="mode-switch" id="quiz-category">
+        <button type="button" data-category="all" class="active">All</button>
+        {% for c in categories %}
+        <button type="button" data-category="{{ c }}">{{ c.replace('-', ' ')|title }}</button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="row center gap-md reveal" style="margin-bottom:1.5rem; font-family:var(--font-mono); font-size:0.85rem;">
+      <span>Score: <b id="quiz-score" class="text-accent">0</b></span>
+      <span>Streak: <b id="quiz-streak" class="text-accent">0</b></span>
+      <span>Question <b id="quiz-index">1</b> / <b id="quiz-total">10</b></span>
+    </div>
+
+    <div class="panel reveal" style="padding:2rem;" id="quiz-panel">
+      <h3 id="quiz-question" style="margin-bottom:1.5rem;">—</h3>
+      <div id="quiz-options" class="grid grid-2" style="gap:0.8rem;"></div>
+      <div id="quiz-explain" class="fact-module hidden" style="margin-top:1.5rem;"></div>
+      <div class="section-cta"><button type="button" class="btn btn-primary hidden" id="quiz-next">Next Question</button></div>
+    </div>
+
+    <div class="panel reveal hidden" id="quiz-final" style="padding:2.5rem; text-align:center; margin-top:1.5rem;">
+      <span class="eyebrow">Round Complete</span>
+      <h2 id="quiz-final-score" style="margin-top:0.5rem;"></h2>
+      <button type="button" class="btn btn-primary" id="quiz-restart" style="margin-top:1.2rem;">Play Again</button>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/quiz.js') }}"></script>
+{% endblock %}

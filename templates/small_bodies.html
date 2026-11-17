@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block body_class %}page-small-bodies{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Beyond the Planets</span>
+      <h1>Small Bodies of the Solar System</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:760px;">Asteroids, comets, and vast reservoirs of icy debris fill the spaces between and beyond the planets — mostly far emptier than diagrams like the one below can show.</p>
+    </div>
+
+    <div class="panel reveal" style="padding:2.5rem; margin-bottom:1rem;">
+      <svg viewBox="0 0 600 200" width="100%" height="200" role="img" aria-label="Conceptual diagram of the Solar System's regions, not to scale">
+        <circle cx="30" cy="100" r="10" fill="#ffb13b" />
+        <text x="30" y="130" fill="#a6adc9" font-size="9" text-anchor="middle" font-family="monospace">SUN</text>
+
+        <circle cx="90" cy="100" r="3" fill="#9c9c9c" /><circle cx="110" cy="100" r="4" fill="#3d8bff" /><circle cx="135" cy="100" r="3.5" fill="#c1440e" />
+        <text x="110" y="130" fill="#a6adc9" font-size="9" text-anchor="middle" font-family="monospace">INNER PLANETS</text>
+
+        <g opacity="0.7">
+          {% for i in range(24) %}
+          <circle cx="{{ 175 + (i * 5.5) % 60 }}" cy="{{ 100 + ((i * 37) % 40) - 20 }}" r="1.1" fill="#8a8a8a" />
+          {% endfor %}
+        </g>
+        <text x="205" y="130" fill="#a6adc9" font-size="9" text-anchor="middle" font-family="monospace">ASTEROID BELT</text>
+
+        <circle cx="270" cy="100" r="6" fill="#d8b98c" /><circle cx="330" cy="100" r="5.5" fill="#e3c989" /><circle cx="380" cy="100" r="4.5" fill="#9fe3e8" /><circle cx="425" cy="100" r="4.5" fill="#4166f5" />
+        <text x="345" y="130" fill="#a6adc9" font-size="9" text-anchor="middle" font-family="monospace">OUTER PLANETS</text>
+
+        <g opacity="0.6">
+          {% for i in range(20) %}
+          <circle cx="{{ 460 + (i * 4) % 60 }}" cy="{{ 100 + ((i * 29) % 50) - 25 }}" r="1" fill="#d9c2a6" />
+          {% endfor %}
+        </g>
+        <text x="490" y="130" fill="#a6adc9" font-size="9" text-anchor="middle" font-family="monospace">KUIPER BELT</text>
+
+        <ellipse cx="300" cy="100" rx="290" ry="90" fill="none" stroke="#4a5170" stroke-width="1" stroke-dasharray="3,4" opacity="0.5" />
+        <text x="300" y="15" fill="#6d7591" font-size="9" text-anchor="middle" font-family="monospace">OORT CLOUD (conceptual — extends far beyond this diagram's scale)</text>
+      </svg>
+      <p class="text-muted" style="font-size:0.76rem; margin-top:0.6rem; text-align:center;">Conceptual layout, not to scale. Real space between objects is vastly emptier than shown here.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container grid grid-2" style="gap:1.5rem;">
+    <div class="panel reveal" style="padding:1.8rem;">
+      <span class="eyebrow">Rocky Fragments</span>
+      <h2 style="margin-top:0.4rem;">Asteroids</h2>
+      <p class="text-secondary" style="margin-top:0.8rem;">Rocky, metallic leftovers from the Solar System's formation, ranging from dust-sized fragments to bodies hundreds of kilometers across.</p>
+      <div class="stat-grid" style="margin-top:1.2rem;">
+        <div class="stat-card in-view"><div class="stat-label">Asteroid Belt</div><p style="margin-top:0.4rem; font-size:0.85rem;">Most asteroids orbit between Mars and Jupiter — though even there, the average distance between objects is roughly a million kilometers.</p></div>
+        <div class="stat-card in-view"><div class="stat-label">Near-Earth Objects</div><p style="margin-top:0.4rem; font-size:0.85rem;">Asteroids whose orbits bring them close to Earth's — tracked closely by planetary defense programs.</p></div>
+        <div class="stat-card in-view"><div class="stat-label">Trojan Asteroids</div><p style="margin-top:0.4rem; font-size:0.85rem;">Asteroids sharing a planet's orbit, clustered at gravitationally stable points 60° ahead or behind it — Jupiter has thousands.</p></div>
+        <div class="stat-card in-view"><div class="stat-label">Potentially Hazardous</div><p style="margin-top:0.4rem; font-size:0.85rem;">Near-Earth asteroids large enough and close enough in orbit to warrant tracking — a classification, not a prediction of impact.</p></div>
+      </div>
+    </div>
+
+    <div class="panel reveal" style="padding:1.8rem;">
+      <span class="eyebrow">Icy Wanderers</span>
+      <h2 style="margin-top:0.4rem;">Comets</h2>
+      <p class="text-secondary" style="margin-top:0.8rem;">Icy bodies that develop a glowing coma and tail as they near the Sun and warm up.</p>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr); gap:0.5rem; text-align:center; margin:1.2rem 0;">
+        <div class="badge">Approaching</div><div class="badge">Heating</div><div class="badge">Coma Forms</div><div class="badge">Tail Develops</div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card in-view"><div class="stat-label">Nucleus</div><p style="margin-top:0.4rem; font-size:0.85rem;">A "dirty snowball" of ice, dust, and rock, often just a few kilometers across.</p></div>
+        <div class="stat-card in-view"><div class="stat-label">Coma</div><p style="margin-top:0.4rem; font-size:0.85rem;">A glowing cloud of gas and dust released as solar heat vaporizes surface ice.</p></div>
+        <div class="stat-card in-view"><div class="stat-label">Ion Tail</div><p style="margin-top:0.4rem; font-size:0.85rem;">Charged particles pushed straight back by the solar wind — always points away from the Sun.</p></div>
+        <div class="stat-card in-view"><div class="stat-label">Dust Tail</div><p style="margin-top:0.4rem; font-size:0.85rem;">Curved, sunlight-reflecting dust left along the comet's orbital path.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0; padding-bottom:6rem;">
+  <div class="container grid grid-2" style="gap:1.5rem;">
+    <div class="panel reveal" style="padding:1.8rem;">
+      <div class="row gap-sm" style="align-items:center;"><h2 style="font-size:1.3rem;">Kuiper Belt</h2><span class="confidence-badge confidence-observed">OBSERVED</span></div>
+      <p class="text-secondary" style="margin-top:0.8rem;">A disc-shaped region beyond Neptune, home to Pluto and countless icy bodies left over from the Solar System's formation. Many short-period comets originate here.</p>
+      <a href="{{ url_for('main.dwarf_planet', dwarf_id='pluto') }}" class="btn btn-outline btn-sm" style="margin-top:1rem;">Explore Pluto</a>
+    </div>
+    <div class="panel reveal" style="padding:1.8rem;">
+      <div class="row gap-sm" style="align-items:center;"><h2 style="font-size:1.3rem;">Oort Cloud</h2><span class="confidence-badge confidence-conceptual">CONCEPTUAL MODEL</span></div>
+      <p class="text-secondary" style="margin-top:0.8rem;">A theorized spherical shell of icy bodies extending roughly a light-year from the Sun — the source of most long-period comets. It has never been directly observed as a complete structure; its existence is inferred from the orbits of the comets it's believed to send inward.</p>
+      <a href="{{ url_for('main.galaxy') }}#scale" class="btn btn-outline btn-sm" style="margin-top:1rem;">See It on the Cosmic Scale</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

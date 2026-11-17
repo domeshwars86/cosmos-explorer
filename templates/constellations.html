@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body_class %}page-constellations{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">The Night Sky</span>
+      <h1>Constellations</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">Ten major constellations, their shapes, notable stars, and the mythology behind their names. Star positions here are simplified, illustrative line-figures — not precise sky charts.</p>
+    </div>
+    <div class="grid grid-4">
+      {% for c in constellations %}
+      <a href="{{ url_for('discover.constellation_detail', constellation_id=c.id) }}" class="card reveal">
+        <svg viewBox="0 0 100 100" width="100%" height="90" style="margin-bottom:0.8rem;">
+          {% for l in c.lines %}
+          <line x1="{{ c.points[l[0]][0] }}" y1="{{ c.points[l[0]][1] }}" x2="{{ c.points[l[1]][0] }}" y2="{{ c.points[l[1]][1] }}" stroke="var(--accent-soft)" stroke-width="1" opacity="0.55" />
+          {% endfor %}
+          {% for p in c.points %}
+          <circle cx="{{ p[0] }}" cy="{{ p[1] }}" r="2.2" fill="#fff" />
+          {% endfor %}
+        </svg>
+        <span class="eyebrow" style="margin-bottom:0.3rem;">{{ c.meaning }}</span>
+        <h3 style="font-size:1.1rem;">{{ c.name }}</h3>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

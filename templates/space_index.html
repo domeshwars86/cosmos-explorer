@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block body_class %}page-space{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">COSMOS Space Intelligence</span>
+      <h1>What's Happening Beyond Earth</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:700px;">Live spaceflight news, mission updates, and exploration stories from around the world — connected to everything else in COSMOS. Aggregated via the Spaceflight News API; COSMOS is not the original publisher of any story here.</p>
+    </div>
+
+    <div id="whats-changed" class="whats-changed-banner hidden reveal"></div>
+
+    <div class="stat-grid reveal" id="space-stats">
+      <div class="stat-card in-view"><div class="stat-label">News Tracked</div><div class="stat-value" id="stat-news">—</div></div>
+      <div class="stat-card in-view"><div class="stat-label">Mission Updates</div><div class="stat-value" id="stat-missions">—</div></div>
+      <div class="stat-card in-view"><div class="stat-label">India Updates</div><div class="stat-value" id="stat-isro">—</div></div>
+      <div class="stat-card in-view"><div class="stat-label">Upcoming Launches</div><div class="stat-value" id="stat-launches">—</div></div>
+      <div class="stat-card in-view"><div class="stat-label">Agencies Tracked</div><div class="stat-value" id="stat-agencies">—</div></div>
+    </div>
+
+    <div class="row between wrap gap-sm reveal" style="margin-top:1rem; align-items:center;">
+      <span class="text-muted font-mono" id="last-updated" style="font-size:0.76rem;"></span>
+      <button type="button" class="btn btn-outline btn-sm" id="refresh-news">Refresh News</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="grid grid-3" style="gap:1rem; margin-bottom:2rem;">
+      <a href="{{ url_for('space.isro') }}" class="card india-strip reveal">
+        <span class="eyebrow">🇮🇳 Featured</span><h3 style="font-size:1.15rem;">India in Space</h3>
+        <p class="text-secondary" style="margin-top:0.5rem; font-size:0.88rem;">PSLV, Chandrayaan, Gaganyaan, Aditya-L1, and India's full space journey.</p>
+      </a>
+      <a href="{{ url_for('space.launches') }}" class="card reveal">
+        <span class="eyebrow">Global Launch Calendar</span><h3 style="font-size:1.15rem;">Upcoming Launches</h3>
+        <p class="text-secondary" style="margin-top:0.5rem; font-size:0.88rem;">Scheduled launches from every major provider, via Launch Library 2.</p>
+      </a>
+      <a href="{{ url_for('space.agencies') }}" class="card reveal">
+        <span class="eyebrow">Global View</span><h3 style="font-size:1.15rem;">Space Agencies</h3>
+        <p class="text-secondary" style="margin-top:0.5rem; font-size:0.88rem;">ISRO, NASA, ESA, JAXA, CNSA, Roscosmos, and more.</p>
+      </a>
+    </div>
+
+    <div class="search-input-row panel reveal" style="margin-bottom:1.2rem;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" id="news-search" placeholder="Search the cosmos… (try Mars, ISRO, JWST)" autocomplete="off" />
+    </div>
+
+    <div class="category-chips reveal" id="category-chips" style="margin-bottom:0.6rem;"></div>
+    <div class="row wrap gap-sm reveal" id="source-chips" style="margin-bottom:2rem;"></div>
+
+    <div class="news-grid" id="news-grid"></div>
+    <div class="section-cta"><button type="button" class="btn btn-outline hidden" id="load-more">Load More</button></div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/space-index.js') }}"></script>
+{% endblock %}

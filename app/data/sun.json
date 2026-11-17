@@ -1,0 +1,41 @@
+{
+  "id": "sun",
+  "name": "The Sun",
+  "category": "Star",
+  "type": "G-type main-sequence star (G2V)",
+  "color": "#FFB13B",
+  "accent": "#FFD27A",
+  "texture": { "base": "#FFB13B", "spot": "#FF7A1A", "glow": "#FFE9B0" },
+  "short_description": "A G-type main-sequence star and the gravitational anchor of the Solar System, providing the light and heat that make life on Earth possible.",
+  "stats": {
+    "diameter_km": 1392700,
+    "age_years": 4600000000,
+    "surface_temp_c": 5500,
+    "core_temp_c": 15000000,
+    "rotation_period_days": "25–35 (varies by latitude)",
+    "gravity_ms2": 274,
+    "composition": "~73% hydrogen, ~25% helium, trace heavier elements"
+  },
+  "layers": [
+    { "name": "Core", "description": "The dense center where nuclear fusion converts hydrogen into helium, releasing the energy that powers the Sun." },
+    { "name": "Radiative Zone", "description": "Energy from the core slowly migrates outward as radiation, a journey that can take hundreds of thousands of years." },
+    { "name": "Convective Zone", "description": "Hot plasma rises and cooler plasma sinks in convection currents, carrying energy toward the surface." },
+    { "name": "Photosphere", "description": "The visible 'surface' of the Sun, where light escapes into space. Home to sunspots." },
+    { "name": "Chromosphere", "description": "A thin layer above the photosphere, visible as a reddish glow during solar eclipses." },
+    { "name": "Corona", "description": "The Sun's outer atmosphere, visible during total eclipses and far hotter than the surface below it — a phenomenon still studied by scientists." }
+  ],
+  "phenomena": [
+    { "name": "Sunspots", "description": "Cooler, darker regions on the photosphere caused by concentrated magnetic field activity." },
+    { "name": "Solar Flares", "description": "Sudden, intense bursts of radiation released from the Sun's surface." },
+    { "name": "Prominences", "description": "Large, bright loops of plasma extending outward from the Sun's surface, shaped by magnetic fields." },
+    { "name": "Solar Wind", "description": "A continuous stream of charged particles flowing outward from the Sun through the Solar System." },
+    { "name": "Nuclear Fusion", "description": "In the core, hydrogen nuclei fuse into helium under immense pressure and temperature, releasing the energy that lets the Sun shine." }
+  ],
+  "facts": [
+    "The Sun accounts for about 99.8% of the total mass of the Solar System.",
+    "Light from the Sun takes approximately 8 minutes and 20 seconds to reach Earth.",
+    "The Sun is roughly 4.6 billion years old and is expected to shine for billions more years.",
+    "The Sun's corona is far hotter than its visible surface, a puzzle known as the 'coronal heating problem'.",
+    "Around one million Earths could fit inside the volume of the Sun."
+  ]
+}

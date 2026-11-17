@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% block body_class %}page-planet{% endblock %}
+{% block body_attrs %}style="--accent:{{ planet.color }}; --accent-soft:{{ planet.accent }}; --accent-dim:{{ planet.color }}29;"{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height:82svh;">
+  <div class="hero-canvas-wrap"><canvas id="body-canvas" data-kind="planet" role="img" aria-label="Rotatable 3D model of {{ planet.name }}"></canvas></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="container">
+      <span class="eyebrow reveal">{{ planet.position_label }} &middot; {{ planet.category }}</span>
+      <h1 class="hero-title font-display reveal reveal-delay-1">{{ planet.name.upper() }}</h1>
+      <p class="text-lead reveal reveal-delay-2" style="max-width:620px;">{{ planet.short_description }}</p>
+      <p class="text-muted reveal reveal-delay-2" style="font-size:0.8rem; margin-top:0.4rem;">Drag to rotate &middot; scroll to zoom</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:3rem;">
+  <div class="container">
+    <div class="panel scan-results hidden" id="scan-results-host" style="padding:1.6rem 1.8rem; margin-bottom:2rem;"></div>
+    <div class="stat-grid reveal">
+      <div class="stat-card"><div class="stat-label">Diameter</div><div class="stat-value">{{ '{:,}'.format(planet.stats.diameter_km) }}<span class="stat-unit">km</span></div></div>
+      <div class="stat-card" title="{{ planet.stats.distance_km | with_commas }} km"><div class="stat-label">Distance from Sun</div><div class="stat-value">{{ planet.stats.distance_km | compact_km }}<span class="stat-unit">km</span></div></div>
+      <div class="stat-card"><div class="stat-label">Orbital Period</div><div class="stat-value">{{ planet.stats.orbital_period_days }}<span class="stat-unit">days</span></div></div>
+      <div class="stat-card"><div class="stat-label">Rotation Period</div><div class="stat-value">{{ planet.stats.rotation_period_hours }}<span class="stat-unit">hrs</span></div></div>
+      <div class="stat-card"><div class="stat-label">Gravity</div><div class="stat-value">{{ planet.stats.gravity_ms2 }}<span class="stat-unit">m/s²</span></div></div>
+      <div class="stat-card"><div class="stat-label">Avg. Temperature</div><div class="stat-value">{{ planet.stats.temp_c_avg }}<span class="stat-unit">°C</span></div></div>
+      <div class="stat-card"><div class="stat-label">Moons</div><div class="stat-value">{{ planet.stats.moons }}</div></div>
+      <div class="stat-card"><div class="stat-label">Rings</div><div class="stat-value">{{ 'Yes' if planet.stats.rings else 'No' }}</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="overview" role="tab" aria-selected="true">Overview</button>
+      <button class="tab-btn" data-tab="atmosphere" role="tab" aria-selected="false">Atmosphere</button>
+      <button class="tab-btn" data-tab="interior" role="tab" aria-selected="false">Interior</button>
+      {% if moons %}<button class="tab-btn" data-tab="moons" role="tab" aria-selected="false">Moons</button>{% endif %}
+      {% if astrobiology %}<button class="tab-btn" data-tab="astrobiology" role="tab" aria-selected="false">Astrobiology</button>{% endif %}
+      <button class="tab-btn" data-tab="exploration" role="tab" aria-selected="false">Exploration</button>
+      <button class="tab-btn" data-tab="facts" role="tab" aria-selected="false">Facts</button>
+    </div>
+
+    <div class="tab-panel active" data-tab-panel="overview">
+      <h3 style="margin-bottom:1rem;">Overview</h3>
+      <ul class="grid grid-2" style="list-style:none; gap:0.9rem;">
+        {% for h in planet.highlights %}
+        <li class="panel" style="padding:1.1rem 1.3rem; font-size:0.94rem; color:var(--text-secondary);">{{ h }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="tab-panel" data-tab-panel="atmosphere">
+      <h3 style="margin-bottom:0.4rem;">Atmosphere</h3>
+      <p class="text-secondary" style="margin-bottom:1.4rem;">{{ planet.stats.atmosphere.summary }} &middot; Surface pressure: {{ planet.stats.atmosphere.pressure }}</p>
+      <div class="panel" style="padding:1.6rem; max-width:560px;">
+        {% for gas in planet.stats.atmosphere.gases %}
+        <div class="gas-bar-row">
+          <div class="gas-bar-label"><span>{{ gas.name }}</span><span class="text-muted">{{ gas.pct }}%</span></div>
+          <div class="gas-bar-track"><div class="gas-bar-fill" style="width:{{ gas.pct }}%;"></div></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-panel" data-tab-panel="interior">
+      <div class="row gap-sm" style="margin-bottom:0.4rem; align-items:center;">
+        <h3>Interior Structure</h3>
+        <span class="confidence-badge confidence-modeled" title="Inferred from gravity, magnetic field, and seismic/orbital data — not directly observed.">MODELED</span>
+      </div>
+      <p class="text-muted" style="font-size:0.82rem; margin-bottom:1rem;">Interior layers are conceptual illustrations based on scientific models, not direct observations.</p>
+      <div class="grid grid-2" style="align-items:center; gap:2.5rem;">
+        <div class="interior-diagram">
+          <svg width="260" height="260" viewBox="0 0 260 260" role="img" aria-label="Cross-section diagram of {{ planet.name }}'s interior layers">
+            {% set n = planet.interior|length %}
+            {% for layer in planet.interior %}
+            {% set idx = loop.index0 %}
+            {% set r = 125 - (idx * (110 / n)) %}
+            <circle cx="130" cy="130" r="{{ r }}" fill="{{ planet.color }}" opacity="{{ '%.2f'|format(0.28 + idx * (0.6 / n)) }}" stroke="rgba(255,255,255,0.15)" />
+            {% endfor %}
+          </svg>
+        </div>
+        <div class="interior-legend">
+          {% for layer in planet.interior %}
+          <div class="interior-legend-item">
+            <span class="swatch" style="background:{{ planet.color }}; opacity:{{ '%.2f'|format(0.35 + loop.index0 * (0.55 / planet.interior|length)) }};"></span>
+            <div><h5>{{ layer.name }}</h5><p>{{ layer.description }}</p></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    {% if moons %}
+    <div class="tab-panel" data-tab-panel="moons">
+      <h3 style="margin-bottom:1rem;">Moons of {{ planet.name }}</h3>
+      <div class="moon-grid">
+        {% for m in moons %}
+        <a href="{{ url_for('main.moon', moon_id=m.id) }}" class="moon-card panel">
+          <div class="moon-orb-wrap"><span class="planet-orb" style="--orb-color:{{ m.color }}; --orb-size:64px;"></span></div>
+          <h4>{{ m.name }}</h4>
+          <div class="moon-meta">{{ m.diameter_km }} km &middot; {{ m.orbital_period_days }}d orbit</div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if astrobiology %}
+    <div class="tab-panel" data-tab-panel="astrobiology" id="astrobiology">
+      <h3 style="margin-bottom:1rem;">Astrobiology &mdash; Could Life Exist Here?</h3>
+      <div class="grid grid-2" style="gap:1rem;">
+        <div class="panel" style="padding:1.2rem 1.4rem;"><h5 style="font-family:var(--font-display); margin-bottom:0.4rem;">Water</h5><p class="text-secondary" style="font-size:0.9rem;">{{ astrobiology.water }}</p></div>
+        <div class="panel" style="padding:1.2rem 1.4rem;"><h5 style="font-family:var(--font-display); margin-bottom:0.4rem;">Organic Molecules</h5><p class="text-secondary" style="font-size:0.9rem;">{{ astrobiology.organic_molecules }}</p></div>
+        <div class="panel" style="padding:1.2rem 1.4rem;"><h5 style="font-family:var(--font-display); margin-bottom:0.4rem;">Energy Sources</h5><p class="text-secondary" style="font-size:0.9rem;">{{ astrobiology.energy_sources }}</p></div>
+        <div class="panel" style="padding:1.2rem 1.4rem;"><h5 style="font-family:var(--font-display); margin-bottom:0.4rem;">Radiation</h5><p class="text-secondary" style="font-size:0.9rem;">{{ astrobiology.radiation }}</p></div>
+      </div>
+      <div class="grid grid-3" style="margin-top:1.5rem; gap:1rem;">
+        <div class="stat-card in-view" style="border-color:rgba(99,230,164,0.3);"><div class="stat-label" style="color:var(--success);">What We Know</div><p style="margin-top:0.5rem; font-size:0.88rem;">{{ astrobiology.know }}</p></div>
+        <div class="stat-card in-view" style="border-color:rgba(255,177,59,0.3);"><div class="stat-label" style="color:var(--gold);">What We Suspect</div><p style="margin-top:0.5rem; font-size:0.88rem;">{{ astrobiology.suspect }}</p></div>
+        <div class="stat-card in-view" style="border-color:var(--glass-border-strong);"><div class="stat-label">What Remains Unknown</div><p style="margin-top:0.5rem; font-size:0.88rem;">{{ astrobiology.unknown }}</p></div>
+      </div>
+      <div class="section-cta"><a href="{{ url_for('discover.astrobiology_hub') }}" class="btn btn-outline btn-sm">Explore All Candidates</a></div>
+    </div>
+    {% endif %}
+
+    <div class="tab-panel" data-tab-panel="exploration">
+      <h3 style="margin-bottom:1rem;">Exploration</h3>
+      {% if missions %}
+      <div class="grid grid-2">
+        {% for m in missions %}
+        <div class="panel" style="padding:1.3rem 1.5rem;">
+          <div class="row between"><h4 style="font-family:var(--font-display);">{{ m.name }}</h4><span class="badge">{{ m.year }}</span></div>
+          <p class="text-secondary" style="margin-top:0.5rem; font-size:0.9rem;">{{ m.objective }}</p>
+          <p class="text-muted" style="margin-top:0.5rem; font-size:0.8rem;">{{ m.agency }} &middot; {{ m.status }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-secondary">No dedicated missions have visited {{ planet.name }} yet.</p>
+      {% endif %}
+    </div>
+
+    <div class="tab-panel" data-tab-panel="facts">
+      <h3 style="margin-bottom:1rem;">Interesting Facts</h3>
+      <div class="facts-grid">
+        {% for f in planet.facts %}
+        <div class="fact-module"><span class="fact-kicker">FACT</span><p>{{ f }}</p></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Continue Exploring</span><h2>You May Also Want to Explore</h2></div>
+    <div class="recommend-row reveal" id="recommendations"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Related</span><h2>More Terrestrial &amp; Gas Worlds</h2></div>
+    <div class="planet-nav reveal">
+      <a href="{{ url_for('planet.planet_detail', planet_id=prev_planet.id) }}" class="planet-nav-link panel">
+        <span class="planet-orb" style="--orb-color:{{ prev_planet.color }}; --orb-size:52px;"></span>
+        <span><span class="nav-dir">&larr; Previous</span><span class="nav-planet-name">{{ prev_planet.name }}</span></span>
+      </a>
+      <a href="{{ url_for('planet.planet_detail', planet_id=next_planet.id) }}" class="planet-nav-link next panel">
+        <span class="planet-orb" style="--orb-color:{{ next_planet.color }}; --orb-size:52px;"></span>
+        <span><span class="nav-dir">Next &rarr;</span><span class="nav-planet-name">{{ next_planet.name }}</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>window.__COSMOS_BODY__ = {{ planet | tojson }};</script>
+<script type="module" src="{{ url_for('static', filename='js/pages/body-page.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pages/tabs.js') }}"></script>
+{% endblock %}

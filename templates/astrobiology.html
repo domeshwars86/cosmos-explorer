@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block body_class %}page-astrobiology{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Could Life Exist Elsewhere?</span>
+      <h1>Astrobiology Explorer</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:760px;">Four bodies in our own Solar System are the leading candidates in the search for life beyond Earth — each for very different reasons. No life has been found on any of them. Here's what we actually know, what we suspect, and what remains genuinely unknown.</p>
+    </div>
+
+    <div class="grid grid-2">
+      {% for id, p in profiles.items() %}
+      <a href="{{ p.url }}#astrobiology" class="card reveal">
+        <div class="card-glow" style="background:{{ p.color }};"></div>
+        <span class="planet-orb" style="--orb-color:{{ p.color }}; --orb-size:56px; margin-bottom:1.1rem;"></span>
+        <h3>{{ p.name }}</h3>
+        <p class="text-secondary" style="margin-top:0.7rem; font-size:0.9rem;"><strong>What we know:</strong> {{ p.know }}</p>
+        <p class="text-secondary" style="margin-top:0.5rem; font-size:0.9rem;"><strong>What remains unknown:</strong> {{ p.unknown }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

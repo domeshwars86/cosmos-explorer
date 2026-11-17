@@ -1,0 +1,45 @@
+[
+  {
+    "id": "sun", "name": "The Sun", "distance_ly": 0.0000158, "distance_note": "≈ 8.3 light-minutes",
+    "spectral_type": "G2V", "temp_k": 5778, "luminosity_relative_sun": 1, "radius_relative_sun": 1,
+    "constellation": null, "color": "#FFD27A",
+    "description": "Our own star — the only one we can study up close, and the baseline every other star on this page is measured against.",
+    "url": "/sun"
+  },
+  {
+    "id": "proxima-centauri", "name": "Proxima Centauri", "distance_ly": 4.24,
+    "spectral_type": "M5.5Ve (red dwarf)", "temp_k": 3042, "luminosity_relative_sun": 0.0017, "radius_relative_sun": 0.154,
+    "constellation": "Centaurus", "color": "#FF8A5C",
+    "description": "The closest known star to the Sun, a faint red dwarf too dim to see without a telescope despite its proximity. It hosts at least one known exoplanet, Proxima b."
+  },
+  {
+    "id": "sirius", "name": "Sirius", "distance_ly": 8.6,
+    "spectral_type": "A1V", "temp_k": 9940, "luminosity_relative_sun": 25.4, "radius_relative_sun": 1.71,
+    "constellation": "Canis Major", "color": "#CFE3FF",
+    "description": "The brightest star in Earth's night sky, a hot white star with a faint white dwarf companion, Sirius B."
+  },
+  {
+    "id": "betelgeuse", "name": "Betelgeuse", "distance_ly": 548,
+    "spectral_type": "M1-2Ia-ab (red supergiant)", "temp_k": 3600, "luminosity_relative_sun": 126000, "radius_relative_sun": 764,
+    "constellation": "Orion", "color": "#FF7A54",
+    "description": "A massive, aging red supergiant marking Orion's shoulder. It is expected to end its life in a supernova — though the exact timing is unpredictable and could be anywhere from now to well over 100,000 years from now."
+  },
+  {
+    "id": "rigel", "name": "Rigel", "distance_ly": 863,
+    "spectral_type": "B8Ia (blue supergiant)", "temp_k": 12100, "luminosity_relative_sun": 120000, "radius_relative_sun": 78.9,
+    "constellation": "Orion", "color": "#9FC2FF",
+    "description": "A brilliant blue supergiant marking Orion's foot, tens of thousands of times more luminous than the Sun."
+  },
+  {
+    "id": "polaris", "name": "Polaris", "distance_ly": 433,
+    "spectral_type": "F7Ib (supergiant)", "temp_k": 6015, "luminosity_relative_sun": 1260, "radius_relative_sun": 37.5,
+    "constellation": "Ursa Minor", "color": "#FFF3D6",
+    "description": "The current North Star, nearly aligned with Earth's rotational axis — a coincidence of timing, since axial precession means the pole slowly points toward different stars over roughly 26,000 years."
+  },
+  {
+    "id": "vega", "name": "Vega", "distance_ly": 25,
+    "spectral_type": "A0V", "temp_k": 9600, "luminosity_relative_sun": 40.1, "radius_relative_sun": 2.36,
+    "constellation": "Lyra", "color": "#E8F0FF",
+    "description": "One of the brightest and most-studied stars in the sky, and a former (and future) pole star due to Earth's axial precession."
+  }
+]

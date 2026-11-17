@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Mission Control Error — {{ site_name }}{% endblock %}
+{% block content %}
+<section class="error-page">
+  <div>
+    <div class="error-code font-heading">500</div>
+    <h1 style="margin-top:1rem;">MISSION CONTROL ERROR</h1>
+    <p class="text-lead" style="margin-top:0.8rem; max-width:480px; margin-left:auto; margin-right:auto;">
+      Something went wrong on our end. Our engineers have been notified.
+    </p>
+    <div class="hero-actions" style="justify-content:center; margin-top:2rem;">
+      <a href="{{ url_for('main.index') }}" class="btn btn-primary">Return Home</a>
+      <a href="javascript:location.reload()" class="btn btn-outline">Try Again</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

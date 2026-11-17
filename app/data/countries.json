@@ -1,0 +1,62 @@
+[
+  {
+    "id": "india", "name": "India", "flag": "🇮🇳", "country_code": "IN",
+    "agencies": ["isro"],
+    "summary": "India's space programme began in 1962 under Dr. Vikram Sarabhai and has grown into a full-spectrum capability spanning launch vehicles, Earth observation, navigation, planetary science, and human spaceflight — including a successful lunar south-pole landing and India's first interplanetary mission reaching Mars orbit on its first attempt.",
+    "sources": ["https://www.isro.gov.in"]
+  },
+  {
+    "id": "united-states", "name": "United States", "flag": "🇺🇸", "country_code": "US",
+    "agencies": ["nasa", "spacex"],
+    "summary": "The United States, primarily through NASA alongside a growing commercial sector, has led crewed lunar landings, extensive robotic exploration of every planet in the Solar System, and the operation of the most productive space telescopes in history.",
+    "sources": ["https://www.nasa.gov"]
+  },
+  {
+    "id": "europe", "name": "Europe", "flag": "🇪🇺", "country_code": "EU",
+    "agencies": ["esa", "dlr", "cnes"],
+    "summary": "The European Space Agency, a collaboration of 22+ member states, has flown missions to a comet nucleus, mapped a billion stars, and contributed major hardware and expertise to numerous international missions including the ISS and JWST.",
+    "sources": ["https://www.esa.int"]
+  },
+  {
+    "id": "japan", "name": "Japan", "flag": "🇯🇵", "country_code": "JP",
+    "agencies": ["jaxa"],
+    "summary": "JAXA is a global leader in asteroid sample-return missions and has flown ambitious lunar and planetary science missions with a strong focus on precision engineering.",
+    "sources": ["https://global.jaxa.jp"]
+  },
+  {
+    "id": "china", "name": "China", "flag": "🇨🇳", "country_code": "CN",
+    "agencies": ["cnsa"],
+    "summary": "China's space programme has achieved the first soft landing on the Moon's far side, returned lunar samples, landed a rover on Mars, and built and continuously crewed the Tiangong space station.",
+    "sources": ["http://www.cnsa.gov.cn"]
+  },
+  {
+    "id": "canada", "name": "Canada", "flag": "🇨🇦", "country_code": "CA",
+    "agencies": ["csa"],
+    "summary": "Canada's space contributions center on robotics — the Canadarm and Canadarm2 have been essential to the Space Shuttle programme and the International Space Station — alongside Earth observation and astronomy instruments flown on international missions.",
+    "sources": ["https://www.asc-csa.gc.ca"]
+  },
+  {
+    "id": "uae", "name": "United Arab Emirates", "flag": "🇦🇪", "country_code": "AE",
+    "agencies": ["uae-sa"],
+    "summary": "The UAE Space Agency, founded in 2014, achieved orbit around Mars with its first interplanetary mission and has since pursued lunar exploration and a national astronaut programme.",
+    "sources": ["https://www.space.gov.ae"]
+  },
+  {
+    "id": "soviet-union", "name": "Soviet Union (historical)", "flag": "☭", "country_code": "SU",
+    "agencies": ["roscosmos-ussr"],
+    "summary": "The Soviet space programme achieved the first artificial satellite, the first human in orbit, the first uncrewed lunar and Venus landings, and the first space station — a distinct historical programme from the modern Russian Federation's Roscosmos, which was established in 1992 after the Soviet Union's dissolution.",
+    "sources": []
+  },
+  {
+    "id": "russia", "name": "Russia (Russian Federation)", "flag": "🇷🇺", "country_code": "RU",
+    "agencies": ["roscosmos"],
+    "summary": "Since 1992, Roscosmos has continued crewed spaceflight via the Soyuz programme, operated the Mir and (with international partners) ISS Russian segments, and continued launch vehicle development.",
+    "sources": ["https://www.roscosmos.ru"]
+  },
+  {
+    "id": "international", "name": "International", "flag": "🌐", "country_code": null,
+    "agencies": ["nasa", "esa", "jaxa", "csa", "roscosmos"],
+    "summary": "Many of the most ambitious missions in spaceflight history — the ISS, Cassini-Huygens, BepiColombo, and the James Webb Space Telescope among them — are multi-agency collaborations that no single country could have achieved alone.",
+    "sources": []
+  }
+]

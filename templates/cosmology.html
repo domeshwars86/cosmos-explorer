@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block body_class %}page-cosmology{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">The Biggest Questions</span>
+      <h1>Cosmology Concepts</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:720px;">Four ideas at the frontier of astrophysics — each genuinely still being studied. This page is explicit about what's observed versus what remains unknown.</p>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="dark-matter" role="tab" aria-selected="true">Dark Matter</button>
+      <button class="tab-btn" data-tab="dark-energy" role="tab" aria-selected="false">Dark Energy</button>
+      <button class="tab-btn" data-tab="expansion" role="tab" aria-selected="false">Expanding Universe</button>
+      <button class="tab-btn" data-tab="lensing" role="tab" aria-selected="false">Gravitational Lensing</button>
+    </div>
+
+    <div class="tab-panel active panel" data-tab-panel="dark-matter" style="padding:2rem;">
+      <div class="row gap-sm" style="align-items:center; margin-bottom:1rem;"><h3>Dark Matter</h3><span class="confidence-badge confidence-modeled">INFERRED</span></div>
+      <p class="text-secondary">Galaxies rotate faster at their edges than visible matter alone can explain — as if surrounded by a much larger halo of unseen mass. Dark matter does not emit, absorb, or reflect light; it is never shown here as glowing material, only as an inferred gravitational structure.</p>
+      <svg viewBox="0 0 400 180" width="100%" height="180" style="margin-top:1.5rem;" role="img" aria-label="Galaxy rotation curve chart">
+        <line x1="40" y1="150" x2="380" y2="150" stroke="#4a5170" />
+        <line x1="40" y1="20" x2="40" y2="150" stroke="#4a5170" />
+        <path d="M40,150 C120,40 200,30 380,25" fill="none" stroke="#7c8cff" stroke-width="2" />
+        <path d="M40,150 C100,60 160,120 380,140" fill="none" stroke="#6d7591" stroke-width="2" stroke-dasharray="4,4" />
+        <text x="60" y="35" fill="#7c8cff" font-size="10" font-family="monospace">Observed (flat)</text>
+        <text x="200" y="135" fill="#6d7591" font-size="10" font-family="monospace">Expected from visible matter alone</text>
+        <text x="200" y="170" fill="#a6adc9" font-size="9" text-anchor="middle" font-family="monospace">DISTANCE FROM GALACTIC CENTER →</text>
+      </svg>
+      <p class="text-muted" style="font-size:0.78rem; margin-top:0.8rem;">Illustrative chart shape, not plotted data from a specific galaxy.</p>
+    </div>
+
+    <div class="tab-panel panel" data-tab-panel="dark-energy" style="padding:2rem;">
+      <div class="row gap-sm" style="align-items:center; margin-bottom:1rem;"><h3>Dark Energy</h3><span class="confidence-badge confidence-observed">OBSERVED EFFECT</span></div>
+      <p class="text-secondary">Distant supernova observations in the late 1990s revealed the universe's expansion is accelerating, not slowing as gravity alone would predict. Whatever is driving that acceleration is called "dark energy" — its effect is observed; its underlying physical nature is not yet understood.</p>
+      <div class="row gap-md" style="margin-top:1.5rem; justify-content:center;">
+        {% for spacing in [18, 30, 52] %}
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <rect width="110" height="110" fill="none" />
+          {% for gx in range(3) %}{% for gy in range(3) %}
+          <circle cx="{{ 15 + gx * spacing }}" cy="{{ 15 + gy * spacing }}" r="3" fill="#7c8cff" />
+          {% endfor %}{% endfor %}
+        </svg>
+        {% endfor %}
+      </div>
+      <p class="text-muted" style="font-size:0.78rem; text-align:center; margin-top:0.4rem;">Conceptual: galaxies spreading apart at an accelerating rate over time (left to right).</p>
+    </div>
+
+    <div class="tab-panel panel" data-tab-panel="expansion" style="padding:2rem;">
+      <h3 style="margin-bottom:1rem;">The Expanding Universe</h3>
+      <p class="text-secondary">Distant galaxies are moving apart because the space between them is expanding — not because they're flying through pre-existing empty space, like the classic analogy of dots on an inflating balloon's surface. The farther apart two points are, the faster they recede from each other, a relationship known as the Hubble-Lemaître law. This stretches light to longer (redder) wavelengths — redshift — which is how the expansion itself is measured.</p>
+      <p class="text-secondary" style="margin-top:0.8rem;">The "observable universe" is the portion whose light has had time to reach us since the Big Bang — the full universe may be far larger, or even infinite; this is genuinely unknown.</p>
+    </div>
+
+    <div class="tab-panel panel" data-tab-panel="lensing" style="padding:2rem;">
+      <h3 style="margin-bottom:1rem;">Gravitational Lensing</h3>
+      <p class="text-secondary">Massive objects bend the fabric of spacetime, curving the path of light that passes near them — predicted by general relativity and confirmed by observation. A massive foreground galaxy can distort, magnify, or even multiply the image of a background galaxy into arcs or a complete "Einstein ring" when the alignment is precise.</p>
+      <svg viewBox="0 0 400 200" width="100%" height="200" style="margin-top:1.5rem;" role="img" aria-label="Diagram of gravitational lensing bending light around a massive object">
+        <circle cx="200" cy="100" r="14" fill="#3a3a52" stroke="#7c8cff" stroke-width="1.5" />
+        <text x="200" y="130" fill="#a6adc9" font-size="9" text-anchor="middle" font-family="monospace">FOREGROUND MASS</text>
+        <path d="M20,40 C120,80 280,80 380,40" fill="none" stroke="#ffe9b0" stroke-width="1.5" stroke-dasharray="3,3" />
+        <path d="M20,160 C120,120 280,120 380,160" fill="none" stroke="#ffe9b0" stroke-width="1.5" stroke-dasharray="3,3" />
+        <circle cx="20" cy="40" r="3" fill="#ffe9b0" /><circle cx="20" cy="160" r="3" fill="#ffe9b0" />
+        <text x="20" y="30" fill="#ffe9b0" font-size="9" font-family="monospace">BACKGROUND LIGHT</text>
+      </svg>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/pages/tabs.js') }}"></script>
+{% endblock %}

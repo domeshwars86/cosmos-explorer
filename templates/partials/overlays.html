@@ -1,0 +1,100 @@
+<div class="overlay-backdrop" id="overlay-backdrop"></div>
+
+<div id="search-overlay" role="dialog" aria-modal="true" aria-label="Search the cosmos">
+  <div class="search-box">
+    <div class="search-input-row">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" id="search-input" placeholder="Search the cosmos…" aria-label="Search planets, moons, missions, and terms" autocomplete="off" />
+    </div>
+    <div class="search-results" id="search-results"></div>
+    <p class="search-hint">Press <kbd>Esc</kbd> to close &middot; <kbd>Ctrl</kbd>+<kbd>K</kbd> to search anytime &middot; <button type="button" id="open-ask-cosmos" style="background:none;border:none;color:var(--accent-soft);text-decoration:underline;cursor:pointer;font:inherit;">Ask a full question instead →</button></p>
+  </div>
+</div>
+
+<div id="ask-cosmos-overlay" role="dialog" aria-modal="true" aria-label="Ask COSMOS">
+  <div class="ask-box">
+    <div class="ask-header">
+      <span class="eyebrow">COSMOS Knowledge Engine</span>
+      <h3>Ask COSMOS</h3>
+      <p>Answers are computed from this site's own dataset by matching your question against known patterns — not a live AI model.</p>
+    </div>
+    <form class="ask-form" id="ask-form">
+      <input type="text" id="ask-input" placeholder="e.g. Which planet has the most moons?" autocomplete="off" aria-label="Ask a question about the Solar System" />
+      <button type="submit" class="btn btn-primary btn-sm">Ask</button>
+    </form>
+    <div class="ask-suggestions" id="ask-suggestions"></div>
+    <div class="ask-answer" id="ask-answer">
+      <div class="ask-q" id="ask-answer-q"></div>
+      <div class="ask-a" id="ask-answer-a"></div>
+      <a href="#" class="ask-link hidden" id="ask-answer-link">Open profile →</a>
+    </div>
+    <p class="ask-footer-note">Press <kbd>Esc</kbd> to close.</p>
+  </div>
+</div>
+
+<aside id="settings-panel" aria-hidden="true" aria-label="Settings">
+  <div class="row between" style="margin-bottom:1.5rem;">
+    <h3>Settings</h3>
+    <button type="button" class="icon-btn btn-sm" id="settings-close" aria-label="Close settings">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="setting-row">
+    <div>
+      <div class="setting-label">Reduced motion</div>
+      <div class="setting-desc">Minimize camera movement, particles, and transitions.</div>
+    </div>
+    <label class="switch"><input type="checkbox" data-setting="reducedMotion" /><span class="track"></span><span class="thumb"></span></label>
+  </div>
+
+  <div class="setting-row">
+    <div>
+      <div class="setting-label">Performance mode</div>
+      <div class="setting-desc">Lower resolution and simpler 3D rendering for weaker devices.</div>
+    </div>
+    <label class="switch"><input type="checkbox" data-setting="performanceMode" /><span class="track"></span><span class="thumb"></span></label>
+  </div>
+
+  <div class="setting-row">
+    <div>
+      <div class="setting-label">Show orbital paths</div>
+      <div class="setting-desc">Display orbit lines in the Solar System simulator.</div>
+    </div>
+    <label class="switch"><input type="checkbox" data-setting="showOrbits" /><span class="track"></span><span class="thumb"></span></label>
+  </div>
+
+  <div class="setting-row">
+    <div>
+      <div class="setting-label">Show planet labels</div>
+      <div class="setting-desc">Display name tags over planets in 3D scenes.</div>
+    </div>
+    <label class="switch"><input type="checkbox" data-setting="showLabels" /><span class="track"></span><span class="thumb"></span></label>
+  </div>
+
+  <div class="setting-row">
+    <div>
+      <div class="setting-label">Interface sound</div>
+      <div class="setting-desc">Subtle synthesized UI sounds. Off by default.</div>
+    </div>
+    <label class="switch"><input type="checkbox" data-setting="soundOn" /><span class="track"></span><span class="thumb"></span></label>
+  </div>
+
+  <div class="setting-row" style="border-bottom:none; flex-direction:column; align-items:stretch;">
+    <div class="setting-label" style="margin-bottom:0.6rem;">Star density</div>
+    <select data-setting="starDensity" style="width:100%; padding:0.6rem; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-border-strong); color:var(--text-primary);">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+  </div>
+
+  <button type="button" class="btn btn-outline btn-sm" id="settings-reset" style="margin-top:1.5rem; width:100%;">Reset to defaults</button>
+
+  <div class="divider" style="margin:1.6rem 0;"></div>
+  <h3 style="margin-bottom:0.3rem;">Exploration Log</h3>
+  <p class="text-muted" style="font-size:0.76rem;">Tracked locally in your browser only.</p>
+  <div class="exploration-log-grid" id="exploration-log-grid"></div>
+  <div class="achievement-badges" id="achievement-badges"></div>
+  <button type="button" class="btn btn-ghost btn-sm" id="exploration-reset" style="margin-top:1rem; width:100%;">Reset exploration log</button>
+</aside>

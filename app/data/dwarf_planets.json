@@ -1,0 +1,65 @@
+[
+  {
+    "id": "pluto", "name": "Pluto", "color": "#D9C2A6",
+    "diameter_km": 2377, "distance_km": 5906400000, "orbital_period_days": 90560, "rotation_period_hours": 153.3,
+    "gravity_ms2": 0.62, "moons": 5, "temp_c_avg": -225,
+    "short_description": "The most famous dwarf planet, a distant, icy world in the Kuiper Belt with a heart-shaped nitrogen-ice plain and a large moon, Charon.",
+    "facts": [
+      "Reclassified from 'planet' to 'dwarf planet' by the IAU in 2006 after new objects of similar size were found in the Kuiper Belt.",
+      "Located in the Kuiper Belt, a region of icy bodies beyond Neptune.",
+      "Its largest moon, Charon, is more than half Pluto's diameter — the two are sometimes called a 'double dwarf planet' system.",
+      "Tombaugh Regio, a heart-shaped bright plain of nitrogen ice, is one of its most recognizable features.",
+      "One orbit of the Sun takes about 248 Earth years.",
+      "Surface temperatures average around -225°C."
+    ]
+  },
+  {
+    "id": "eris", "name": "Eris", "color": "#E5E0D6",
+    "diameter_km": 2326, "distance_km": 10120000000, "orbital_period_days": 203830, "rotation_period_hours": 25.9,
+    "gravity_ms2": 0.82, "moons": 1, "temp_c_avg": -231,
+    "short_description": "A distant, highly reflective dwarf planet in the scattered disk whose discovery helped trigger Pluto's reclassification.",
+    "facts": [
+      "Eris is comparable in size to Pluto and is one of the most massive known dwarf planets.",
+      "Its discovery in 2005 directly prompted the IAU's 2006 definition of 'dwarf planet'.",
+      "Orbits in the scattered disk, a sparse region beyond the Kuiper Belt.",
+      "Has one known moon, Dysnomia.",
+      "One of the coldest and most distant known objects orbiting the Sun."
+    ]
+  },
+  {
+    "id": "haumea", "name": "Haumea", "color": "#E8E5DE",
+    "diameter_km": 1632, "distance_km": 6450000000, "orbital_period_days": 103500, "rotation_period_hours": 3.9,
+    "gravity_ms2": 0.63, "moons": 2, "temp_c_avg": -241,
+    "short_description": "An unusually elongated dwarf planet in the Kuiper Belt, spinning so fast it has been stretched into an egg-like shape.",
+    "facts": [
+      "One of the fastest rotating large bodies in the Solar System, completing a spin in under 4 hours.",
+      "Its rapid rotation has stretched it into an elongated, ellipsoidal shape.",
+      "Has a faint ring system, discovered in 2017.",
+      "Has two known moons, Hi'iaka and Namaka."
+    ]
+  },
+  {
+    "id": "makemake", "name": "Makemake", "color": "#C9A97C",
+    "diameter_km": 1430, "distance_km": 6850000000, "orbital_period_days": 111950, "rotation_period_hours": 22.5,
+    "gravity_ms2": 0.5, "moons": 1, "temp_c_avg": -239,
+    "short_description": "A reddish, icy dwarf planet in the Kuiper Belt, among the largest known objects in that region.",
+    "facts": [
+      "Named after a creation deity of the Rapa Nui people of Easter Island.",
+      "One of the largest known Kuiper Belt objects after Pluto and Eris.",
+      "Has a reddish-brown surface likely coated in methane and ethane ices.",
+      "Has one known moon, informally nicknamed MK 2."
+    ]
+  },
+  {
+    "id": "ceres", "name": "Ceres", "color": "#A69C8E",
+    "diameter_km": 940, "distance_km": 413800000, "orbital_period_days": 1682, "rotation_period_hours": 9.1,
+    "gravity_ms2": 0.28, "moons": 0, "temp_c_avg": -105,
+    "short_description": "The only dwarf planet located in the asteroid belt, and the largest object in that region.",
+    "facts": [
+      "The largest object in the asteroid belt between Mars and Jupiter.",
+      "First classified as a planet in 1801, then an asteroid, then a dwarf planet in 2006.",
+      "Bright deposits on its surface are largely sodium carbonate, likely left by evaporating salty water.",
+      "Visited and orbited by NASA's Dawn spacecraft."
+    ]
+  }
+]

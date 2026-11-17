@@ -1,0 +1,30 @@
+{
+  "timeline": [
+    { "id": "early", "year": "1962–1969", "title": "Founding of India's Space Programme", "description": "India's space effort began under Dr. Vikram Sarabhai, starting with sounding rocket launches from Thumba and culminating in the establishment of ISRO in 1969." },
+    { "id": "aryabhata", "year": "1975", "title": "Aryabhata — India's First Satellite", "description": "India's first satellite, named after the ancient astronomer, was launched with Soviet assistance, marking the country's entry into space." },
+    { "id": "pslv", "year": "1993–Present", "title": "PSLV — Polar Satellite Launch Vehicle", "description": "ISRO's workhorse launch vehicle, renowned for its reliability, used for Earth observation, navigation, and interplanetary missions including Chandrayaan-1 and Mangalyaan." },
+    { "id": "gslv", "year": "2001–Present", "title": "GSLV — Geosynchronous Satellite Launch Vehicle", "description": "Developed to launch heavier payloads into geostationary transfer orbit, including India's own cryogenic upper stage technology." },
+    { "id": "chandrayaan1", "year": "2008", "title": "Chandrayaan-1", "description": "India's first lunar mission, which helped confirm the presence of water molecules on the Moon's surface." },
+    { "id": "mangalyaan", "year": "2013–2014", "title": "Mangalyaan (Mars Orbiter Mission)", "description": "India's first interplanetary mission, making ISRO one of the first space agencies to reach Mars orbit on its first attempt." },
+    { "id": "lvm3", "year": "2014–Present", "title": "LVM3 (formerly GSLV Mk III)", "description": "ISRO's most powerful launch vehicle, capable of carrying heavier payloads to orbit and crewed spacecraft for the Gaganyaan programme." },
+    { "id": "chandrayaan2", "year": "2019", "title": "Chandrayaan-2", "description": "An orbiter, lander, and rover mission to the Moon; the orbiter continues to return valuable science data." },
+    { "id": "chandrayaan3", "year": "2023", "title": "Chandrayaan-3", "description": "Successfully landed near the Moon's south polar region, making India one of a small number of nations to achieve a soft lunar landing." },
+    { "id": "aditya-l1", "year": "2023–2024", "title": "Aditya-L1", "description": "India's first dedicated solar observation mission, positioned near the Sun-Earth L1 Lagrange point to study the Sun continuously." },
+    { "id": "sslv", "year": "2022–Present", "title": "SSLV — Small Satellite Launch Vehicle", "description": "A smaller, faster-turnaround launch vehicle designed for the growing small-satellite market." },
+    { "id": "gaganyaan", "year": "In Development", "title": "Gaganyaan — Human Spaceflight Programme", "description": "India's programme to independently launch astronauts into low Earth orbit, including uncrewed test flights ahead of a crewed mission." },
+    { "id": "future", "year": "Planned", "title": "Future Exploration", "description": "ISRO has publicly discussed further lunar missions, a planned Indian space station, and continued interplanetary ambitions. See the official ISRO website for current programme status." }
+  ],
+  "missions": [
+    { "id": "chandrayaan", "name": "Chandrayaan Programme", "category": "Lunar Exploration", "agency": "ISRO", "summary": "India's series of Moon missions, including the historic Chandrayaan-3 south-pole landing.", "official_url": "https://www.isro.gov.in/Chandrayaan3.html" },
+    { "id": "gaganyaan", "name": "Gaganyaan", "category": "Human Spaceflight", "agency": "ISRO", "summary": "India's programme to independently send astronauts to low Earth orbit.", "official_url": "https://www.isro.gov.in/Gaganyaan.html" },
+    { "id": "aditya-l1", "name": "Aditya-L1", "category": "Solar Science", "agency": "ISRO", "summary": "India's first dedicated mission to study the Sun from the L1 Lagrange point.", "official_url": "https://www.isro.gov.in/AdityaL1.html" },
+    { "id": "mangalyaan", "name": "Mangalyaan (Mars Orbiter Mission)", "category": "Planetary Exploration", "agency": "ISRO", "summary": "India's first interplanetary mission, which reached Mars orbit on its first attempt.", "official_url": "https://www.isro.gov.in/MarsOrbiterMission.html" },
+    { "id": "pslv", "name": "PSLV", "category": "Launch Vehicle", "agency": "ISRO", "summary": "ISRO's reliable workhorse rocket for Earth observation, navigation, and interplanetary launches.", "official_url": "https://www.isro.gov.in/PSLV.html" },
+    { "id": "gslv", "name": "GSLV", "category": "Launch Vehicle", "agency": "ISRO", "summary": "Used for heavier payloads to geostationary transfer orbit.", "official_url": "https://www.isro.gov.in/GSLV.html" },
+    { "id": "lvm3", "name": "LVM3", "category": "Launch Vehicle", "agency": "ISRO", "summary": "ISRO's most powerful launch vehicle, used for the Gaganyaan programme and heavy payloads.", "official_url": "https://www.isro.gov.in/LVM3.html" },
+    { "id": "sslv", "name": "SSLV", "category": "Launch Vehicle", "agency": "ISRO", "summary": "A small, quick-turnaround launch vehicle for the small-satellite market.", "official_url": "https://www.isro.gov.in/SSLV.html" },
+    { "id": "navic", "name": "NavIC", "category": "Navigation", "agency": "ISRO", "summary": "India's own regional satellite navigation system.", "official_url": "https://www.isro.gov.in/NavigationConstellation.html" },
+    { "id": "eos", "name": "Earth Observation Satellites", "category": "Earth Observation", "agency": "ISRO", "summary": "A long-running series of satellites for weather, agriculture, disaster management, and resource monitoring.", "official_url": "https://www.isro.gov.in/EarthObservationSatellites.html" }
+  ],
+  "note": "Mission summaries reflect established, publicly reported programme information as a general reference. For current mission status, schedules, and official announcements, see the linked ISRO source page — COSMOS does not track live ISRO mission status."
+}

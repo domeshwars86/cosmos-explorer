@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body_class %}page-star-detail{% endblock %}
+{% block body_attrs %}style="--accent:{{ star.color }}; --accent-soft:{{ star.color }};"{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container grid grid-2" style="gap:3rem; align-items:center;">
+    <div class="reveal">
+      <span class="eyebrow">Star &middot; {{ star.spectral_type }}</span>
+      <h1>{{ star.name }}</h1>
+      <p class="text-lead" style="margin-top:1rem;">{{ star.description }}</p>
+    </div>
+    <div class="panel reveal" style="padding:3rem; display:flex; align-items:center; justify-content:center;">
+      <span class="planet-orb animate-glow" style="--orb-color:{{ star.color }}; --orb-size:140px;"></span>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0; padding-bottom:6rem;">
+  <div class="container">
+    <div class="stat-grid reveal">
+      <div class="stat-card"><div class="stat-label">Distance from Earth</div><div class="stat-value" style="font-size:1.2rem;">{{ star.distance_note if star.distance_note else (star.distance_ly ~ ' ly') }}</div></div>
+      <div class="stat-card"><div class="stat-label">Spectral Type</div><div class="stat-value" style="font-size:1.2rem;">{{ star.spectral_type }}</div></div>
+      <div class="stat-card"><div class="stat-label">Temperature</div><div class="stat-value">{{ '{:,}'.format(star.temp_k) }}<span class="stat-unit">K</span></div></div>
+      <div class="stat-card"><div class="stat-label">Luminosity</div><div class="stat-value">{{ star.luminosity_relative_sun }}<span class="stat-unit">&times; Sun</span></div></div>
+      <div class="stat-card"><div class="stat-label">Radius</div><div class="stat-value">{{ star.radius_relative_sun }}<span class="stat-unit">&times; Sun</span></div></div>
+      <div class="stat-card"><div class="stat-label">Constellation</div><div class="stat-value" style="font-size:1.2rem;">{{ star.constellation or '—' }}</div></div>
+    </div>
+    <div class="section-cta"><a href="{{ url_for('discover.stars') }}" class="btn btn-outline">Back to Star Map</a></div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block body_class %}page-country-detail{% endblock %}
+
+{% macro mission_card(m) %}
+<a class="mission-card" href="{{ url_for('main.mission_detail', mission_id=m.id) }}">
+  <div class="mission-card-top">
+    <span class="mission-flag" aria-hidden="true">{{ c.flag }}</span>
+    <span class="text-muted">{{ m.agency }}</span>
+    <span style="margin-left:auto;" class="status-pill status-{{ (m.status_category or m.status)|replace(' ', '-') }}">{{ m.status_category or m.status }}</span>
+  </div>
+  <div class="mission-card-title">{{ m.name }}</div>
+  <div class="mission-card-meta">
+    <span>Type<br><b>{{ m.mission_type or m.type }}</b></span>
+    <span>Destination<br><b>{{ m.destination or m.target }}</b></span>
+    <span>Year<br><b>{{ m.year }}</b></span>
+  </div>
+  <div class="mission-card-footer"><span class="text-accent" style="font-size:0.82rem;">Explore Mission →</span></div>
+</a>
+{% endmacro %}
+
+{% block content %}
+<section class="section india-strip" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <a href="{{ url_for('main.explore') }}" class="text-muted" style="font-size:0.85rem;">&larr; Back to Global Space Exploration</a>
+    <div class="section-header reveal" style="margin-top:1rem;">
+      <span class="eyebrow" style="font-size:2rem; letter-spacing:0;">{{ c.flag }}</span>
+      <h1>{{ c.name }} in Space</h1>
+      <p class="text-lead" style="margin-top:0.8rem; max-width:760px;">{{ c.summary }}</p>
+    </div>
+
+    <div class="mission-stat-strip reveal">
+      <div class="mini-stat"><div class="mini-stat-value">{{ missions|length }}</div><div class="mini-stat-label">Missions Tracked</div></div>
+      <div class="mini-stat"><div class="mini-stat-value">{{ agency_details|length }}</div><div class="mini-stat-label">Space Agencies</div></div>
+      <div class="mini-stat"><div class="mini-stat-value">{{ missions|selectattr('status_category', 'in', ['Active','Extended'])|list|length }}</div><div class="mini-stat-label">Active Missions</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">Space Agencies</span><h2>Who Explores</h2></div>
+    <div class="grid grid-3">
+      {% for a in agency_details %}
+      <div class="agency-card reveal">
+        <h3 style="font-size:1.05rem;">{{ a.name }}</h3>
+        <p class="text-muted" style="font-size:0.78rem; margin-top:0.2rem;">Founded {{ a.founded }}</p>
+        <p class="text-secondary" style="font-size:0.86rem; margin-top:0.6rem;">{{ a.focus }}</p>
+        <a href="{{ a.website }}" target="_blank" rel="noopener noreferrer" class="text-muted" style="font-size:0.78rem; margin-top:0.8rem; display:inline-block;">Official site →</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% set lunar = missions|selectattr('mission_type', 'equalto', 'Lunar')|list %}
+{% set mars = missions|selectattr('mission_type', 'equalto', 'Mars')|list %}
+{% set solar = missions|selectattr('mission_type', 'equalto', 'Solar')|list %}
+{% set astronomy = missions|selectattr('mission_type', 'in', ['Astronomy', 'Space Telescopes'])|list %}
+{% set human = missions|selectattr('mission_type', 'equalto', 'Human Spaceflight')|list %}
+{% set technology = missions|selectattr('mission_type', 'in', ['Technology', 'Space Station'])|list %}
+{% set covered_ids = (lunar + mars + solar + astronomy + human + technology)|map(attribute='id')|list %}
+{% set other = missions|rejectattr('id', 'in', covered_ids)|list %}
+
+{% for section_title, section_missions in [
+  ('Lunar Exploration', lunar), ('Mars Exploration', mars), ('Solar Exploration', solar),
+  ('Astronomy', astronomy), ('Human Spaceflight', human), ('Technology Contributions', technology),
+  ('Other Missions', other)
+] %}
+{% if section_missions %}
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal"><span class="eyebrow">{{ section_missions|length }} mission{{ 's' if section_missions|length != 1 }}</span><h2>{{ section_title }}</h2></div>
+    <div class="mission-grid">
+      {% for m in section_missions %}{{ mission_card(m) }}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endfor %}
+
+<section class="section" style="padding-top:0; padding-bottom:6rem;">
+  <div class="container">
+    <div class="panel reveal" style="padding:1.6rem 1.8rem;">
+      <h3 style="margin-bottom:0.6rem; font-size:1rem;">Sources</h3>
+      {% if c.sources %}
+      <div class="row wrap gap-sm">
+        {% for s in c.sources %}<a href="{{ s }}" target="_blank" rel="noopener noreferrer" class="text-accent" style="font-size:0.85rem;">{{ s }} →</a>{% endfor %}
+      </div>
+      {% else %}
+      <p class="text-muted" style="font-size:0.85rem;">See individual mission sources above for official references.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

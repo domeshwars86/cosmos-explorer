@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block body_class %}page-passport{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem); padding-bottom:6rem;">
+  <div class="container" style="max-width:820px;">
+    <div class="section-header center reveal">
+      <span class="eyebrow">Your Journey</span>
+      <h1>Explorer Passport</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">Everything you've explored across COSMOS, tracked locally in your browser only — nothing is sent anywhere.</p>
+    </div>
+
+    <div class="panel reveal" style="padding:2rem; text-align:center; margin-bottom:1.5rem;">
+      <span class="eyebrow">Current Rank</span>
+      <h2 id="passport-rank" style="margin-top:0.4rem;">—</h2>
+      <div class="row between" style="font-size:0.78rem; margin:1.2rem auto 0.4rem; max-width:320px;"><span class="text-muted">Exploration Depth</span><b id="passport-depth-value" class="text-accent">0%</b></div>
+      <div style="max-width:320px; margin:0 auto; height:8px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden;">
+        <div id="passport-depth-bar" style="height:100%; width:0%; background:linear-gradient(90deg, var(--accent), var(--accent-soft)); transition:width 0.5s ease;"></div>
+      </div>
+    </div>
+
+    <div class="stat-grid reveal" id="passport-stats"></div>
+
+    <div class="panel reveal" style="padding:2rem; margin-top:1.5rem;">
+      <h3 style="margin-bottom:1rem;">Achievements</h3>
+      <div class="achievement-badges" id="passport-achievements" style="margin-top:0;"></div>
+    </div>
+
+    <div class="section-cta">
+      <button type="button" class="btn btn-ghost btn-sm" id="passport-reset">Reset my exploration log</button>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/pages/passport.js') }}"></script>
+{% endblock %}

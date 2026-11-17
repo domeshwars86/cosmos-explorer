@@ -1,0 +1,43 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="{{ url_for('main.index') }}" class="brand font-heading">
+          <span class="brand-mark" aria-hidden="true"></span>
+          {{ site_name }}
+        </a>
+        <p class="text-secondary">"{{ site_tagline }}"</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="{{ url_for('main.solar_system') }}">Solar System</a>
+        <a href="{{ url_for('main.solar_system') }}#planets">Planets</a>
+        <a href="{{ url_for('main.galaxy') }}">Galaxy</a>
+        <a href="{{ url_for('main.explore') }}">Missions</a>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="{{ url_for('main.compare') }}">Compare Planets</a>
+        <a href="{{ url_for('main.facts') }}">Cosmic Facts</a>
+        <a href="{{ url_for('main.dwarf_planets') }}">Dwarf Planets</a>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <a href="{{ url_for('main.about') }}">About COSMOS</a>
+        <a href="https://www.nasa.gov" target="_blank" rel="noopener noreferrer">NASA</a>
+        <a href="https://www.jpl.nasa.gov" target="_blank" rel="noopener noreferrer">NASA JPL</a>
+        <a href="https://www.esa.int" target="_blank" rel="noopener noreferrer">ESA</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">
+        Planetary values are approximate and may vary depending on measurement methods and reference sources.
+        Visualizations are designed for educational purposes and are not drawn to true physical scale unless
+        explicitly labeled "Scientific Mode." COSMOS is an independent educational project and is not affiliated
+        with or endorsed by NASA, ESA, or any space agency.
+      </p>
+      <p class="text-muted" style="font-size:0.78rem;">&copy; {{ current_year if current_year else '2026' }} COSMOS Explorer</p>
+    </div>
+  </div>
+</footer>

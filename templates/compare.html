@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block body_class %}page-compare{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:calc(var(--nav-height) + 3rem);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Side by Side</span>
+      <h1>Compare Planets</h1>
+      <p class="text-lead" style="margin-top:0.8rem;">Choose 2 to 4 planets to compare their size, gravity, orbit, temperature, and more.</p>
+    </div>
+
+    <div class="compare-picker reveal" id="compare-picker">
+      {% for p in planets %}
+      <button type="button" class="compare-chip" data-id="{{ p.id }}" style="--chip-color:{{ p.color }};">
+        <span class="dot"></span>{{ p.name }}
+      </button>
+      {% endfor %}
+    </div>
+    <p class="text-muted reveal" style="font-size:0.8rem; margin-top:0.7rem;" id="compare-hint">Select at least 2 planets (up to 4).</p>
+
+    <div id="compare-output" style="margin-top:2.5rem;"></div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/comparison.js') }}"></script>
+{% endblock %}
