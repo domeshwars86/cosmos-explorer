@@ -123,9 +123,7 @@
   display: none;
 }
 .sim-panel-info.visible { display: block; animation: fadeUp var(--dur-fast) var(--ease-out); }
-.sim-panel-info-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
 .sim-panel-info h4 { font-family: var(--font-display); font-size: 1.05rem; margin: 0 0 0.5rem; }
-.sim-info-close { width: 32px; height: 32px; flex: 0 0 32px; margin: -0.35rem -0.4rem 0 0; }
 .sim-panel-info .mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 0.8rem; font-size: 0.78rem; color: var(--text-secondary); font-family: var(--font-mono); }
 .sim-panel-info .mini-stats b { color: var(--text-primary); font-weight: 500; }
 

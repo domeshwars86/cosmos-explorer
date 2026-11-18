@@ -59,7 +59,6 @@ async function init() {
 
   const settings = window.COSMOS.settings.get();
   const infoPanel = document.getElementById('sim-info');
-  let selectedPlanetId = null;
   const orrery = createOrrery(canvas, {
     sun: data.sun,
     planets: data.planets,
@@ -70,11 +69,6 @@ async function init() {
     showLabels: settings.showLabels,
     compact: settings.performanceMode,
     onSelect: (id, planetData) => {
-      if (selectedPlanetId === id) {
-        dismissInfo();
-        return;
-      }
-      selectedPlanetId = id;
       showInfo(id, planetData);
     },
     onDeselect: dismissInfo,
@@ -83,10 +77,7 @@ async function init() {
   const infoName = document.getElementById('sim-info-name');
   const infoStats = document.getElementById('sim-info-stats');
   const infoLink = document.getElementById('sim-info-link');
-  document.getElementById('sim-info-close')?.addEventListener('click', dismissInfo);
-
   function dismissInfo() {
-    selectedPlanetId = null;
     infoPanel.classList.remove('visible');
   }
 
@@ -142,7 +133,7 @@ async function init() {
   // Reset — simplest reliable reset is reloading the orrery's camera via a full rebuild is heavy;
   // instead we just clear the focused target and let OrbitControls settle back on the origin.
   document.getElementById('sim-reset')?.addEventListener('click', () => {
-    infoPanel.classList.remove('visible');
+    dismissInfo();
     orrery.focusOn(null);
   });
 
