@@ -58,6 +58,8 @@ async function init() {
   }
 
   const settings = window.COSMOS.settings.get();
+  const infoPanel = document.getElementById('sim-info');
+  let selectedPlanetId = null;
   const orrery = createOrrery(canvas, {
     sun: data.sun,
     planets: data.planets,
@@ -67,13 +69,26 @@ async function init() {
     showOrbits: settings.showOrbits,
     showLabels: settings.showLabels,
     compact: settings.performanceMode,
-    onSelect: (id, planetData) => showInfo(id, planetData),
+    onSelect: (id, planetData) => {
+      if (selectedPlanetId === id) {
+        dismissInfo();
+        return;
+      }
+      selectedPlanetId = id;
+      showInfo(id, planetData);
+    },
+    onDeselect: dismissInfo,
   });
 
-  const infoPanel = document.getElementById('sim-info');
   const infoName = document.getElementById('sim-info-name');
   const infoStats = document.getElementById('sim-info-stats');
   const infoLink = document.getElementById('sim-info-link');
+  document.getElementById('sim-info-close')?.addEventListener('click', dismissInfo);
+
+  function dismissInfo() {
+    selectedPlanetId = null;
+    infoPanel.classList.remove('visible');
+  }
 
   function showInfo(id, p) {
     infoName.textContent = p.name;

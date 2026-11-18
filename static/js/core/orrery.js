@@ -50,7 +50,7 @@ function makeLabelSprite(text) {
 
 export function createOrrery(canvas, {
   sun, planets, interactive = true, autoRotate = true, mode = 'visual',
-  showOrbits = true, showLabels = true, onSelect = null, compact = false,
+  showOrbits = true, showLabels = true, onSelect = null, onDeselect = null, compact = false,
 } = {}) {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 8000);
@@ -164,6 +164,7 @@ export function createOrrery(canvas, {
   function onClick(e) {
     const hit = pickAt(e.clientX, e.clientY);
     if (hit && onSelect) onSelect(hit.id, hit.data);
+    else if (!hit && onDeselect) onDeselect();
   }
   canvas.addEventListener('pointermove', onMove);
   canvas.addEventListener('click', onClick);
