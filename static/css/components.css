@@ -417,6 +417,7 @@ table.compare-table { width: 100%; border-collapse: collapse; min-width: 560px; 
 
 /* ---- Scan mode ---------------------------------------------------------------*/
 .scan-btn-row { position: absolute; z-index: 4; left: 50%; bottom: 6.5rem; transform: translateX(-50%); }
+.scan-btn-row .btn { min-height: 44px; touch-action: manipulation; }
 .scan-overlay-fx {
   position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0;
   background: repeating-radial-gradient(circle at center, transparent 0, transparent 40px, rgba(124,140,255,0.06) 41px, transparent 42px);

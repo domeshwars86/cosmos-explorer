@@ -127,10 +127,10 @@ export function mountPlanetHud(kind, data) {
     }
   });
 
-  mountScan(wrap, kind, data);
+  mountScan(wrap, kind, data, hero);
 }
 
-function mountScan(wrap, kind, data) {
+function mountScan(wrap, kind, data, hero) {
   const fx = document.createElement('div');
   fx.className = 'scan-overlay-fx';
   wrap.appendChild(fx);
@@ -138,7 +138,7 @@ function mountScan(wrap, kind, data) {
   const btnRow = document.createElement('div');
   btnRow.className = 'scan-btn-row';
   btnRow.innerHTML = `<button type="button" class="btn btn-outline btn-sm" id="scan-btn">Scan ${data.name}</button>`;
-  wrap.appendChild(btnRow);
+  (hero || wrap).appendChild(btnRow);
 
   const resultsHost = document.getElementById('scan-results-host');
   const knowledge = SCAN_KNOWLEDGE[data.id] || { atmosphere: 'unknown', water: 'unknown', magnetic: 'unknown', life: 'not-detected' };

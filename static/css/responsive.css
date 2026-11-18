@@ -85,6 +85,7 @@
   .planet-hud:not(.collapsed) .panel { background: rgba(6, 8, 17, 0.98); backdrop-filter: blur(18px); }
   .page-planet .hero.planet-hud-expanded { min-height: calc(82svh + 220px) !important; }
   .page-planet .hero.planet-hud-expanded .hero-content { transform: translateY(180px); }
+  .scan-btn-row .btn { min-height: 48px; }
 }
 
 @media (hover: none) and (pointer: coarse) {
