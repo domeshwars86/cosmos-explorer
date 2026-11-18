@@ -67,9 +67,10 @@ export function mountPlanetHud(kind, data) {
 
   const info = normalizeStats(kind, data);
   const collapsedKey = 'cosmos:planet-hud-collapsed';
+  const mobileHudQuery = window.matchMedia('(max-width: 600px)');
   const hudPreference = localStorage.getItem(collapsedKey);
   const collapsed = hudPreference === '1' ||
-    (hudPreference === null && window.matchMedia('(max-width: 600px)').matches);
+    (hudPreference === null && mobileHudQuery.matches);
 
   const alreadySaved = window.COSMOS?.journal?.isSaved(window.location.pathname);
   const hud = document.createElement('div');
@@ -91,7 +92,13 @@ export function mountPlanetHud(kind, data) {
         </div>
       </div>
     </div>`;
-  wrap.appendChild(hud);
+  const hero = wrap.closest('.hero');
+  function placeHud() {
+    const parent = mobileHudQuery.matches && hero ? hero : wrap;
+    if (hud.parentElement !== parent) parent.appendChild(hud);
+  }
+  placeHud();
+  mobileHudQuery.addEventListener('change', placeHud);
 
   const journalBtn = hud.querySelector('#phud-journal');
   if (alreadySaved) journalBtn.disabled = true;
