@@ -35,6 +35,12 @@ def test_page_routes_ok(client, path):
     assert resp.status_code == 200
 
 
+def test_static_assets_include_cache_version(client):
+    resp = client.get("/")
+    assert resp.status_code == 200
+    assert b"/static/js/main.js?v=" in resp.data
+
+
 @pytest.mark.parametrize("planet_id", [
     "mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune",
 ])

@@ -29,8 +29,8 @@ class SpaceNewsUnavailable(Exception):
 
 
 def _normalize(raw: dict) -> dict:
-    title = raw.get("title") or "Untitled"
-    summary = (raw.get("summary") or "").strip()
+    title = str(raw.get("title") or "Untitled")
+    summary = str(raw.get("summary") or "").strip()
     # Keep excerpts short — never reproduce full articles (MASTER PROMPT §46).
     if len(summary) > 320:
         summary = summary[:317].rsplit(" ", 1)[0] + "…"
@@ -42,7 +42,7 @@ def _normalize(raw: dict) -> dict:
         "id": str(raw.get("id")),
         "title": title,
         "summary": summary,
-        "source": raw.get("news_site") or "Unknown Source",
+        "source": str(raw.get("news_site") or "Unknown Source"),
         "source_url": raw.get("url"),
         "published_at": raw.get("published_at"),
         "updated_at": raw.get("updated_at"),
@@ -61,7 +61,10 @@ def _request(path: str, params: dict) -> dict:
     try:
         resp = requests.get(f"{SNAPI_BASE}{path}", params=params, timeout=REQUEST_TIMEOUT_SECONDS)
         resp.raise_for_status()
-        return resp.json()
+        payload = resp.json()
+        if not isinstance(payload, dict):
+            raise ValueError("The space news service returned an invalid response.")
+        return payload
     except (requests.RequestException, ValueError) as exc:
         raise SpaceNewsUnavailable(str(exc)) from exc
 
@@ -84,7 +87,10 @@ def _fetch_pool(search: str = "", source: str = "") -> list:
         if source:
             params["news_site"] = source
         data = _request("/articles/", params)
-        return [_normalize(a) for a in data.get("results", [])]
+        results = data.get("results")
+        if not isinstance(results, list):
+            return []
+        return [_normalize(article) for article in results if isinstance(article, dict)]
 
     try:
         return ttl_cache.get_or_set(key, NEWS_CACHE_SECONDS, _live)

@@ -2,6 +2,8 @@
 Explorer.
 """
 
+from pathlib import Path
+
 from flask import Flask, render_template, request
 
 from config import get_config
@@ -10,6 +12,15 @@ from config import get_config
 def create_app(config_object=None):
     app = Flask(__name__, static_folder="../static", template_folder="../templates")
     app.config.from_object(config_object or get_config())
+
+    @app.url_defaults
+    def add_static_asset_version(endpoint, values):
+        if endpoint == "static" and values.get("filename"):
+            asset_path = Path(app.static_folder) / values["filename"]
+            try:
+                values.setdefault("v", int(asset_path.stat().st_mtime))
+            except OSError:
+                pass
 
     _register_blueprints(app)
     _register_error_handlers(app)
