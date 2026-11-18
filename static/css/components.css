@@ -107,6 +107,8 @@
   padding: 0.85rem 1rem; border-radius: var(--radius-lg);
   background: var(--glass-bg-strong); border: 1px solid var(--glass-border-strong); backdrop-filter: blur(16px);
 }
+.sim-toolbar-content { display: flex; align-items: center; gap: 0.7rem; flex: 1; flex-wrap: wrap; }
+.sim-toolbar-toggle { display: none; }
 .sim-toolbar .spacer { flex: 1; }
 .sim-speed { display: flex; align-items: center; gap: 0.4rem; }
 .sim-speed select {

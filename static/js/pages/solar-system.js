@@ -36,6 +36,15 @@ async function init() {
   const canvas = document.getElementById('sim-canvas');
   if (!canvas) return;
 
+  // On phones, let visitors tuck the simulator controls away after adjusting them.
+  const toolbar = document.querySelector('.sim-toolbar');
+  const toolbarToggle = document.getElementById('sim-toolbar-toggle');
+  toolbarToggle?.addEventListener('click', () => {
+    const collapsed = toolbar.classList.toggle('is-collapsed');
+    toolbarToggle.setAttribute('aria-expanded', String(!collapsed));
+    toolbarToggle.querySelector('.sim-toolbar-toggle-label').textContent = collapsed ? 'Show controls' : 'Hide controls';
+  });
+
   if (!window.COSMOS?.hasWebGL) { showFallback(); return; }
 
   let data;
