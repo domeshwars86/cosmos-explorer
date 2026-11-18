@@ -86,6 +86,15 @@
   .page-planet .hero.planet-hud-expanded { min-height: calc(82svh + 220px) !important; }
   .page-planet .hero.planet-hud-expanded .hero-content { transform: translateY(180px); }
   .scan-btn-row .btn { min-height: 48px; }
+
+  /* Keep the scan control in document flow on narrow planet and moon pages.
+     The fixed bottom offset placed it on top of long descriptions such as
+     the Moon's at phone widths. */
+  .page-planet .hero, .page-moon .hero { flex-direction: column; align-items: stretch; }
+  .page-planet .scan-btn-row, .page-moon .scan-btn-row {
+    position: relative; left: auto; bottom: auto; transform: none;
+    display: flex; justify-content: center; margin: 1rem 0 5rem;
+  }
 }
 
 @media (hover: none) and (pointer: coarse) {
