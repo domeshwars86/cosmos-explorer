@@ -445,6 +445,8 @@ table.compare-table { width: 100%; border-collapse: collapse; min-width: 560px; 
 
 /* ---- Planet HUD overlay (over hero canvas) -----------------------------------*/
 .planet-hud { position: absolute; z-index: 4; top: calc(var(--nav-height) + 1.25rem); left: 1.25rem; width: 220px; max-width: 70vw; }
+.planet-hud.collapsed .hud-body { display: none; }
+.planet-hud.collapsed .hud-chevron { transform: rotate(-90deg); }
 .planet-hud .hud-header { padding: 0.55rem 0.8rem; }
 .planet-hud .hud-body { width: auto; padding: 0 0.9rem 0.8rem; }
 
