@@ -14,7 +14,7 @@
       <div class="panel reveal" style="padding:1.6rem 1.8rem;">
         <div class="row between" style="align-items:flex-start; gap:0.8rem;">
           <h3 style="font-size:1.05rem;">{{ s.category }}</h3>
-          <span class="confidence-badge confidence-modeled" style="flex-shrink:0;">{{ s.value_type }}</span>
+          <span class="confidence-badge confidence-modeled">{{ s.value_type }}</span>
         </div>
         <ul style="margin-top:0.8rem; padding-left:1.1rem; list-style:disc;">
           {% for src in s.sources %}<li class="text-secondary" style="font-size:0.88rem; margin-bottom:0.2rem;">{{ src }}</li>{% endfor %}
