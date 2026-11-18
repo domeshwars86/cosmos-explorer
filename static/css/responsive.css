@@ -78,13 +78,13 @@
      canvas still receives horizontal drags for its interactive controls. */
   #hero-canvas { touch-action: pan-y; }
 
-  /* The open planet stats panel used to sit over the hero copy as glass,
-     letting the title show through the values. Give it a solid, wide,
-     scrollable surface on phones; keep the collapsed chip compact. */
-  .planet-hud { top: calc(var(--nav-height) + 0.6rem); left: 0.75rem; right: 0.75rem; width: auto; max-width: none; }
-  .planet-hud.collapsed { right: auto; width: min(220px, calc(100vw - 1.5rem)); max-width: calc(100vw - 1.5rem); }
+  /* Keep the planet stats card at its original compact width, but make the
+     open surface opaque so the hero text cannot show through its values. */
+  .planet-hud { top: calc(var(--nav-height) + 0.6rem); left: 0.75rem; right: auto; width: min(220px, calc(100vw - 1.5rem)); max-width: calc(100vw - 1.5rem); }
   .planet-hud:not(.collapsed) { max-height: min(70svh, 560px); overflow-y: auto; overscroll-behavior: contain; }
   .planet-hud:not(.collapsed) .panel { background: rgba(6, 8, 17, 0.98); backdrop-filter: blur(18px); }
+  .page-planet .hero.planet-hud-expanded { min-height: calc(82svh + 220px) !important; }
+  .page-planet .hero.planet-hud-expanded .hero-content { transform: translateY(180px); }
 }
 
 @media (hover: none) and (pointer: coarse) {

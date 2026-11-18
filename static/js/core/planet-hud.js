@@ -98,6 +98,7 @@ export function mountPlanetHud(kind, data) {
     if (hud.parentElement !== parent) parent.appendChild(hud);
   }
   placeHud();
+  if (hero) hero.classList.toggle('planet-hud-expanded', !collapsed);
   mobileHudQuery.addEventListener('change', placeHud);
 
   const journalBtn = hud.querySelector('#phud-journal');
@@ -114,6 +115,7 @@ export function mountPlanetHud(kind, data) {
   const toggle = hud.querySelector('#phud-toggle');
   function setCollapsed(v) {
     hud.classList.toggle('collapsed', v);
+    if (hero) hero.classList.toggle('planet-hud-expanded', !v);
     toggle.setAttribute('aria-expanded', String(!v));
     localStorage.setItem(collapsedKey, v ? '1' : '0');
   }
