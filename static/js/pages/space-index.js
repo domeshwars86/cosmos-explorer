@@ -5,6 +5,7 @@
  * news grid, plus the "What Changed?" welcome-back banner.
  */
 import { renderNewsCard, renderSkeletons, renderEmptyState, attachImageFallback } from '../core/news-render.js';
+import { escapeHtml, formatISTTime } from '../core/format.js';
 
 const state = { page: 1, category: '', source: '', search: '' };
 
@@ -31,7 +32,7 @@ async function loadCategories() {
   try {
     const categories = await fetchJSON('/api/news/categories');
     const all = ['All', ...categories];
-    container.innerHTML = all.map((c) => `<button type="button" class="category-chip ${c === 'All' ? 'active' : ''}" data-category="${c === 'All' ? '' : c}">${c}</button>`).join('');
+    container.innerHTML = all.map((c) => `<button type="button" class="category-chip ${c === 'All' ? 'active' : ''}" data-category="${c === 'All' ? '' : escapeHtml(c)}">${escapeHtml(c)}</button>`).join('');
     container.querySelectorAll('.category-chip').forEach((btn) => {
       btn.addEventListener('click', () => {
         container.querySelectorAll('.category-chip').forEach((b) => b.classList.toggle('active', b === btn));
@@ -45,9 +46,15 @@ async function loadCategories() {
 
 async function loadSourceChip() {
   const container = document.getElementById('source-chips');
-  if (!state.source) { container.innerHTML = ''; return; }
-  container.innerHTML = `<button type="button" class="category-chip active" id="clear-source">Source: ${state.source} ✕</button>`;
-  document.getElementById('clear-source').addEventListener('click', () => {
+  container.replaceChildren();
+  if (!state.source) return;
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'category-chip active';
+  button.id = 'clear-source';
+  button.textContent = `Source: ${state.source} ✕`;
+  container.appendChild(button);
+  button.addEventListener('click', () => {
     state.source = '';
     loadSourceChip();
     loadNews(true);
@@ -58,7 +65,7 @@ function renderLastUpdated(iso) {
   const el = document.getElementById('last-updated');
   if (!iso) { el.textContent = ''; return; }
   const d = new Date(iso * 1000);
-  el.textContent = `LAST UPDATED ${d.toISOString().slice(11, 16)} UTC`;
+  el.textContent = `LAST UPDATED ${formatISTTime(d)}`;
 }
 
 async function loadNews(reset) {

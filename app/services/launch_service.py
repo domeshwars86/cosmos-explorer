@@ -22,13 +22,20 @@ class LaunchDataUnavailable(Exception):
 
 
 def _normalize(raw: dict) -> dict:
-    provider = raw.get("launch_service_provider") or {}
-    rocket = (raw.get("rocket") or {}).get("configuration") or {}
-    pad = raw.get("pad") or {}
-    location = pad.get("location") or {}
-    mission = raw.get("mission") or {}
-    status = raw.get("status") or {}
-    net_precision = (raw.get("net_precision") or {}).get("name", "")
+    def as_dict(value):
+        return value if isinstance(value, dict) else {}
+
+    provider = as_dict(raw.get("launch_service_provider"))
+    rocket = as_dict(as_dict(raw.get("rocket")).get("configuration"))
+    pad = as_dict(raw.get("pad"))
+    location = as_dict(pad.get("location"))
+    mission = as_dict(raw.get("mission"))
+    status = as_dict(raw.get("status"))
+    orbit = as_dict(mission.get("orbit"))
+    net_precision = as_dict(raw.get("net_precision")).get("name", "")
+    description = raw.get("description")
+    if not isinstance(description, str):
+        description = ""
 
     return {
         "id": raw.get("id"),
@@ -38,14 +45,14 @@ def _normalize(raw: dict) -> dict:
         "net": raw.get("net"),  # "No Earlier Than" scheduled time, ISO 8601
         "window_start": raw.get("window_start"),
         "window_end": raw.get("window_end"),
-        "time_is_precise": net_precision.lower() in ("minute", "hour"),
+        "time_is_precise": str(net_precision).lower() in ("minute", "hour"),
         "status": status.get("name", "Unknown"),
         "status_abbrev": status.get("abbrev", ""),
         "location": location.get("name", "Unknown Location"),
         "country_code": location.get("country_code", ""),
         "mission_type": mission.get("type") or "Unspecified",
-        "orbit": (mission.get("orbit") or {}).get("name"),
-        "description": (mission.get("description") or "")[:280] or None,
+        "orbit": orbit.get("name"),
+        "description": (description or str(mission.get("description") or ""))[:280] or None,
         "image_url": raw.get("image"),
         "source_url": raw.get("url"),
         "source": "Launch Library 2",
@@ -59,7 +66,9 @@ def get_upcoming_launches(limit: int = 10) -> dict:
         resp = requests.get(f"{LL2_BASE}/launch/upcoming/", params={"limit": 30, "mode": "normal"}, timeout=REQUEST_TIMEOUT_SECONDS)
         resp.raise_for_status()
         data = resp.json()
-        return [_normalize(r) for r in data.get("results", [])]
+        if not isinstance(data, dict) or not isinstance(data.get("results"), list):
+            raise ValueError("The launch service returned an invalid response.")
+        return [_normalize(launch) for launch in data["results"] if isinstance(launch, dict)]
 
     try:
         launches = ttl_cache.get_or_set(POOL_KEY, LAUNCH_CACHE_SECONDS, _live)

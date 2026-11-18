@@ -3,7 +3,7 @@
  * three related ideas from the enhancement brief into one unobtrusive
  * element instead of three separate floating widgets: your location within
  * the cosmic hierarchy (Milky Way → Orion Spur → Solar System → current
- * object), a live UTC clock, and a small system-status readout. The clock
+ * object), a live IST clock, and a small system-status readout. The clock
  * shows real current time; the "system status" lines reflect this page's
  * actual state (WebGL support, API reachability) rather than fabricated
  * telemetry.
@@ -40,10 +40,16 @@
   }
 
   function formatClock(d) {
-    const pad = (n) => String(n).padStart(2, '0');
+    const dateParts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric',
+    }).formatToParts(d);
+    const timeParts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23',
+    }).formatToParts(d);
+    const part = (parts, type) => parts.find((p) => p.type === type)?.value || '';
     return {
-      date: `${d.getUTCDate()} ${d.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' }).toUpperCase()} ${d.getUTCFullYear()}`,
-      time: `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())} UTC`,
+      date: `${part(dateParts, 'day')} ${part(dateParts, 'month').toUpperCase()} ${part(dateParts, 'year')}`,
+      time: `${part(timeParts, 'hour')}:${part(timeParts, 'minute')}:${part(timeParts, 'second')} IST`,
     };
   }
 

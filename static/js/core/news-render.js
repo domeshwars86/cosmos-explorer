@@ -4,6 +4,8 @@
  * grid appears, so the card markup only exists in one place.
  */
 
+import { escapeHtml, safeHttpUrl, formatISTDate } from './format.js';
+
 const CATEGORY_ICONS = {
   ISRO: '🇮🇳', NASA: '🚀', ESA: '🛰️', SpaceX: '🚀', Mars: '🔴', Moon: '🌙',
   Telescopes: '🔭', 'Human Spaceflight': '👨‍🚀', 'Asteroids & Comets': '☄️',
@@ -23,23 +25,19 @@ export function timeAgo(iso) {
   const days = Math.floor(hours / 24);
   if (days === 1) return 'Yesterday';
   if (days < 7) return `${days} days ago`;
-  return new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
-}
-
-function escapeHtml(str) {
-  const div = document.createElement('div');
-  div.textContent = str == null ? '' : String(str);
-  return div.innerHTML;
+  return formatISTDate(iso);
 }
 
 export function renderNewsCard(a) {
   const icon = CATEGORY_ICONS[a.category] || '🛰️';
-  const image = a.image_url
-    ? `<img class="news-image" src="${a.image_url}" alt="" loading="lazy" data-fallback-icon="${icon}" data-fallback-category="${escapeHtml(a.category)}" />`
+  const imageUrl = safeHttpUrl(a.image_url);
+  const articleId = String(a.id ?? '');
+  const image = imageUrl
+    ? `<img class="news-image" src="${escapeHtml(imageUrl)}" alt="" loading="lazy" data-fallback-icon="${icon}" data-fallback-category="${escapeHtml(a.category)}" />`
     : `<div class="news-image fallback">${icon} ${escapeHtml(a.category)}</div>`;
 
   return `
-    <a class="news-card" href="/space/news/${a.id}" data-article-id="${a.id}">
+    <a class="news-card" href="/space/news/${encodeURIComponent(articleId)}" data-article-id="${escapeHtml(articleId)}">
       ${image}
       <div class="news-card-body">
         <div class="news-card-meta"><span class="badge" style="padding:0.15rem 0.5rem;">${escapeHtml(a.category)}</span><span class="text-muted">${timeAgo(a.published_at)}</span></div>

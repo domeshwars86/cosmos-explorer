@@ -10,6 +10,7 @@ import * as THREE from 'three';
 import { OrbitControls } from '../vendor/OrbitControls.js';
 import { createRenderer, createStarField, createLoop, fitRendererToParent, disposeObject3D } from '../core/scene.js';
 import { makeCrateredTexture, makeBandedTexture, makeCloudTexture } from '../core/textures.js';
+import { escapeHtml } from '../core/format.js';
 
 const ARCHIVE_KEY = 'cosmos:my-worlds:v1';
 const EARTH_GRAVITY = 9.81;
@@ -190,17 +191,21 @@ function init() {
     const grid = document.getElementById('pg-archive');
     const empty = document.getElementById('pg-archive-empty');
     empty.style.display = list.length ? 'none' : 'block';
-    grid.innerHTML = list.map((w) => `
+    grid.innerHTML = list.map((w) => {
+      const color = /^#[0-9a-f]{6}$/i.test(w.color) ? w.color : '#6fae5c';
+      const id = escapeHtml(w.id);
+      return `
       <div class="card" style="cursor:default;">
-        <span class="planet-orb" style="--orb-color:${w.color}; --orb-size:44px; margin-bottom:0.8rem;"></span>
-        <h4 style="font-family:var(--font-display); font-size:0.98rem;">${w.name}</h4>
-        <p class="text-muted" style="font-size:0.76rem; margin-top:0.3rem;">${w.analysis.worldType}</p>
+        <span class="planet-orb" style="--orb-color:${color}; --orb-size:44px; margin-bottom:0.8rem;"></span>
+        <h4 style="font-family:var(--font-display); font-size:0.98rem;">${escapeHtml(w.name)}</h4>
+        <p class="text-muted" style="font-size:0.76rem; margin-top:0.3rem;">${escapeHtml(w.analysis.worldType)}</p>
         <div class="row gap-sm" style="margin-top:0.8rem;">
-          <button type="button" class="btn btn-sm btn-outline" data-load="${w.id}">Load</button>
-          <button type="button" class="btn btn-sm btn-ghost" data-delete="${w.id}">Delete</button>
+          <button type="button" class="btn btn-sm btn-outline" data-load="${id}">Load</button>
+          <button type="button" class="btn btn-sm btn-ghost" data-delete="${id}">Delete</button>
         </div>
       </div>
-    `).join('');
+    `;
+    }).join('');
     grid.querySelectorAll('[data-load]').forEach((btn) => btn.addEventListener('click', () => loadWorld(btn.dataset.load)));
     grid.querySelectorAll('[data-delete]').forEach((btn) => btn.addEventListener('click', () => {
       saveArchive(loadArchive().filter((w) => w.id !== btn.dataset.delete));

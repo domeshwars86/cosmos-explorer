@@ -147,6 +147,15 @@ def test_malformed_response_does_not_crash():
     assert result["count"] == 0
 
 
+def test_malformed_article_fields_are_normalized_to_text():
+    payload = {"results": [{"id": 1, "title": 42, "summary": 7, "news_site": 9}]}
+    with patch("app.services.space_news_service.requests.get", return_value=FakeResponse(payload)):
+        result = space_news_service.get_news()
+    assert result["items"][0]["title"] == "42"
+    assert result["items"][0]["summary"] == "7"
+    assert result["items"][0]["source"] == "9"
+
+
 # ---------------------------------------------------------------------------
 # launch_service
 # ---------------------------------------------------------------------------
@@ -181,6 +190,18 @@ def test_launch_service_normalizes():
     assert len(result["items"]) == 2
     assert result["items"][0]["agency"] == "Test Agency"
     assert result["items"][0]["time_is_precise"] is True
+
+
+def test_launch_service_tolerates_malformed_nested_fields():
+    with patch("app.services.launch_service.requests.get", return_value=FakeResponse({
+        "results": [{"launch_service_provider": "bad", "rocket": "bad", "pad": None,
+                     "mission": {"orbit": "bad"}, "status": [], "net_precision": "Minute"}]
+    })):
+        result = launch_service.get_upcoming_launches()
+    launch = result["items"][0]
+    assert launch["agency"] == "Unknown Agency"
+    assert launch["rocket"] == "Unknown Vehicle"
+    assert launch["time_is_precise"] is False
 
 
 def test_launch_service_fallback_on_failure():
@@ -240,6 +261,18 @@ def test_api_news_categories(client):
 def test_api_news_search_requires_query(client):
     resp = client.get("/api/news/search")
     assert resp.status_code == 400
+
+
+def test_api_news_rejects_oversized_search_before_fetching(client):
+    resp = client.get("/api/news?search=" + ("x" * 121))
+    assert resp.status_code == 400
+    assert "too long" in resp.get_json()["error"]
+
+
+def test_api_news_search_rejects_oversized_query_before_fetching(client):
+    resp = client.get("/api/news/search?q=" + ("x" * 121))
+    assert resp.status_code == 400
+    assert "too long" in resp.get_json()["error"]
 
 
 def test_api_launches_success(client):

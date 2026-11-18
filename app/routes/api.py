@@ -261,7 +261,7 @@ def spacecraft_detail(spacecraft_id):
 @api_bp.route("/quiz")
 def quiz():
     category = request.args.get("category", "all", type=str)
-    limit = min(request.args.get("limit", 10, type=int) or 10, 24)
+    limit = max(1, min(request.args.get("limit", 10, type=int) or 10, 24))
     return api_success({
         "questions": data_service.get_quiz_questions(category, limit),
         "categories": data_service.get_quiz_categories(),
@@ -280,6 +280,10 @@ def news_list():
     category = request.args.get("category", "", type=str)
     source = request.args.get("source", "", type=str)
     search = request.args.get("search", "", type=str)
+    if len(search) > 120:
+        return api_error("News search query is too long.", 400)
+    if len(source) > 80 or len(category) > 60:
+        return api_error("News filter value is too long.", 400)
     try:
         return api_success(space_news_service.get_news(page, limit, category, source, search))
     except space_news_service.SpaceNewsUnavailable:
@@ -300,6 +304,8 @@ def news_search():
     q = request.args.get("q", "", type=str)
     if not q.strip():
         return api_error("Provide a search query with ?q=", 400)
+    if len(q) > 120:
+        return api_error("News search query is too long.", 400)
     try:
         return api_success(space_news_service.get_news(1, 20, "", "", q))
     except space_news_service.SpaceNewsUnavailable:

@@ -150,6 +150,13 @@ the Flask reloader and debugger are active.
 pytest tests/ -v
 ```
 
+The browser-side security and time-format helpers have dependency-free
+Node.js tests as well (Node 20+):
+
+```bash
+node --experimental-default-type=module --test tests/js/test_frontend_security.test.mjs
+```
+
 The suite covers page routes, JSON API responses (including malformed/
 missing data and 404 handling), the search alias system, calculators,
 comparison logic, the mission builder, and the Space Intelligence layer

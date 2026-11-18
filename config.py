@@ -6,6 +6,10 @@ full list of supported variables.
 """
 
 import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 
 def _to_bool(value, default=False):
@@ -17,7 +21,7 @@ def _to_bool(value, default=False):
 class Config:
     """Base configuration shared by all environments."""
 
-    SECRET_KEY = os.environ.get("SECRET_KEY", "dev-key-change-me-in-production")
+    SECRET_KEY = os.environ.get("SECRET_KEY")
     JSON_SORT_KEYS = False
     TEMPLATES_AUTO_RELOAD = _to_bool(os.environ.get("TEMPLATES_AUTO_RELOAD"), False)
 
@@ -30,6 +34,7 @@ class Config:
 
 
 class DevelopmentConfig(Config):
+    SECRET_KEY = os.environ.get("SECRET_KEY", "dev-key-change-me-in-production")
     DEBUG = True
     TEMPLATES_AUTO_RELOAD = True
 
@@ -40,6 +45,7 @@ class ProductionConfig(Config):
 
 
 class TestingConfig(Config):
+    SECRET_KEY = os.environ.get("SECRET_KEY", "test-key-not-for-production")
     TESTING = True
     DEBUG = False
 
@@ -53,4 +59,11 @@ CONFIG_MAP = {
 
 def get_config():
     env = os.environ.get("FLASK_ENV", "production").strip().lower()
-    return CONFIG_MAP.get(env, ProductionConfig)
+    config_class = CONFIG_MAP.get(env, ProductionConfig)
+    secret_key = os.environ.get("SECRET_KEY", "")
+    if config_class is ProductionConfig and (
+        len(secret_key) < 32
+        or secret_key in {"change-me-to-a-random-value", "dev-key-change-me-in-production"}
+    ):
+        raise RuntimeError("Set a strong SECRET_KEY (at least 32 characters) when FLASK_ENV is production.")
+    return config_class

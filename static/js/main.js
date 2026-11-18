@@ -337,23 +337,36 @@
       if (!window.COSMOS?.settings?.get()?.soundOn) return;
       try {
         const audio = ensureCtx();
-        const osc = audio.createOscillator();
-        const gain = audio.createGain();
-        osc.type = 'sine';
-        osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.0001, audio.currentTime);
-        gain.gain.linearRampToValueAtTime(0.06, audio.currentTime + 0.01);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + duration);
-        osc.connect(gain).connect(audio.destination);
-        osc.start();
-        osc.stop(audio.currentTime + duration + 0.02);
+        const play = () => {
+          const osc = audio.createOscillator();
+          const gain = audio.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.0001, audio.currentTime);
+          gain.gain.linearRampToValueAtTime(0.06, audio.currentTime + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + duration);
+          osc.connect(gain).connect(audio.destination);
+          osc.start();
+          osc.stop(audio.currentTime + duration + 0.02);
+        };
+        // Mobile browsers can suspend audio until a user gesture resumes it.
+        if (audio.state === 'suspended') audio.resume().then(play).catch(() => {});
+        else play();
       } catch (err) { /* audio unavailable — fail silently */ }
     }
     window.COSMOS = window.COSMOS || {};
     window.COSMOS.blip = blip;
 
+    function sync() {
+      if (!btn) return;
+      const on = !!window.COSMOS.settings.get().soundOn;
+      btn.setAttribute('aria-pressed', String(on));
+      btn.setAttribute('aria-label', `Interface sound effects ${on ? 'on' : 'off'}`);
+      btn.title = `Interface sound effects ${on ? 'on' : 'off'} — subtle tones for clicks, quizzes, and discoveries`;
+      btn.classList.toggle('active', on);
+    }
+
     if (btn) {
-      const sync = () => btn.setAttribute('aria-pressed', String(!!window.COSMOS.settings.get().soundOn));
       sync();
       btn.addEventListener('click', () => {
         const next = !window.COSMOS.settings.get().soundOn;
@@ -362,8 +375,10 @@
         if (next) blip(880, 0.08);
       });
     }
+    window.addEventListener('cosmos:settings-changed', sync);
 
     document.addEventListener('click', (e) => {
+      if (e.target.closest('#sound-toggle')) return;
       if (e.target.closest('button, a.btn, .compare-chip, .tab-btn')) blip(520, 0.045);
     });
   }

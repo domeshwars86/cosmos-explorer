@@ -147,3 +147,11 @@ def test_404_page_renders_custom_template(client):
     resp = client.get("/this-page-does-not-exist")
     assert resp.status_code == 404
     assert b"LOST IN SPACE" in resp.data
+
+
+def test_security_headers_are_applied(client):
+    resp = client.get("/")
+    assert resp.headers["X-Content-Type-Options"] == "nosniff"
+    assert resp.headers["X-Frame-Options"] == "SAMEORIGIN"
+    assert resp.headers["Referrer-Policy"] == "strict-origin-when-cross-origin"
+    assert resp.headers["Permissions-Policy"] == "camera=(), microphone=(), geolocation=()"

@@ -101,6 +101,11 @@ def test_api_weight_calculator_rejects_invalid(client):
     assert resp.status_code == 400
 
 
+def test_api_weight_calculator_rejects_non_finite(client):
+    resp = client.get("/api/calculate/weight?weight=nan")
+    assert resp.status_code == 400
+
+
 def test_api_weight_calculator_requires_value(client):
     resp = client.get("/api/calculate/weight")
     assert resp.status_code == 400
@@ -116,6 +121,11 @@ def test_api_age_calculator(client):
 
 def test_api_age_calculator_rejects_invalid(client):
     resp = client.get("/api/calculate/age?age=-1")
+    assert resp.status_code == 400
+
+
+def test_api_age_calculator_rejects_non_finite(client):
+    resp = client.get("/api/calculate/age?age=nan")
     assert resp.status_code == 400
 
 
@@ -323,6 +333,12 @@ def test_api_quiz_category_filter(client):
     resp = client.get("/api/quiz?category=planets&limit=5")
     body = resp.get_json()
     assert all(q["category"] == "planets" for q in body["data"]["questions"])
+
+
+def test_api_quiz_negative_limit_is_clamped(client):
+    resp = client.get("/api/quiz?limit=-5")
+    assert resp.status_code == 200
+    assert len(resp.get_json()["data"]["questions"]) == 1
 
 
 def test_api_sources(client):

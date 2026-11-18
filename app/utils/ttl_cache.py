@@ -16,6 +16,7 @@ from typing import Callable, Optional
 _lock = threading.Lock()
 # key -> (value, set_at_epoch_seconds, expires_at_epoch_seconds)
 _store: dict = {}
+MAX_ENTRIES = 128
 
 
 def get(key: str):
@@ -32,6 +33,13 @@ def get(key: str):
 def set(key: str, value, ttl_seconds: int) -> None:
     now = time.time()
     with _lock:
+        if key not in _store and len(_store) >= MAX_ENTRIES:
+            expired = [cache_key for cache_key, entry in _store.items() if now > entry[2]]
+            for cache_key in expired:
+                _store.pop(cache_key, None)
+            if len(_store) >= MAX_ENTRIES:
+                oldest_key = min(_store, key=lambda cache_key: _store[cache_key][1])
+                _store.pop(oldest_key, None)
         _store[key] = (value, now, now + ttl_seconds)
 
 

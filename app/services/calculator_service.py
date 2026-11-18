@@ -5,6 +5,8 @@ claims to model anything beyond basic gravitational scaling or orbital
 period ratios — see the disclaimers returned alongside each result.
 """
 
+import math
+
 from app.services import data_service
 
 EARTH_GRAVITY_MS2 = 9.81
@@ -51,6 +53,8 @@ def calculate_weight(earth_weight: float) -> dict:
         earth_weight = float(earth_weight)
     except (TypeError, ValueError):
         raise CalculatorError("Weight must be a number.")
+    if not math.isfinite(earth_weight):
+        raise CalculatorError("Weight must be a finite number.")
     if earth_weight <= 0:
         raise CalculatorError("Weight must be greater than zero.")
     if earth_weight > 100000:
@@ -85,6 +89,8 @@ def calculate_age(earth_age: float) -> dict:
         earth_age = float(earth_age)
     except (TypeError, ValueError):
         raise CalculatorError("Age must be a number.")
+    if not math.isfinite(earth_age):
+        raise CalculatorError("Age must be a finite number.")
     if earth_age < 0:
         raise CalculatorError("Age cannot be negative.")
     if earth_age > 150:
