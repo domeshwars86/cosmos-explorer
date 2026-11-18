@@ -73,6 +73,10 @@
   .sim-toolbar { flex-direction: column; align-items: stretch; }
   .sim-toolbar .spacer { display: none; }
   .fact-generator { padding: 2rem 1.2rem; }
+
+  /* Let vertical swipes over the full-screen scene scroll the page. The
+     canvas still receives horizontal drags for its interactive controls. */
+  #hero-canvas { touch-action: pan-y; }
 }
 
 @media (hover: none) and (pointer: coarse) {

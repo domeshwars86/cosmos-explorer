@@ -60,7 +60,9 @@
     if (document.getElementById('mission-hud')) return;
     const hud = document.createElement('div');
     hud.id = 'mission-hud';
-    const collapsedStored = localStorage.getItem('cosmos:hud-collapsed') === '1';
+    const hudPreference = localStorage.getItem('cosmos:hud-collapsed');
+    const collapsedStored = hudPreference === '1' ||
+      (hudPreference === null && window.matchMedia('(max-width: 600px)').matches);
     if (collapsedStored) hud.classList.add('collapsed');
 
     hud.innerHTML = `
