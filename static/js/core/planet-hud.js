@@ -67,7 +67,9 @@ export function mountPlanetHud(kind, data) {
 
   const info = normalizeStats(kind, data);
   const collapsedKey = 'cosmos:planet-hud-collapsed';
-  const collapsed = localStorage.getItem(collapsedKey) === '1';
+  const hudPreference = localStorage.getItem(collapsedKey);
+  const collapsed = hudPreference === '1' ||
+    (hudPreference === null && window.matchMedia('(max-width: 600px)').matches);
 
   const alreadySaved = window.COSMOS?.journal?.isSaved(window.location.pathname);
   const hud = document.createElement('div');
