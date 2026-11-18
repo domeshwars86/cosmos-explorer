@@ -128,9 +128,9 @@ static/js/
 └── vendor/       three.module.js, OrbitControls.js (vendored, not CDN-loaded)
 ```
 
-`main.js` (loaded on every page) owns cross-cutting UI: the loading
-screen, sticky nav, settings panel, global search, cursor effects, sound
-toggle, and the "Take Me Somewhere" navigator.
+`main.js` (loaded on every page) owns cross-cutting UI: the loading screen,
+sticky nav, settings panel, global search, cursor effects, optional planetary
+ambience toggle, and the "Take Me Somewhere" navigator.
 
 ### Three.js scene architecture
 

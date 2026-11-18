@@ -332,45 +332,135 @@
   }
 
   /* ---------------------------------------------------------------------
-   * Synthesized UI sound (Web Audio API — no audio files required)
+   * Original synthesized planetary ambience (no audio files required)
    * ------------------------------------------------------------------- */
   function initSound() {
     const btn = document.getElementById('sound-toggle');
     let ctx = null;
-    function ensureCtx() {
-      if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const tones = [
+      { frequency: 73.42, level: 0.10, pan: -0.55 },
+      { frequency: 110.00, level: 0.07, pan: 0.40 },
+      { frequency: 146.83, level: 0.055, pan: -0.25 },
+      { frequency: 174.61, level: 0.038, pan: 0.55 },
+      { frequency: 220.00, level: 0.026, pan: -0.40 },
+      { frequency: 293.66, level: 0.012, pan: 0.25 },
+      { frequency: 440.00, level: 0.005, pan: 0.00 },
+    ];
+    let master;
+    let voices = [];
+    let modulationTimer = 0;
+    let shutdownTimer = 0;
+    let transition = 0;
+
+    function ensureAudio() {
+      if (!ctx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return null;
+        ctx = new AudioContext();
+        master = ctx.createGain();
+        master.gain.value = 0.0001;
+        master.connect(ctx.destination);
+      }
       return ctx;
     }
-    function blip(freq = 660, duration = 0.06) {
+
+    function startMusic() {
       if (!window.COSMOS?.settings?.get()?.soundOn) return;
       try {
-        const audio = ensureCtx();
-        const play = () => {
-          const osc = audio.createOscillator();
-          const gain = audio.createGain();
-          osc.type = 'sine';
-          osc.frequency.value = freq;
-          gain.gain.setValueAtTime(0.0001, audio.currentTime);
-          gain.gain.linearRampToValueAtTime(0.06, audio.currentTime + 0.01);
-          gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + duration);
-          osc.connect(gain).connect(audio.destination);
-          osc.start();
-          osc.stop(audio.currentTime + duration + 0.02);
+        const audio = ensureAudio();
+        if (!audio) return;
+        if (audio.state === 'running' && voices.length) {
+          window.clearTimeout(shutdownTimer);
+          ++transition;
+          const now = audio.currentTime;
+          master.gain.cancelScheduledValues(now);
+          master.gain.setTargetAtTime(0.24, now, 0.45);
+          return;
+        }
+
+        const begin = () => {
+          if (!window.COSMOS?.settings?.get()?.soundOn) return;
+          window.clearTimeout(shutdownTimer);
+          const currentTransition = ++transition;
+          const now = audio.currentTime;
+          if (!voices.length) {
+            voices = tones.map(({ frequency, level, pan }, index) => {
+              const oscillator = audio.createOscillator();
+              const gain = audio.createGain();
+              const panner = audio.createStereoPanner?.();
+              oscillator.type = index > 4 ? 'triangle' : 'sine';
+              oscillator.frequency.value = frequency;
+              gain.gain.setValueAtTime(0.0001, now);
+              gain.gain.setTargetAtTime(level, now, 3 + index * 0.5);
+              oscillator.connect(gain);
+              if (panner) {
+                panner.pan.value = pan;
+                gain.connect(panner).connect(master);
+              } else {
+                gain.connect(master);
+              }
+              oscillator.start();
+              return { oscillator, gain, level, index };
+            });
+          } else {
+            voices.forEach(({ gain, level, index }) => {
+              gain.gain.cancelScheduledValues(now);
+              gain.gain.setTargetAtTime(level, now, 3 + index * 0.5);
+            });
+          }
+
+          master.gain.cancelScheduledValues(now);
+          master.gain.setTargetAtTime(0.24, now, 2.8);
+          window.clearInterval(modulationTimer);
+          modulationTimer = window.setInterval(() => {
+            if (!ctx || ctx.state !== 'running') return;
+            const time = ctx.currentTime;
+            voices.forEach(({ gain, level, index }) => {
+              const breath = 0.88 + 0.12 * Math.sin(time / 8 + index * 1.7);
+              gain.gain.setTargetAtTime(level * breath, time, 3.5);
+            });
+          }, 4500);
+          if (currentTransition !== transition) return;
         };
-        // Mobile browsers can suspend audio until a user gesture resumes it.
-        if (audio.state === 'suspended') audio.resume().then(play).catch(() => {});
-        else play();
-      } catch (err) { /* audio unavailable — fail silently */ }
+
+        // Resume from a tap/key gesture when mobile browsers suspend Web Audio.
+        if (audio.state === 'suspended') audio.resume().then(begin).catch(() => {});
+        else begin();
+      } catch (err) { /* audio unavailable — keep the interface usable */ }
     }
+
+    function stopMusic() {
+      if (!ctx || !voices.length) return;
+      window.clearInterval(modulationTimer);
+      const currentTransition = ++transition;
+      const now = ctx.currentTime;
+      master.gain.cancelScheduledValues(now);
+      master.gain.setTargetAtTime(0.0001, now, 0.45);
+      window.clearTimeout(shutdownTimer);
+      shutdownTimer = window.setTimeout(() => {
+        if (currentTransition !== transition || window.COSMOS?.settings?.get()?.soundOn) return;
+        const stoppedVoices = voices;
+        voices = [];
+        stoppedVoices.forEach(({ oscillator, gain }) => {
+          try { oscillator.stop(); } catch (err) { /* already stopped */ }
+          oscillator.disconnect();
+          gain.disconnect();
+        });
+        ctx?.suspend().catch(() => {});
+      }, 1800);
+    }
+
     window.COSMOS = window.COSMOS || {};
-    window.COSMOS.blip = blip;
+    // Some page modules still request a short UI blip; the soundtrack
+    // replaces those effects, so keep the old hook harmless and silent.
+    window.COSMOS.blip = () => {};
 
     function sync() {
       if (!btn) return;
       const on = !!window.COSMOS.settings.get().soundOn;
       btn.setAttribute('aria-pressed', String(on));
-      btn.setAttribute('aria-label', `Interface sound effects ${on ? 'on' : 'off'}`);
-      btn.title = `Interface sound effects ${on ? 'on' : 'off'} — subtle tones for clicks, quizzes, and discoveries`;
+      btn.setAttribute('aria-label', `Planetary music ${on ? 'on' : 'off'}`);
+      btn.title = `Planetary music ${on ? 'on' : 'off'} — synthesized ambient space music`;
       btn.classList.toggle('active', on);
     }
 
@@ -380,15 +470,18 @@
         const next = !window.COSMOS.settings.get().soundOn;
         window.COSMOS.settings.set({ soundOn: next });
         sync();
-        if (next) blip(880, 0.08);
+        if (next) startMusic();
+        else stopMusic();
       });
     }
     window.addEventListener('cosmos:settings-changed', sync);
-
-    document.addEventListener('click', (e) => {
-      if (e.target.closest('#sound-toggle')) return;
-      if (e.target.closest('button, a.btn, .compare-chip, .tab-btn')) blip(520, 0.045);
+    window.addEventListener('cosmos:settings-changed', (e) => {
+      if (e.detail?.soundOn) startMusic();
+      else stopMusic();
     });
+    document.addEventListener('pointerdown', startMusic);
+    document.addEventListener('keydown', startMusic);
+    if (window.COSMOS.settings.get().soundOn) startMusic();
   }
 
   /* ---------------------------------------------------------------------
