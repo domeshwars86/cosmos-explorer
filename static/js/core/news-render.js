@@ -28,19 +28,19 @@ export function timeAgo(iso) {
   return formatISTDate(iso);
 }
 
-export function renderNewsCard(a) {
-  const icon = CATEGORY_ICONS[a.category] || '🛰️';
+export function renderNewsCard(a, { showFollow = false, followedTopics = [] } = {}) {
+  const category = String(a.category || 'Missions');
+  const icon = CATEGORY_ICONS[category] || '🛰️';
   const imageUrl = safeHttpUrl(a.image_url);
   const articleId = String(a.id ?? '');
   const image = imageUrl
-    ? `<img class="news-image" src="${escapeHtml(imageUrl)}" alt="" loading="lazy" data-fallback-icon="${icon}" data-fallback-category="${escapeHtml(a.category)}" />`
-    : `<div class="news-image fallback">${icon} ${escapeHtml(a.category)}</div>`;
+    ? `<img class="news-image" src="${escapeHtml(imageUrl)}" alt="" loading="lazy" data-fallback-icon="${icon}" data-fallback-category="${escapeHtml(category)}" />`
+    : `<div class="news-image fallback">${icon} ${escapeHtml(category)}</div>`;
 
-  return `
-    <a class="news-card" href="/space/news/${encodeURIComponent(articleId)}" data-article-id="${escapeHtml(articleId)}">
+  const story = `
       ${image}
       <div class="news-card-body">
-        <div class="news-card-meta"><span class="badge" style="padding:0.15rem 0.5rem;">${escapeHtml(a.category)}</span><span class="text-muted">${timeAgo(a.published_at)}</span></div>
+        <div class="news-card-meta"><span class="badge" style="padding:0.15rem 0.5rem;">${escapeHtml(category)}</span><span class="text-muted">${timeAgo(a.published_at)}</span></div>
         <div class="news-card-title">${escapeHtml(a.title)}</div>
         <div class="news-card-summary">${escapeHtml((a.summary || '').slice(0, 140))}${a.summary && a.summary.length > 140 ? '…' : ''}</div>
         <div class="news-card-footer">
@@ -48,7 +48,23 @@ export function renderNewsCard(a) {
           <span class="text-accent">Read Story →</span>
         </div>
       </div>
-    </a>`;
+    `;
+
+  if (!showFollow) {
+    return `<a class="news-card" href="/space/news/${encodeURIComponent(articleId)}" data-article-id="${escapeHtml(articleId)}">${story}</a>`;
+  }
+
+  const topics = [...new Set(Array.isArray(a.tags) ? a.tags.filter((tag) => typeof tag === 'string' && tag.trim()) : [])].slice(0, 3);
+  const followed = new Set(followedTopics);
+  const topicControls = topics.length
+    ? `<div class="news-card-topics" aria-label="Follow story topics">${topics.map((topic) => {
+      const isFollowing = followed.has(topic);
+      const action = isFollowing ? 'Unfollow' : 'Follow';
+      return `<button type="button" class="news-follow-button${isFollowing ? ' is-following' : ''}" data-follow-topic="${escapeHtml(topic)}" aria-pressed="${isFollowing}" aria-label="${action} ${escapeHtml(topic)}"><span class="news-follow-state">${isFollowing ? 'Following' : 'Follow'}</span><span>${escapeHtml(topic)}</span></button>`;
+    }).join('')}</div>`
+    : '';
+
+  return `<article class="news-card"><a class="news-card-link" href="/space/news/${encodeURIComponent(articleId)}" data-article-id="${escapeHtml(articleId)}">${story}</a>${topicControls}</article>`;
 }
 
 /**

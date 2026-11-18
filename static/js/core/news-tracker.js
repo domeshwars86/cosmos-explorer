@@ -9,8 +9,10 @@
   const FOLLOW_KEY = 'cosmos:news:following';
 
   function getLastVisit() {
-    const raw = localStorage.getItem(VISIT_KEY);
-    return raw ? new Date(raw) : null;
+    try {
+      const raw = localStorage.getItem(VISIT_KEY);
+      return raw ? new Date(raw) : null;
+    } catch (err) { return null; }
   }
 
   function markVisitNow() {
@@ -25,15 +27,21 @@
     return {
       newCount: fresh.length,
       missionCount: fresh.filter((a) => ['Missions', 'Launches'].includes(a.category)).length,
-      isroCount: fresh.filter((a) => a.tags.includes('ISRO')).length,
+      isroCount: fresh.filter((a) => Array.isArray(a.tags) && a.tags.includes('ISRO')).length,
     };
   }
 
   function getFollowedTopics() {
-    try { return JSON.parse(localStorage.getItem(FOLLOW_KEY) || '[]'); } catch (err) { return []; }
+    try {
+      const topics = JSON.parse(localStorage.getItem(FOLLOW_KEY) || '[]');
+      return Array.isArray(topics) ? [...new Set(topics.filter((topic) => typeof topic === 'string' && topic.trim()))] : [];
+    } catch (err) { return []; }
   }
   function setFollowedTopics(list) {
-    try { localStorage.setItem(FOLLOW_KEY, JSON.stringify(list)); } catch (err) { /* ignore */ }
+    try {
+      const topics = Array.isArray(list) ? [...new Set(list.filter((topic) => typeof topic === 'string' && topic.trim()))] : [];
+      localStorage.setItem(FOLLOW_KEY, JSON.stringify(topics));
+    } catch (err) { /* ignore */ }
   }
   function isFollowing(topic) {
     return getFollowedTopics().includes(topic);

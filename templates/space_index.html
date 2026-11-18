@@ -49,6 +49,16 @@
     </div>
 
     <div class="category-chips reveal" id="category-chips" style="margin-bottom:0.6rem;"></div>
+    <div class="space-personal-feed reveal">
+      <div class="space-personal-feed-header">
+        <div class="space-news-views" role="group" aria-label="News feed view">
+          <button type="button" class="category-chip active" id="news-view-all" aria-pressed="true">All Stories</button>
+          <button type="button" class="category-chip" id="news-view-following" aria-pressed="false">Following <span class="follow-count" id="followed-topic-count">0</span></button>
+        </div>
+        <p class="text-muted space-personal-feed-help" id="followed-topic-help">Follow topics on a story card to build your personal feed.</p>
+      </div>
+      <div class="space-followed-topics" id="followed-topics" aria-label="Topics you follow" aria-live="polite"></div>
+    </div>
     <div class="row wrap gap-sm reveal" id="source-chips" style="margin-bottom:2rem;"></div>
 
     <div class="news-grid" id="news-grid"></div>
