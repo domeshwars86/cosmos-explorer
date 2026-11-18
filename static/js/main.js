@@ -128,6 +128,14 @@
         input.addEventListener('change', () => settings.set({ [key]: input.value }));
       }
     });
+    window.addEventListener('cosmos:settings-changed', (e) => {
+      const updated = e.detail || settings.get();
+      $$('[data-setting]', panel).forEach((input) => {
+        const key = input.dataset.setting;
+        if (input.type === 'checkbox') input.checked = !!updated[key];
+        else if (input.tagName === 'SELECT') input.value = updated[key];
+      });
+    });
 
     const resetBtn = document.getElementById('settings-reset');
     resetBtn?.addEventListener('click', () => {
