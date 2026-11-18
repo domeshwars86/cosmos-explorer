@@ -59,6 +59,10 @@
 
 @media (max-width: 600px) {
   :root { --nav-height: 66px; }
+  /* The fixed scroll cue can sit on top of the stacked home page actions
+     on short phone screens. Touch users can scroll naturally, so remove
+     the cue there and leave both hero buttons unobstructed. */
+  .page-home .hero-hint { display: none; }
   .section { padding: 3rem 0; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
