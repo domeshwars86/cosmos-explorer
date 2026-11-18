@@ -42,7 +42,9 @@ async function init() {
   toolbarToggle?.addEventListener('click', () => {
     const collapsed = toolbar.classList.toggle('is-collapsed');
     toolbarToggle.setAttribute('aria-expanded', String(!collapsed));
-    toolbarToggle.querySelector('.sim-toolbar-toggle-label').textContent = collapsed ? 'Show controls' : 'Hide controls';
+    const action = collapsed ? 'Expand' : 'Collapse';
+    toolbarToggle.setAttribute('aria-label', `${action} simulation controls`);
+    toolbarToggle.title = `${action} simulation controls`;
   });
 
   if (!window.COSMOS?.hasWebGL) { showFallback(); return; }
