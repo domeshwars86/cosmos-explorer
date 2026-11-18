@@ -121,6 +121,11 @@ export function mountPlanetHud(kind, data) {
   }
   toggle.addEventListener('click', () => setCollapsed(!hud.classList.contains('collapsed')));
   toggle.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setCollapsed(!hud.classList.contains('collapsed')); } });
+  document.addEventListener('pointerdown', (e) => {
+    if (mobileHudQuery.matches && !hud.classList.contains('collapsed') && !hud.contains(e.target)) {
+      setCollapsed(true);
+    }
+  });
 
   mountScan(wrap, kind, data);
 }
